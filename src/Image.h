@@ -1,8 +1,10 @@
 #ifndef IMAGE_H
 #define IMAGE_H
-#include "Pixel.h"
 
-#include<iostream>
+#include "Pixel.h"
+#include "Const.h"
+
+#include <iostream>
 
 using namespace std;
 
@@ -12,13 +14,13 @@ public:
 	Image();
 	~Image();
 
-	Image(const string& nomImage,unsigned int nombrePixelHauteur, unsigned int nombrePixelLargeur);
+	Image(const string& nomImage, uint8_t nombrePixelHauteur, uint8_t nombrePixelLargeur);
 
 	void doublerTailleEnLargeur();
 	void doublerTailleEnHauteur();
 
-	unsigned int obtenirNombrePixelHauteur() const;
-	unsigned int obtenirNombrePixelLargeur() const;
+	uint_t obtenirNombrePixelHauteur() const;
+	uint_t obtenirNombrePixelLargeur() const;
 	string obtenirNomImage() const;
 
 	void modifierNomImage(const string & nomImage);
