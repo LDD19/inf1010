@@ -21,33 +21,37 @@ Image::Image(const string & nomImage, unsigned int nombrePixelHauteur, unsigned 
 
 void Image::doublerTailleEnLargeur()
 {
+	nombrePixelEnLargeur_ = nombrePixelEnLargeur_ * 2;
 }
 
 void Image::doublerTailleEnHauteur()
 {
+	nombrePixelEnHauteur_ = nombrePixelEnHauteur_ * 2;
 }
 
 unsigned int Image::obtenirNombrePixelHauteur() const
 {
-	return 0;
+	return nombrePixelEnHauteur_;
 }
 
 unsigned int Image::obtenirNombrePixelLargeur() const
 {
-	return 0;
+	return nombrePixelEnLargeur_;
 }
 
 string Image::obtenirNomImage() const
 {
-	return string();
+	return nomImage_;
 }
 
 void Image::modifierNomImage(const string & nomImage)
 {
+	nomImage_ = nomImage;
 }
 
 void Image::afficherImage() const
 {
+
 }
 
 bool Image::ajouterPixel(Pixel & pixel, unsigned int positionLargeur, unsigned int positionHauteur)
@@ -62,4 +66,5 @@ Pixel Image::obtenirPixel(unsigned int positionHauteur, unsigned int positionLar
 
 void Image::augmenterTeintePixel(unsigned int positionLargeur, unsigned int positionHauteur, int increment, char couleur)
 {
+
 }
