@@ -36,10 +36,10 @@ uint8_t Pixel::getTauxBleu() {
 void Pixel::modifierTeinteRouge(int8_t incrementRouge) {
     uint8_t next = this->tauxRouge_ + incrementRouge;
 
-    if(next < 0)
-        this->tauxRouge_ = 0;
-    else if(next > UINT8_MAX)
-        this->tauxRouge_ = UINT8_MAX;
+    if(next < MIN_CONCENTRATION_COULEUR)
+        this->tauxRouge_ = MIN_CONCENTRATION_COULEUR;
+    else if(next > MAX_CONCENTRATION_COULEUR)
+        this->tauxRouge_ = MAX_CONCENTRATION_COULEUR;
     else
         this->tauxRouge_ = next;
 }
@@ -47,10 +47,10 @@ void Pixel::modifierTeinteRouge(int8_t incrementRouge) {
 void Pixel::modifierTeinteVert(int8_t incrementVert) {
     uint8_t next = this->tauxVert_ + incrementVert;
 
-    if(next < 0)
-        this->tauxVert_ = 0;
-    else if(next > UINT8_MAX)
-        this->tauxVert_ = UINT8_MAX;
+    if(next < MIN_CONCENTRATION_COULEUR)
+        this->tauxVert_ = MIN_CONCENTRATION_COULEUR;
+    else if(next > MAX_CONCENTRATION_COULEUR)
+        this->tauxVert_ = MAX_CONCENTRATION_COULEUR;
     else
         this->tauxVert_ = next;
 }
@@ -58,10 +58,10 @@ void Pixel::modifierTeinteVert(int8_t incrementVert) {
 void Pixel::modifierTeinteBleu(int8_t incrementBleu) {
     uint8_t next = this->tauxBleu_ + incrementBleu;
 
-    if(next < 0)
-        this->tauxBleu_ = 0;
-    else if(next > UINT8_MAX)
-        this->tauxBleu_ = UINT8_MAX;
+    if(next < MIN_CONCENTRATION_COULEUR)
+        this->tauxBleu_ = MIN_CONCENTRATION_COULEUR;
+    else if(next > MAX_CONCENTRATION_COULEUR)
+        this->tauxBleu_ = MAX_CONCENTRATION_COULEUR;
     else
         this->tauxBleu_ = next;
 }
