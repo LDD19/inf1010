@@ -2,8 +2,8 @@
 
 GroupImage::GroupImage()
 {
-	type_ = "";
-	capaciteImages_ = 0;
+    type_ = "";
+    capaciteImages_ = 0;
 }
 
 GroupImage::~GroupImage()
@@ -12,28 +12,28 @@ GroupImage::~GroupImage()
 
 GroupImage::GroupImage(const string & type, unsigned int capaciteImages)
 {
-	type_ = type;
-	capaciteImages_ = capaciteImages;
+    type_ = type;
+    capaciteImages_ = capaciteImages;
 }
 
 void GroupImage::modifierType(const string & type)
 {
-	type_ = type;
+    type_ = type;
 }
 
 string GroupImage::obtenirType() const
 {
-	return type_;
+    return type_;
 }
 
 Image GroupImage::obtenirImage(unsigned int indiceImage) const
 {
-	return Image();
+    return Image();
 }
 
 unsigned int GroupImage::obtenirNombreImages() const
 {
-	return 0;
+    return 0;
 }
 
 void GroupImage::ajouterImage(const Image & image)
