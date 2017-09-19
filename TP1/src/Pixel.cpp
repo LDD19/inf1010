@@ -1,7 +1,7 @@
-#include <iostream>
+#include <stdio.h>
 
-#include "Const.h"
 #include "Pixel.h"
+#include "Const.h"
 
 using namespace std;
 
@@ -73,7 +73,5 @@ void Pixel::incrementBlue(int b) {
 }
 
 void Pixel::printPixel() const {
-    cout << "R value : " << valueRed_ << "\n";
-    cout << "G value : " << valueGreen_  << "\n";
-    cout << "B value : " << valueBlue_  << "\n";
+    printf("(%03d,%03d,%03d)", valueRed_, valueGreen_, valueBlue_);
 }
