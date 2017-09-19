@@ -21,15 +21,21 @@ Pixel::Pixel(uint8_t r, uint8_t g, uint8_t b) {
     valueBlue_  = b;
 }
 
-uint8_t Pixel::getRed() {
+Pixel::Pixel(const Pixel& pixel) {
+    valueRed_   = pixel.getRed();
+    valueGreen_ = pixel.getGreen();
+    valueBlue_  = pixel.getBlue();
+}
+
+uint8_t Pixel::getRed() const {
     return valueRed_;
 }
 
-uint8_t Pixel::getGreen() {
+uint8_t Pixel::getGreen() const {
     return valueGreen_;
 }
 
-uint8_t Pixel::getBlue() {
+uint8_t Pixel::getBlue() const {
     return valueBlue_;
 }
 

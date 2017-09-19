@@ -29,25 +29,32 @@ public:
     Pixel(uint8_t r, uint8_t g, uint8_t b);
 
     /**
+     * Copy constructor.
+     *
+     * @param pixel The object to copy from.
+     */
+    Pixel(const Pixel& pixel);
+
+    /**
      * This method returns the red value of the pixel.
      *
      * @return The red value of the pixel.
      */
-    uint8_t getRed();
+    uint8_t getRed() const;
 
     /**
      * This method returns the green value of the pixel.
      *
      * @return The green value of the pixel.
      */
-    uint8_t getGreen();
+    uint8_t getGreen() const;
 
     /**
      * This method returns the blue value of the pixel.
      *
      * @return The blue value of the pixel.
      */
-    uint8_t getBlue();
+    uint8_t getBlue() const;
 
     /**
      * This method increments the red value of the pixel.
