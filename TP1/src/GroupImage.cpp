@@ -1,53 +1,92 @@
+#include <stdio.h>
+
 #include "GroupImage.h"
 
-GroupImage::GroupImage()
-{
-    type_ = "";
-    capaciteImages_ = 0;
+using namespace std;
+
+GroupImage::GroupImage() {
+    type_     = "";
+    size_     = 0;
+    capacity_ = 1;
+    images_   = new Image*[capacity_];
 }
 
-GroupImage::~GroupImage()
-{
+GroupImage::~GroupImage() {
+    delete [] images_;
 }
 
-GroupImage::GroupImage(const string & type, unsigned int capaciteImages)
-{
+GroupImage::GroupImage(const string& type, uint_t capacity) {
+    type_     = type;
+    size_     = 0;
+    capacity_ = capacity;
+    images_   = new Image*[capacity_];
+}
+
+GroupImage::GroupImage(const GroupImage& group) {
+    type_     = group.getType();
+    size_     = group.getSize();
+    capacity_ = group.getCapacity();
+    images_   = new Image*[capacity_];
+
+    /* copy the images */
+    for(uint_t i = 0; i < size_; i++)
+        images_[i] = group.getImage(i);
+}
+
+void GroupImage::setType(const string& type) {
     type_ = type;
-    capaciteImages_ = capaciteImages;
 }
 
-void GroupImage::modifierType(const string & type)
-{
-    type_ = type;
-}
-
-string GroupImage::obtenirType() const
-{
+string GroupImage::getType() const {
     return type_;
 }
 
-Image GroupImage::obtenirImage(unsigned int indiceImage) const
-{
-    return Image();
+Image* GroupImage::getImage(uint_t index) const {
+    /* make sure the index is valid */
+    if(index >= size_)
+        return NULL;
+
+    return images_[index];
 }
 
-unsigned int GroupImage::obtenirNombreImages() const
-{
-    return 0;
+uint_t GroupImage::getSize() const {
+    return size_;
 }
 
-void GroupImage::ajouterImage(const Image & image)
-{
+uint_t GroupImage::getCapacity() const {
+    return capacity_;
 }
 
-void GroupImage::afficherImages() const
-{
+void GroupImage::addImage(Image& image) {
+    /* make sure we can add another image into the list */
+    if(size_ >= capacity_)
+        return;
+
+    /* add the image */
+    images_[size_++] = &image;
 }
 
-void GroupImage::doublerTailleImageEnLargeur(unsigned int indiceImage)
-{
+void GroupImage::printImages() const {
+    /* print all the image names */
+    for(uint_t i = 0; i < size_; i++) {
+        images_[i]->printImage();
+    }
 }
 
-void GroupImage::doublerTailleImageEnHauteur(unsigned int indiceImage)
-{
+void GroupImage::doubleWidth(uint_t index) {
+    /* make sure the index is valid */
+    if(index >= size_)
+        return;
+
+    /* double the width of the image */
+    images_[index]->doubleWidth();
+}
+
+void GroupImage::doubleHeight(uint_t index) {
+    /* make sure the index is valid */
+    if(index >= size_)
+        return;
+
+    /* double the height of the image */
+    images_[index]->doubleHeight();
 }
