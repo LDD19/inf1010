@@ -3,30 +3,93 @@
 
 #include <cstdint>
 
-
-
+/**
+ * This class defines a pixel. It consists of a red, green and blue value.
+ */
 class Pixel
 {
 public:
+    /**
+     * Default constructor.
+     */
     Pixel();
+
+    /**
+     * Destructor.
+     */
     ~Pixel();
 
-    Pixel(uint8_t tauxRouge, uint8_t tauxVert, uint8_t tauxBleu);
+    /**
+     * Overloaded constructor.
+     *
+     * @param r The red value of the pixel.
+     * @param g The green value of the pixel.
+     * @param b The blue value of the pixel.
+     */
+    Pixel(uint8_t r, uint8_t g, uint8_t b);
 
-    uint8_t getTauxRouge();
-    uint8_t getTauxVert();
-    uint8_t getTauxBleu();
+    /**
+     * This method returns the red value of the pixel.
+     *
+     * @return The red value of the pixel.
+     */
+    uint8_t getRed();
 
-    void modifierTeinteRouge(int8_t incrementRouge);
-    void modifierTeinteVert(int8_t incrementVert);
-    void modifierTeinteBleu(int8_t incrementBleu);
+    /**
+     * This method returns the green value of the pixel.
+     *
+     * @return The green value of the pixel.
+     */
+    uint8_t getGreen();
 
-    void afficherPixel() const;
+    /**
+     * This method returns the blue value of the pixel.
+     *
+     * @return The blue value of the pixel.
+     */
+    uint8_t getBlue();
+
+    /**
+     * This method increments the red value of the pixel.
+     *
+     * @param r The red value to add.
+     */
+    void incrementRed(int r);
+
+    /**
+     * This method increments the green value of the pixel.
+     *
+     * @param g The green value to add.
+     */
+    void incrementGreen(int g);
+
+    /**
+     * This method increments the blue value of the pixel.
+     *
+     * @param b The blue value to add.
+     */
+    void incrementBlue(int b);
+
+    /**
+     * This method prints the red, green and blue values of the pixel.
+     */
+    void printPixel() const;
 
 private:
-    uint8_t tauxRouge_;
-    uint8_t tauxVert_;
-    uint8_t tauxBleu_;
+    /**
+     * The red value of the pixel.
+     */
+    uint8_t valueRed_;
+
+    /**
+     * The green value of the pixel.
+     */
+    uint8_t valueGreen_;
+
+    /**
+     * The blue value of the pixel.
+     */
+    uint8_t valueBlue_;
 };
 
 #endif

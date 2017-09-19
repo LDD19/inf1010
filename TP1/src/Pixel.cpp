@@ -6,68 +6,68 @@
 using namespace std;
 
 Pixel::Pixel() {
-    tauxRouge_ = 0;
-    tauxVert_  = 0;
-    tauxBleu_  = 0;
-}
-
-Pixel::Pixel(uint8_t tauxRouge, uint8_t tauxVert, uint8_t tauxBleu) {
-    tauxRouge_ = tauxRouge;
-    tauxVert_  = tauxVert;
-    tauxBleu_  = tauxBleu;
+    valueRed_    = 0;
+    valueGreen_  = 0;
+    valueBlue_   = 0;
 }
 
 Pixel::~Pixel() {
 
 }
 
-uint8_t Pixel::getTauxRouge() {
-    return tauxRouge_;
+Pixel::Pixel(uint8_t r, uint8_t g, uint8_t b) {
+    valueRed_   = r;
+    valueGreen_ = g;
+    valueBlue_  = b;
 }
 
-uint8_t Pixel::getTauxVert() {
-    return tauxVert_;
+uint8_t Pixel::getRed() {
+    return valueRed_;
 }
 
-uint8_t Pixel::getTauxBleu() {
-    return tauxBleu_;
+uint8_t Pixel::getGreen() {
+    return valueGreen_;
 }
 
-void Pixel::modifierTeinteRouge(int8_t incrementRouge) {
-    uint8_t next = tauxRouge_ + incrementRouge;
+uint8_t Pixel::getBlue() {
+    return valueBlue_;
+}
+
+void Pixel::incrementRed(int r) {
+    int next = valueRed_ + r;
 
     if(next < MIN_CONCENTRATION_COULEUR)
-        tauxRouge_ = MIN_CONCENTRATION_COULEUR;
+        valueRed_ = MIN_CONCENTRATION_COULEUR;
     else if(next > MAX_CONCENTRATION_COULEUR)
-        tauxRouge_ = MAX_CONCENTRATION_COULEUR;
+        valueRed_ = MAX_CONCENTRATION_COULEUR;
     else
-        tauxRouge_ = next;
+        valueRed_ = next;
 }
 
-void Pixel::modifierTeinteVert(int8_t incrementVert) {
-    uint8_t next = tauxVert_ + incrementVert;
+void Pixel::incrementGreen(int g) {
+    int next = valueGreen_ + g;
 
     if(next < MIN_CONCENTRATION_COULEUR)
-        tauxVert_ = MIN_CONCENTRATION_COULEUR;
+        valueGreen_ = MIN_CONCENTRATION_COULEUR;
     else if(next > MAX_CONCENTRATION_COULEUR)
-        tauxVert_ = MAX_CONCENTRATION_COULEUR;
+        valueGreen_ = MAX_CONCENTRATION_COULEUR;
     else
-        tauxVert_ = next;
+        valueGreen_ = next;
 }
 
-void Pixel::modifierTeinteBleu(int8_t incrementBleu) {
-    uint8_t next = tauxBleu_ + incrementBleu;
+void Pixel::incrementBlue(int b) {
+    int next = valueBlue_ + b;
 
     if(next < MIN_CONCENTRATION_COULEUR)
-        tauxBleu_ = MIN_CONCENTRATION_COULEUR;
+        valueBlue_ = MIN_CONCENTRATION_COULEUR;
     else if(next > MAX_CONCENTRATION_COULEUR)
-        tauxBleu_ = MAX_CONCENTRATION_COULEUR;
+        valueBlue_ = MAX_CONCENTRATION_COULEUR;
     else
-        tauxBleu_ = next;
+        valueBlue_ = next;
 }
 
-void Pixel::afficherPixel() const {
-    cout << "Rouge : " << tauxRouge_ << "\n";
-    cout << "Vert  : " << tauxVert_  << "\n";
-    cout << "Bleu  : " << tauxBleu_  << "\n";
+void Pixel::printPixel() const {
+    cout << "R value : " << valueRed_ << "\n";
+    cout << "G value : " << valueGreen_  << "\n";
+    cout << "B value : " << valueBlue_  << "\n";
 }
