@@ -3,8 +3,6 @@
 #include "Pixel.h"
 #include "Const.h"
 
-using namespace std;
-
 Pixel::Pixel() {
     valueRed_    = 0;
     valueGreen_  = 0;

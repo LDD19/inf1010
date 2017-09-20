@@ -1,7 +1,7 @@
 #ifndef PIXEL_H
 #define PIXEL_H
 
-#include <cstdint>
+#include <stdint.h>
 
 /**
  * This class defines a pixel. It consists of a red, green and blue value.
