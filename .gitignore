@@ -1,2 +1,8 @@
+# object files
 *.o
+
+# vim temporary files
 *.swp
+
+# build directories
+*/build/*
