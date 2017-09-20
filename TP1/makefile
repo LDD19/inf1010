@@ -1,23 +1,42 @@
 CC = g++
-CCFLAGS = -Wall -g
+CCFLAGS = -Wall -Wextra -g
 LDFLAGS =
 EXEC = image
 
-all: Pixel.o Image.o GroupImage.o Main.o
-	$(CC) -o $(EXEC) \
-		src/Pixel.o \
-		src/Image.o \
-		src/GroupImage.o \
-		src/Main.o $(LDFLAGS)
+SRCDIR = src
+BUILD  = build
 
-Main.o: src/Main.cpp
-	$(CC) -o src/Main.o -c src/Main.cpp $(CCFLAGS)
+OBJECTS = $(BUILD)/Pixel.o \
+          $(BUILD)/Image.o \
+          $(BUILD)/GroupImage.o \
+          $(BUILD)/Main.o
 
-Pixel.o: src/Pixel.h src/Pixel.cpp
-	$(CC) -o src/Pixel.o -c src/Pixel.cpp $(CCFLAGS)
+all: .PHONY $(OBJECTS)
+	$(CC) -o $(BUILD)/$(EXEC) $(OBJECTS) $(LDFLAGS)
 
-Image.o: src/Image.h src/Image.cpp src/Pixel.h
-	$(CC) -o src/Image.o -c src/Image.cpp $(CCFLAGS)
+$(BUILD)/Main.o: $(SRCDIR)/Main.cpp
+	$(CC) -o $(BUILD)/Main.o -c $(SRCDIR)/Main.cpp $(CCFLAGS)
 
-GroupImage.o: src/GroupImage.h src/GroupImage.cpp src/Image.h
-	$(CC) -o src/GroupImage.o -c src/GroupImage.cpp $(CCFLAGS)
+$(BUILD)/Pixel.o: $(SRCDIR)/Pixel.h \
+                  $(SRCDIR)/Pixel.cpp
+	$(CC) -o $(BUILD)/Pixel.o -c $(SRCDIR)/Pixel.cpp $(CCFLAGS)
+
+$(BUILD)/Image.o: $(SRCDIR)/Image.h \
+                  $(SRCDIR)/Image.cpp \
+                  $(SRCDIR)/Pixel.h
+	$(CC) -o $(BUILD)/Image.o -c $(SRCDIR)/Image.cpp $(CCFLAGS)
+
+$(BUILD)/GroupImage.o: $(SRCDIR)/GroupImage.h \
+                       $(SRCDIR)/GroupImage.cpp \
+                       $(SRCDIR)/Image.h
+	$(CC) -o $(BUILD)/GroupImage.o -c $(SRCDIR)/GroupImage.cpp $(CCFLAGS)
+
+.PHONY:
+	mkdir -p $(BUILD)
+
+clean:
+	rm -vf $(OBJECTS)
+	rm -vf $(BUILD)/$(EXEC)
+
+mrproper:
+	rm -rf $(BUILD)
