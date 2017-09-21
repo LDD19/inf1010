@@ -6,3 +6,6 @@
 
 # build directories
 */build/*
+
+# valgrind debug file
+vgcore.*
