@@ -8,6 +8,9 @@
 
 using namespace std;
 
+/**
+ * This class defines an image. An image has a name and pixels data.
+ */
 class Image
 {
 public:

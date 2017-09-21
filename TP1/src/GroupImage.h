@@ -6,6 +6,18 @@
 
 using namespace std;
 
+/**
+ * This class defines a group of image. It has a name and a set of images.
+ *
+ * We store pointer to the image rather than copy its structure. The problem
+ * with copying the structure is that we're duplicating a pointer to a
+ * dynamically allocated area of memory. This, in turn, would cause the
+ * pixels data of the added image to be freed twice, corrupting the memory.
+ *
+ * One solution would be deep copying the whole image object, but that isn't
+ * really efficient. Simply storing the pointer to the image object is perfect
+ * for speed and memory safety.
+ */
 class GroupImage
 {
 public:
