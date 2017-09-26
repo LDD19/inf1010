@@ -5,8 +5,7 @@
 #include "Const.h"
 
 #include <string>
-
-using namespace std;
+#include <ostream>
 
 /**
  * This class defines an image. An image has a name and pixels data.
@@ -31,7 +30,7 @@ public:
      * @param height The height of the image.
      * @param width  The width of the image.
      */
-    Image(const string& name, uint_t height, uint_t width);
+    Image(const std::string& name, uint_t height, uint_t width);
 
     /**
      * Copy constructor.
@@ -76,14 +75,14 @@ public:
      *
      * @return The name of the image.
      */
-    string getName() const;
+    std::string getName() const;
 
     /**
      * This method sets the name of the image.
      *
      * @param name The new name of the image.
      */
-    void setName(const string& name);
+    void setName(const std::string& name);
 
     /**
      * This method prints the image.
@@ -124,11 +123,25 @@ public:
      */
     void incrementValue(uint_t x, uint_t y, int value, char color);
 
+    //***********************
+    // overloaded operators *
+    //***********************
+
+    Image& operator=(const Image& i);
+
+    bool operator==(const Image& i) const;
+
+    bool operator==(const std::string& s) const;
+
+    friend bool operator==(const std::string& s, const Image& i);
+
+    friend std::ostream& operator<<(std::ostream& o, const Image& i);
+
 private :
     /**
      * The name of the image.
      */
-    string name_;
+    std::string name_;
 
     /**
      * The height of the image.

@@ -1,12 +1,15 @@
 #include <stdio.h>
+#include <ostream>
 #include <assert.h>
 
 #include "Image.h"
 
+using namespace std;
+
 Image::Image() {
     name_   = "";
-    height_ = 1;
-    width_  = 1;
+    height_ = 3;
+    width_  = 3;
     pixels_ = NULL;
 
     allocatePixels();
@@ -171,4 +174,62 @@ void Image::copyPixels(const Image& image) {
     for(uint_t j = 0; j < height_; j++)
         for(uint_t i = 0; i < width_; i++)
             pixels_[j][i] = image.getPixel(i, j);
+}
+
+Image& Image::operator=(const Image& i) {
+    /* we copy the basic parameters */
+    name_ = i.getName();
+    width_ = i.getWidth();
+    height_ = i.getHeight();
+
+    /* we copy all the pixels */
+    freePixels();
+    allocatePixels();
+    copyPixels(i);
+
+    return (*this);
+}
+
+bool Image::operator==(const Image& i) const {
+    /* basic attributes must be the same */
+    if(name_ != i.getName())
+        return false;
+
+    if(width_ != i.getWidth())
+        return false;
+
+    if(height_ != i.getHeight())
+        return false;
+
+
+    /* compare the pixels data */
+    for(uint_t y = 0; y < height_; y++)
+        for(uint_t x = 0; x < width_; x++)
+            if(!(pixels_[y][x] == i.getPixel(x, y)))
+                return false;
+
+
+    /* everything is equal */
+    return true;
+}
+
+bool Image::operator==(const string& s) const {
+    return (name_ == s);
+}
+
+bool operator==(const string& s, const Image& i) {
+    return (i == s);
+}
+
+ostream& operator<<(ostream& o, const Image& i) {
+    /* generate the image output */
+    o << i.getName() << ":" << endl;
+    for(uint_t y = 0; y < i.getHeight(); y++) {
+        for(uint_t x = 0; x < i.getWidth(); x++) {
+            o << i.getPixel(x, y).asChar() << " ";
+        }
+        o << endl;
+    }
+
+    return o;
 }
