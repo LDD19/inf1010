@@ -37,7 +37,7 @@ public:
      *
      * @param type The type of the group.
      */
-    GroupImage(const std::string& type);
+    GroupImage(const std::string& type, uint_t capacity);
 
     /**
      * Copy constructor.
@@ -133,9 +133,9 @@ private:
     std::string type_;
 
     /**
-     * The current size of the group.
+     * The current capcity of the group.
      */
-    uint_t size_;
+    uint_t capacity_;
 
     /**
      * The pointers to the images.

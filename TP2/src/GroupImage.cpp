@@ -6,21 +6,24 @@
 using namespace std;
 
 GroupImage::GroupImage() {
-    type_ = "";
+    type_     = "";
+    capacity_ = 3;
 }
 
 GroupImage::~GroupImage() {
 }
 
-GroupImage::GroupImage(const string& type) {
-    type_ = type;
+GroupImage::GroupImage(const string& type, uint_t capacity) {
+    type_     = type;
+    capacity_ = capacity;
 }
 
 GroupImage::GroupImage(const GroupImage& group) {
-    type_ = group.getType();
+    type_     = group.getType();
+    capacity_ = group.getCapacity();
 
     /* copy the image pointers*/
-    for(uint_t i = 0; i < size_; i++)
+    for(uint_t i = 0; i < getSize(); i++)
         images_.push_back(group.getImage(i));
 }
 
@@ -34,7 +37,7 @@ string GroupImage::getType() const {
 
 Image* GroupImage::getImage(uint_t index) const {
     /* make sure the index is valid */
-    if(index >= size_)
+    if(index >= getSize())
         return NULL;
 
     return images_[index];
@@ -45,12 +48,18 @@ uint_t GroupImage::getSize() const {
 }
 
 uint_t GroupImage::getCapacity() const {
-    return images_.capacity();
+    return capacity_;
 }
 
 void GroupImage::addImage(Image& image) {
+    /* make sure there's space available */
+    if(getSize() >= getCapacity()) {
+        cout << "The group is at its maximum capacity." << endl;
+        return;
+    }
+
     /* make sure the name isn't duplicated */
-    for(uint_t i = 0; i < images_.size(); i++) {
+    for(uint_t i = 0; i < getSize(); i++) {
         if(images_[i]->getName() == image) {
             cout << "Error: image name already present in the group" << endl;
             return;
@@ -63,7 +72,7 @@ void GroupImage::addImage(Image& image) {
 
 void GroupImage::removeImage(const string& name) {
     /* search for the name */
-    for(uint i = 0; i < images_.size(); i++) {
+    for(uint i = 0; i < getSize(); i++) {
         if(images_[i]->getName() == name) {
             images_.erase(images_.begin() + i);
             return;
@@ -75,13 +84,13 @@ void GroupImage::removeImage(const string& name) {
 
 void GroupImage::printImages() const {
     /* print all the image names */
-    for(uint_t i = 0; i < size_; i++)
+    for(uint_t i = 0; i < getSize(); i++)
         images_[i]->printImage();
 }
 
 void GroupImage::doubleWidth(uint_t index) {
     /* make sure the index is valid */
-    if(index >= images_.size())
+    if(index >= getSize())
         return;
 
     /* double the width of the image */
@@ -90,7 +99,7 @@ void GroupImage::doubleWidth(uint_t index) {
 
 void GroupImage::doubleHeight(uint_t index) {
     /* make sure the index is valid */
-    if(index >= images_.size())
+    if(index >= getSize())
         return;
 
     /* double the height of the image */
@@ -112,7 +121,7 @@ GroupImage& GroupImage::operator-=(const Image& i) {
 ostream& operator<<(ostream& o, const GroupImage& g) {
     /* generate the output */
     for(uint_t i = 0; i < g.getSize(); i++)
-        o << g.getImage(i) << endl;
+        o << *g.getImage(i) << endl;
 
     return o;
 }
