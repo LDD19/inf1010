@@ -79,21 +79,21 @@ void Pixel::printPixel() const {
 }
 
 char Pixel::asChar() const {
-    if(valueRed_   == MAX_CONCENTRATION_COULEUR
+    if(valueRed_   >  MIN_CONCENTRATION_COULEUR
     && valueGreen_ == MIN_CONCENTRATION_COULEUR
     && valueBlue_  == MIN_CONCENTRATION_COULEUR) {
         return 'R';
     }
 
     if(valueRed_   == MIN_CONCENTRATION_COULEUR
-    && valueGreen_ == MAX_CONCENTRATION_COULEUR
+    && valueGreen_ >  MIN_CONCENTRATION_COULEUR
     && valueBlue_  == MIN_CONCENTRATION_COULEUR) {
         return 'G';
     }
 
     if(valueRed_   == MIN_CONCENTRATION_COULEUR
     && valueGreen_ == MIN_CONCENTRATION_COULEUR
-    && valueBlue_  == MAX_CONCENTRATION_COULEUR) {
+    && valueBlue_  >  MIN_CONCENTRATION_COULEUR) {
         return 'B';
     }
 
