@@ -1,10 +1,11 @@
 #ifndef GROUPIMAGE_H
 #define GROUPIMAGE_H
 
+#include <vector>
+#include <ostream>
+
 #include "Image.h"
 #include "Const.h"
-
-using namespace std;
 
 /**
  * This class defines a group of image. It has a name and a set of images.
@@ -34,10 +35,9 @@ public:
     /**
      * Overloaded constructor.
      *
-     * @param type     The type of the group.
-     * @param capacity The maximimum capacity of the group.
+     * @param type The type of the group.
      */
-    GroupImage(const string& type, uint_t capacity);
+    GroupImage(const std::string& type);
 
     /**
      * Copy constructor.
@@ -51,14 +51,14 @@ public:
      *
      * @param type The type of the group.
      */
-    void setType(const string& type);
+    void setType(const std::string& type);
 
     /**
      * This method returns the type of the group.
      *
      * @return The type of the group.
      */
-    string getType() const;
+    std::string getType() const;
 
     /**
      * This method returns the specified image.
@@ -91,6 +91,13 @@ public:
     void addImage(Image& image);
 
     /**
+     * This method removes an image from the group.
+     *
+     * @param name The name of the image to remove.
+     */
+    void removeImage(const std::string& name);
+
+    /**
      * This method lists the image in the group.
      */
     void printImages() const;
@@ -109,11 +116,21 @@ public:
      */
     void doubleHeight(uint_t index);
 
+    //***********************
+    // overloaded operators *
+    //***********************
+
+    GroupImage& operator+=(Image& i);
+
+    GroupImage& operator-=(const Image& i);
+
+    friend std::ostream& operator<<(std::ostream& o, const GroupImage& g);
+
 private:
     /**
      * The type of the group.
      */
-    string type_;
+    std::string type_;
 
     /**
      * The current size of the group.
@@ -121,14 +138,9 @@ private:
     uint_t size_;
 
     /**
-     * The maximum capacity of the group.
-     */
-    uint_t capacity_;
-
-    /**
      * The pointers to the images.
      */
-    Image** images_;
+    std::vector<Image*> images_;
 };
 
 #endif
