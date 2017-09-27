@@ -1,5 +1,4 @@
 #include <iostream>
-#include <stdio.h>
 
 #include "GroupImage.h"
 
@@ -61,13 +60,15 @@ void GroupImage::addImage(Image& image) {
     /* make sure the name isn't duplicated */
     for(uint_t i = 0; i < getSize(); i++) {
         if(images_[i]->getName() == image) {
-            cout << "Error: image name already present in the group" << endl;
+            cout << "Error: image name already present in the group." << endl;
             return;
         }
     }
 
     /* add the pointer into the vector */
     images_.push_back(&image);
+    cout << "The image \"" << image.getName()
+         << "\" has been successfully added." << endl;
 }
 
 void GroupImage::removeImage(const string& name) {
@@ -75,11 +76,14 @@ void GroupImage::removeImage(const string& name) {
     for(uint i = 0; i < getSize(); i++) {
         if(images_[i]->getName() == name) {
             images_.erase(images_.begin() + i);
+
+            cout << "The image \"" << name
+                 << "\" has been successfully removed." << endl;
             return;
         }
     }
 
-    cout << "Error: the image couldn't be found" << endl;
+    cout << "Error: the image couldn't be found." << endl;
 }
 
 void GroupImage::printImages() const {
@@ -90,20 +94,26 @@ void GroupImage::printImages() const {
 
 void GroupImage::doubleWidth(uint_t index) {
     /* make sure the index is valid */
-    if(index >= getSize())
+    if(index >= getSize()) {
+        cout << "Error: the index is invalid." << endl;
         return;
+    }
 
     /* double the width of the image */
     images_[index]->doubleWidth();
+    cout << "The image width has been doubled." << endl;
 }
 
 void GroupImage::doubleHeight(uint_t index) {
     /* make sure the index is valid */
-    if(index >= getSize())
+    if(index >= getSize()) {
+        cout << "Error: the index is invalid." << endl;
         return;
+    }
 
     /* double the height of the image */
     images_[index]->doubleHeight();
+    cout << "The image height has been doubled." << endl;
 }
 
 GroupImage& GroupImage::operator+=(Image& i) {

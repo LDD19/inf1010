@@ -1,6 +1,5 @@
-#include <stdio.h>
 #include <iostream>
-#include <ostream>
+#include <iomanip>
 
 #include "Pixel.h"
 #include "Const.h"
@@ -75,7 +74,11 @@ void Pixel::incrementBlue(int b) {
 }
 
 void Pixel::printPixel() const {
-    printf("(%03d,%03d,%03d)", valueRed_, valueGreen_, valueBlue_);
+    cout << setfill('0')
+         << "(" << setw(3) << (int) valueRed_
+         << "," << setw(3) << (int) valueGreen_
+         << "," << setw(3) << (int) valueBlue_
+         << ")";
 }
 
 char Pixel::asChar() const {

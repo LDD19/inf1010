@@ -70,6 +70,6 @@ int main() {
 	
     /* 14-Afficher le groupe d'image */
     cout << group;
-	
+
 	return 0;
 }

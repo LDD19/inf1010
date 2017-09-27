@@ -1,5 +1,4 @@
-#include <stdio.h>
-#include <ostream>
+#include <iostream>
 #include <assert.h>
 
 #include "Image.h"
@@ -63,13 +62,13 @@ void Image::setName(const string& name) {
 }
 
 void Image::printImage() const {
-    printf("%s:\n", name_.c_str());
+    cout << getName() << ":" << endl;
     for(uint_t j = 0; j < height_; j++) {
         for(uint_t i = 0; i < width_; i++) {
             pixels_[j][i].printPixel();
-            printf(" ");
+            cout << " ";
         }
-        printf("\n");
+        cout << endl;
     }
 }
 
