@@ -6,7 +6,7 @@ using namespace std;
 
 GroupImage::GroupImage() {
     type_     = "";
-    capacity_ = 3;
+    capacity_ = 0;
 }
 
 GroupImage::~GroupImage() {

@@ -7,8 +7,8 @@ using namespace std;
 
 Image::Image() {
     name_   = "";
-    height_ = 3;
-    width_  = 3;
+    height_ = 0;
+    width_  = 0;
     pixels_ = NULL;
 
     allocatePixels();
