@@ -16,7 +16,7 @@ Pixel::~Pixel() {
 
 }
 
-Pixel::Pixel(uint8_t tauxRouge, uint8_t tauxVert, uint8_t b) {
+Pixel::Pixel(uint8_t tauxRouge, uint8_t tauxVert, uint8_t tauxBleu) {
     tauxRouge_   = tauxRouge;
     tauxVert_ = tauxVert;
     tauxBleu_  = tauxBleu;

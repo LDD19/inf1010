@@ -103,7 +103,7 @@ public:
      * @return A pointer to the specified pixel, else a NULL pointer if the
      *         specified location is out of the image.
      */
-    Pixel getPixel(uint_t positionLargeur, uint_t positionHauteur) const;
+    Pixel obtenirPixel(uint_t positionLargeur, uint_t positionHauteur) const;
 
     /**
      * This method increments the color value of the pixel at the specified

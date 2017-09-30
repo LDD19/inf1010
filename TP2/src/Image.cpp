@@ -65,7 +65,7 @@ void Image::afficherImage() const {
     cout << obtenirNomImage() << ":" << endl;
     for(uint_t j = 0; j < nombrePixelHauteur_; j++) {
         for(uint_t i = 0; i < nombrePixelLargeur_; i++) {
-            pixels_[j][i].printPixel();
+            pixels_[j][i].afficherPixel();
             cout << " ";
         }
         cout << endl;
@@ -101,15 +101,15 @@ void Image::augmenterTeintePixel(uint_t positionLargeur, uint_t positionHauteur,
     switch(couleur) {
         case 'r':
         case 'R':
-            pixels_[positionHauteur][positionLargeur].incrementRed(value);
+            pixels_[positionHauteur][positionLargeur].modifierTeinteRouge(value);
             break;
         case 'g':
         case 'G':
-            pixels_[positionHauteur][positionLargeur].incrementGreen(value);
+            pixels_[positionHauteur][positionLargeur].modifierTeinteVert(value);
             break;
         case 'b':
         case 'B':
-            pixels_[positionHauteur][positionLargeur].incrementBlue(value);
+            pixels_[positionHauteur][positionLargeur].modifierTeinteBleu(value);
             break;
     }
 }

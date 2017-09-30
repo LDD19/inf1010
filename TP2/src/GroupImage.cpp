@@ -59,7 +59,7 @@ void GroupImage::ajouterImage(Image& image) {
 
     /* make sure the name isn't duplicated */
     for(uint_t i = 0; i < obtenirTailleGroup(); i++) {
-        if(images_[i]->getName() == image) {
+        if(images_[i]->obtenirNomImage() == image) {
             cout << "Error: image name already present in the group." << endl;
             return;
         }
@@ -67,14 +67,14 @@ void GroupImage::ajouterImage(Image& image) {
 
     /* add the pointer into the vector */
     images_.push_back(&image);
-    cout << "The image \"" << image.getName()
+    cout << "The image \"" << image.obtenirNomImage()
          << "\" has been successfully added." << endl;
 }
 
 void GroupImage::retirerImage(const string& name) {
     /* search for the name */
-    for(uint i = 0; i < obtenirTailleGroup(); i++) {
-        if(images_[i]->getName() == name) {
+    for(unsigned int i = 0; i < obtenirTailleGroup(); i++) {
+        if(images_[i]->obtenirNomImage() == name) {
             images_.erase(images_.begin() + i);
 
             cout << "The image \"" << name
@@ -89,7 +89,7 @@ void GroupImage::retirerImage(const string& name) {
 void GroupImage::afficherImages() const {
     /* print all the image names */
     for(uint_t i = 0; i < obtenirTailleGroup(); i++)
-        images_[i]->printImage();
+        images_[i]->afficherImage();
 }
 
 void GroupImage::doublerTailleImageEnLargeur(uint_t indiceImage) {
@@ -100,7 +100,7 @@ void GroupImage::doublerTailleImageEnLargeur(uint_t indiceImage) {
     }
 
     /* double the width of the image */
-    images_[indiceImage]->doublerTailleImageEnLargeur();
+    images_[indiceImage]->doublerTailleEnLargeur();
     cout << "The image width has been doubled." << endl;
 }
 
@@ -112,7 +112,7 @@ void GroupImage::doublerTailleImageEnHauteur(uint_t indiceImage) {
     }
 
     /* double the height of the image */
-    images_[indiceImage]->doublerTailleImageEnHauteur();
+    images_[indiceImage]->doublerTailleEnHauteur();
     cout << "The image height has been doubled." << endl;
 }
 
@@ -123,7 +123,7 @@ GroupImage& GroupImage::operator+=(Image& i) {
 }
 
 GroupImage& GroupImage::operator-=(const Image& i) {
-    retirerImage(i.getName());
+    retirerImage(i.obtenirNomImage());
 
     return (*this);
 }
@@ -134,4 +134,5 @@ ostream& operator<<(ostream& o, const GroupImage& g) {
         o << *g.obtenirImage(i) << endl;
 
     return o;
+
 }
