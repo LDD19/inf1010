@@ -1,3 +1,9 @@
+/**************************************************
+ * Titre: Travail pratique #2 - Image.cpp
+ * Date: Septembre 2017
+ * Auteurs: Gabriel-Andrew Pollo-Guilbert, Si Da Li
+**************************************************/
+
 #include <iostream>
 #include <assert.h>
 
