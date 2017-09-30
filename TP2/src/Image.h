@@ -1,3 +1,9 @@
+/**************************************************
+ * Titre: Travail pratique #2 - Image.h
+ * Date: Septembre 2017
+ * Auteurs: Gabriel-Andrew Pollo-Guilbert, Si Da Li
+**************************************************/
+
 #ifndef IMAGE_H
 #define IMAGE_H
 

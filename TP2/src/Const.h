@@ -1,3 +1,9 @@
+/**************************************************
+ * Titre: Travail pratique #2 - Const.h
+ * Date: Septembre 2017
+ * Auteurs: Gabriel-Andrew Pollo-Guilbert, Si Da Li
+**************************************************/
+
 #ifndef CONST_H
 #define CONST_H
 

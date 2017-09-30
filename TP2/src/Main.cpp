@@ -1,9 +1,8 @@
 /**************************************************
- * Titre:  Travail pratique #2 - Main.cpp
- * Date:   Septembre 2017
- * Auteur: Gabriel-Andrew Pollo-Guilbert
- *         Si Da Li
- **************************************************/
+ * Titre: Travail pratique #2 - Main.cpp
+ * Date: Septembre 2017
+ * Auteurs: Gabriel-Andrew Pollo-Guilbert, Si Da Li
+**************************************************/
 
 #include "Pixel.h"
 #include "Image.h"

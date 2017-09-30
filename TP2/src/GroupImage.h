@@ -1,3 +1,9 @@
+/**************************************************
+ * Titre: Travail pratique #2 - GroupImage.h
+ * Date: Septembre 2017
+ * Auteurs: Gabriel-Andrew Pollo-Guilbert, Si Da Li
+**************************************************/
+
 #ifndef GROUPIMAGE_H
 #define GROUPIMAGE_H
 

@@ -1,3 +1,9 @@
+/**************************************************
+ * Titre: Travail pratique #2 - Pixel.h
+ * Date: Septembre 2017
+ * Auteurs: Gabriel-Andrew Pollo-Guilbert, Si Da Li
+**************************************************/
+
 #ifndef PIXEL_H
 #define PIXEL_H
 
