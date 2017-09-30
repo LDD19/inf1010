@@ -1,8 +1,9 @@
 /**************************************************
- * Titre: Travail pratique #1 - Main.cpp
- * Date: Septembre 2017
- * Auteur: 
-**************************************************/
+ * Titre:  Travail pratique #2 - Main.cpp
+ * Date:   Septembre 2017
+ * Auteur: Gabriel-Andrew Pollo-Guilbert
+ *         Si Da Li
+ **************************************************/
 
 #include "Pixel.h"
 #include "Image.h"
@@ -14,33 +15,57 @@
 using namespace std;
 
 /**
- *Question 1
- *Quelle est l’utilité de l’opérateur = et du constructeur par copie?
+ * Question 1:
+ * Quelle est l’utilité de l’opérateur = et du constructeur par copie?
  *
- *Un constructeur par copie copie les valeurs d’un premier objet créé par 
- *le constructeur par défaut dans une nouvelle addresse mémoire aux valeurs 
- *identiques. L’opérateur = fait environ la même chose ; il affecte la valeur
- *d’un objet par une nouvelle valeur.
+ * Un constructeur par copie copie les valeurs d’un objet existant dans une
+ * nouvelle addresse mémoire. Il alloue de la nouvelle mémoire.
  *
- *Question 2
- *Dans quel cas est-il absolument nécessaire de les implémenter?
+ * Par défaut, l’opérateur = fait environ la même chose. Il affecte à chaque
+ * attributs de l'objet à sa gauche les attributs de l'objet à droite. Il copie
+ * essentiellement la classe, mais sans allouer un nouvel emplacement de
+ * mémoire.
  *
- *Il est nécessaire d’implémenter un constructeur par copie lorqu’on copie une 
- *classe ayant un attribut qui est un pointeur X qui est situé sur la même addresse 
- *mémoire. Nécessairement, on veut garder les deux valeurs différentes du pointeur
- *X de chaque classe, mais sans constructeur par copie, la première valeur de X
- *sera supprimée avec delete en passant à la deuxième classe.
+ * Question 2:
+ * Dans quel cas est-il absolument nécessaire de les implémenter?
  *
- *Question 2
- *Qu’est-ce qui différencie l’opérateur = du constructeur par copie?
+ * Il est nécessaire d’implémenter un constructeur par copie lorqu’on copie un
+ * objet contenant un pointeur vers de la mémoire allouée dynamiquement ou
+ * encore localement sur la pile. En copiant un tel pointeur, il en résulte que
+ * deux objects différents contiennent le même pointeur.
  *
- *L'opérateur = est appelée si on essaie d’affecter un autre objet après
- *l’initialisation alors que le constructeur par copie est appelé lors de 
- *la création de l’objet. Pour éviter des problèmes de compilation, il faut
- *supprimer le premier objet (qui est déjà affecté par l’opérateur =) avant
- *de passer au nouveau objet qu’on veut affecter par =.
+ * Puisque la durée de vie de l'autre objet n'est pas nécessairement connue,
+ * alors la durée de vie de la mémoire pointée par ce pointeur est aussi
+ * incertaine. Du coup, il est très probable qu'il y ait des fautes de mémoires
+ * pouvant mener à la termination du programme.
+ *
+ * En implémentant un constructeur par copie ou l'opérateur =, il est possible
+ * de copier la mémoire pointée par ce pointeur vers un nouvel emplacement. Par
+ * conséquent, on obtient 2 pointeurs différents pointant chacun vers de la
+ * mémoire différente.
+ *
+ * Question 3:
+ * Qu’est-ce qui différencie l’opérateur = du constructeur par copie?
+ *
+ * L'opérateur = n'alloue pas de nouvel objet, tandis que le constructeur par
+ * copie crée un nouvel objet en l'initialisant.
+ * 
+ * {@code
+ *      // constructeur de paramètres (+1 objet)
+ *      Base a(...);
+ *      // constructeur par copie (+1 objet)
+ *      Base b(a);
+ *      // constructeur par défaut (+1 object)
+ *      Base c;
+ *      // copie des attributs avec l'opérateur = (aucun nouvel objet)
+ *      c = a;
+ *      // constructeur par copie, sémantique du c++ (+1 objet)
+ *      Base d = c;
+ *      // constructeur par copie dans le tas (+1 objet)
+ *      Base* e = new Base(d);
+ *      delete e;
+ * }
  */
-
 int main() {
     /* 1-Creez 9 pixels rouge  (255,0,0) */
     Pixel rouges[9];
