@@ -37,7 +37,7 @@ public:
      *
      * @param type The type of the group.
      */
-    GroupImage(const std::string& type, uint_t capacity);
+    GroupImage(const std::string& type, uint_t capaciteImages);
 
     /**
      * Copy constructor.
@@ -51,14 +51,14 @@ public:
      *
      * @param type The type of the group.
      */
-    void setType(const std::string& type);
+    void modifierType(const std::string& type);
 
     /**
      * This method returns the type of the group.
      *
      * @return The type of the group.
      */
-    std::string getType() const;
+    std::string obtenirType() const;
 
     /**
      * This method returns the specified image.
@@ -67,28 +67,28 @@ public:
      *
      * @return The specified image.
      */
-    Image* getImage(uint_t index) const;
+    Image* obtenirImage(uint_t indiceImage) const;
 
     /**
      * This method returns the number of images in the group.
      *
      * @return The size of the group.
      */
-    uint_t getSize() const;
+    uint_t obtenirTailleGroup() const;
 
     /**
      * This method returns the maximum number of images in the group.
      *
      * @return The maximum size of the group.
      */
-    uint_t getCapacity() const;
+    uint_t obtenirCapaciteGroup() const;
 
     /**
      * This method adds a new image to the group.
      *
      * @param image The image to add.
      */
-    void addImage(Image& image);
+    void ajouterImage(Image& image);
 
     /**
      * This method removes an image from the group.
@@ -100,21 +100,21 @@ public:
     /**
      * This method lists the image in the group.
      */
-    void printImages() const;
+    void afficherImages() const;
 
     /**
      * This method doubles the width of the specified image.
      *
      * @param index The index of the image.
      */
-    void doubleWidth(uint_t index);
+    void doublerTailleImageEnLargeur(uint_t indiceImage);
 
     /**
      * This method doubles the height of the specified image.
      *
      * @param index The index of the image.
      */
-    void doubleHeight(uint_t index);
+    void doublerTailleImageEnHauteur(uint_t indiceImage);
 
     //***********************
     // overloaded operators *
@@ -135,7 +135,7 @@ private:
     /**
      * The current capcity of the group.
      */
-    uint_t capacity_;
+    uint_t capaciteImages_;
 
     /**
      * The pointers to the images.

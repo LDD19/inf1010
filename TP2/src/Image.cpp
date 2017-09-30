@@ -6,9 +6,9 @@
 using namespace std;
 
 Image::Image() {
-    name_   = "";
-    height_ = 0;
-    width_  = 0;
+    nomImage_   = "";
+    nombrePixelHauteur_ = 0;
+    nombrePixelLargeur_  = 0;
     pixels_ = NULL;
 
     allocatePixels();
@@ -18,53 +18,53 @@ Image::~Image() {
     freePixels();
 }
 
-Image::Image(const string& name, uint_t height, uint_t width) {
-    name_   = name;
-    height_ = height;
-    width_  = width;
+Image::Image(const string& nomImage, uint_t nombrePixelHauteur, uint_t nombrePixelLargeur) {
+    nomImage_   = nomImage;
+    nombrePixelHauteur_ = nombrePixelHauteur;
+    nombrePixelLargeur_  = nombrePixelLargeur;
     pixels_ = NULL;
 
     allocatePixels();
 }
 
 Image::Image(const Image& image) {
-    name_   = image.getName();
-    height_ = image.getHeight();
-    width_  = image.getWidth();
+    nomImage_   = image.obtenirNomImage();
+    nombrePixelHauteur_ = image.obtenirTailleHauteur();
+    nombrePixelLargeur_  = image.obetenirTailleLargeur();
     pixels_ = NULL;
 
     allocatePixels();
     copyPixels(image);
 }
 
-void Image::doubleHeight() {
-    reallocatePixels(2*height_, width_);
+void Image::doublerTailleEnHauteur() {
+    reallocatePixels(2*nombrePixelHauteur_, nombrePixelLargeur_);
 }
 
-void Image::doubleWidth() {
-    reallocatePixels(height_, 2*width_);
+void Image::doublerTailleEnLargeur() {
+    reallocatePixels(nombrePixelHauteur_, 2*nombrePixelLargeur_);
 }
 
-uint_t Image::getHeight() const {
-    return height_;
+uint_t Image::obtenirTailleHauteur() const {
+    return nombrePixelHauteur_;
 }
 
-uint_t Image::getWidth() const {
-    return width_;
+uint_t Image::obetenirTailleLargeur() const {
+    return nombrePixelLargeur_;
 }
 
-string Image::getName() const {
-    return name_;
+string Image::obtenirNomImage() const {
+    return nomImage_;
 }
 
-void Image::setName(const string& name) {
-    name_ = name;
+void Image::modifierNomImage(const string& nomImage) {
+    nomImage_ = nomImage;
 }
 
-void Image::printImage() const {
-    cout << getName() << ":" << endl;
-    for(uint_t j = 0; j < height_; j++) {
-        for(uint_t i = 0; i < width_; i++) {
+void Image::afficherImage() const {
+    cout << obtenirNomImage() << ":" << endl;
+    for(uint_t j = 0; j < nombrePixelHauteur_; j++) {
+        for(uint_t i = 0; i < nombrePixelLargeur_; i++) {
             pixels_[j][i].printPixel();
             cout << " ";
         }
@@ -72,44 +72,44 @@ void Image::printImage() const {
     }
 }
 
-bool Image::addPixel(Pixel& pixel, uint_t x, uint_t y) {
+bool Image::ajouterPixel(Pixel& pixel, uint_t positionLargeur, uint_t positionHauteur) {
     /* make sure the desired location is valid */
-    if(x >= width_ || y >= height_)
+    if(positionLargeur >= nombrePixelLargeur_ || positionHauteur >= nombrePixelHauteur_)
         return false;
 
     /* replace the pixel */
-    pixels_[y][x] = pixel;
+    pixels_[positionHauteur][positionLargeur] = pixel;
 
     return true;
 }
 
-Pixel Image::getPixel(uint_t x, uint_t y) const {
+Pixel Image::obtenirPixel(uint_t positionLargeur, uint_t positionHauteur) const {
     /* make sure the desired location is valid */
-    if(x >= width_ || y >= height_)
+    if(positionLargeur >= nombrePixelLargeur_ || positionHauteur >= nombrePixelHauteur_)
         return Pixel();
 
     /* get the pixel */
-    return pixels_[y][x];
+    return pixels_[positionHauteur][positionLargeur];
 }
 
-void Image::incrementValue(uint_t x, uint_t y, int value, char color) {
+void Image::augmenterTeintePixel(uint_t positionLargeur, uint_t positionHauteur, int value, char couleur) {
     /* make sure the desired location is valid */
-    if(x >= width_ || y >= height_)
+    if(positionLargeur >= nombrePixelLargeur_ || positionHauteur >= nombrePixelHauteur_)
         return;
 
     /* increment the specified color */
-    switch(color) {
+    switch(couleur) {
         case 'r':
         case 'R':
-            pixels_[y][x].incrementRed(value);
+            pixels_[positionHauteur][positionLargeur].incrementRed(value);
             break;
         case 'g':
         case 'G':
-            pixels_[y][x].incrementGreen(value);
+            pixels_[positionHauteur][positionLargeur].incrementGreen(value);
             break;
         case 'b':
         case 'B':
-            pixels_[y][x].incrementBlue(value);
+            pixels_[positionHauteur][positionLargeur].incrementBlue(value);
             break;
     }
 }
@@ -119,23 +119,23 @@ void Image::allocatePixels() {
     assert(pixels_ == NULL);
 
     /* allocate the memory for the pixels */
-    pixels_ = new Pixel*[height_];
-    for(uint_t j = 0; j < height_; j++)
-        pixels_[j] = new Pixel[width_];
+    pixels_ = new Pixel*[nombrePixelHauteur_];
+    for(uint_t j = 0; j < nombrePixelHauteur_; j++)
+        pixels_[j] = new Pixel[nombrePixelLargeur_];
 }
 
-void Image::reallocatePixels(uint_t height, uint_t width) {
+void Image::reallocatePixels(uint_t nombrePixelHauteur, uint_t nombrePixelLargeur) {
     /* this method shouldn't be called without pixels data allocated */
     assert(pixels_ != NULL);
 
     /* allocate the new memory for the pixels */
-    Pixel** temp = new Pixel*[height];
-    for(uint_t j = 0; j < height; j++)
-        temp[j] = new Pixel[width];
+    Pixel** temp = new Pixel*[nombrePixelHauteur];
+    for(uint_t j = 0; j < nombrePixelHauteur; j++)
+        temp[j] = new Pixel[nombrePixelLargeur];
 
     /* find the limits of the old pixel data */
-    uint_t minx = width < width_ ? width : width_;
-    uint_t miny = height < height_ ? height : height_;
+    uint_t minx = nombrePixelLargeur < nombrePixelLargeur_ ? nombrePixelLargeur : nombrePixelLargeur_;
+    uint_t miny = nombrePixelHauteur < nombrePixelHauteur_ ? nombrePixelHauteur : nombrePixelHauteur_;
 
     /* copy the old pixel data that fits into the new image */
     for(uint_t j = 0; j < miny; j++)
@@ -146,8 +146,8 @@ void Image::reallocatePixels(uint_t height, uint_t width) {
     freePixels();
 
     /* update the attributes of the object */
-    width_  = width;
-    height_ = height;
+    nombrePixelLargeur_  = nombrePixelLargeur;
+    nombrePixelHauteur_ = nombrePixelHauteur;
     pixels_ = temp;
 }
 
@@ -156,7 +156,7 @@ void Image::freePixels() {
     assert(pixels_ != NULL);
 
     /* free the memory of the pixels */
-    for(uint_t j = 0; j < height_; j++)
+    for(uint_t j = 0; j < nombrePixelHauteur_; j++)
         delete [] pixels_[j];
     delete [] pixels_;
 
@@ -166,20 +166,20 @@ void Image::freePixels() {
 
 void Image::copyPixels(const Image& image) {
     /* make sure there is enough pixels */
-    assert(width_ == image.getWidth());
-    assert(height_ == image.getHeight());
+    assert(nombrePixelLargeur_ == image.obetenirTailleLargeur());
+    assert(nombrePixelHauteur_ == image.obtenirTailleHauteur());
 
     /* copy the pixels */
-    for(uint_t j = 0; j < height_; j++)
-        for(uint_t i = 0; i < width_; i++)
-            pixels_[j][i] = image.getPixel(i, j);
+    for(uint_t j = 0; j < nombrePixelHauteur_; j++)
+        for(uint_t i = 0; i < nombrePixelLargeur_; i++)
+            pixels_[j][i] = image.obtenirPixel(i, j);
 }
 
 Image& Image::operator=(const Image& i) {
     /* we copy the basic parameters */
-    name_ = i.getName();
-    width_ = i.getWidth();
-    height_ = i.getHeight();
+    nomImage_ = i.obtenirNomImage();
+    nombrePixelLargeur_ = i.obetenirTailleLargeur();
+    nombrePixelHauteur_ = i.obtenirTailleHauteur();
 
     /* we copy all the pixels */
     freePixels();
@@ -191,20 +191,20 @@ Image& Image::operator=(const Image& i) {
 
 bool Image::operator==(const Image& i) const {
     /* basic attributes must be the same */
-    if(name_ != i.getName())
+    if(nomImage_ != i.obtenirNomImage())
         return false;
 
-    if(width_ != i.getWidth())
+    if(nombrePixelLargeur_ != i.obetenirTailleLargeur())
         return false;
 
-    if(height_ != i.getHeight())
+    if(nombrePixelHauteur_ != i.obtenirTailleHauteur())
         return false;
 
 
     /* compare the pixels data */
-    for(uint_t y = 0; y < height_; y++)
-        for(uint_t x = 0; x < width_; x++)
-            if(!(pixels_[y][x] == i.getPixel(x, y)))
+    for(uint_t positionHauteur = 0; positionHauteur < nombrePixelHauteur_; positionHauteur++)
+        for(uint_t positionLargeur = 0; positionLargeur < nombrePixelLargeur_; positionLargeur++)
+            if(!(pixels_[positionHauteur][positionLargeur] == i.obtenirPixel(positionLargeur, positionHauteur)))
                 return false;
 
 
@@ -213,7 +213,7 @@ bool Image::operator==(const Image& i) const {
 }
 
 bool Image::operator==(const string& s) const {
-    return (name_ == s);
+    return (nomImage_ == s);
 }
 
 bool operator==(const string& s, const Image& i) {
@@ -222,10 +222,10 @@ bool operator==(const string& s, const Image& i) {
 
 ostream& operator<<(ostream& o, const Image& i) {
     /* generate the image output */
-    o << i.getName() << ":" << endl;
-    for(uint_t y = 0; y < i.getHeight(); y++) {
-        for(uint_t x = 0; x < i.getWidth(); x++) {
-            o << i.getPixel(x, y).asChar() << " ";
+    o << i.obtenirNomImage() << ":" << endl;
+    for(uint_t positionHauteur = 0; positionHauteur < i.obtenirTailleHauteur(); positionHauteur++) {
+        for(uint_t positionLargeur = 0; positionLargeur < i.obetenirTailleLargeur(); positionLargeur++) {
+            o << i.obtenirPixel(positionLargeur, positionHauteur).asChar() << " ";
         }
         o << endl;
     }

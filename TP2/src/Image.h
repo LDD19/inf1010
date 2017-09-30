@@ -30,7 +30,7 @@ public:
      * @param height The height of the image.
      * @param width  The width of the image.
      */
-    Image(const std::string& name, uint_t height, uint_t width);
+    Image(const std::string& nomImage, uint_t nombrePixelHauteur, uint_t nombrePixelLargeur);
 
     /**
      * Copy constructor.
@@ -40,54 +40,47 @@ public:
     Image(const Image& image);
 
     /**
-     * Copy constructor.
-     *
-     * @param image The image to copy.
-     */
-     //Image(const Image& image);
-
-    /**
      * This method doubles the height of the image.
      */
-    void doubleHeight();
+    void doublerTailleEnHauteur();
 
     /**
      * This method doubles the width of the image.
      */
-    void doubleWidth();
+    void doublerTailleEnLargeur();
 
     /**
      * This method returns the height of the image.
      *
      * @return The height of the image.
      */
-    uint_t getHeight() const;
+    uint_t obtenirTailleHauteur() const;
 
     /**
      * This method returns the width of the image.
      *
      * @return The width of the image.
      */
-    uint_t getWidth() const;
+    uint_t obetenirTailleLargeur() const;
 
     /**
      * This method returns the name of the image.
      *
      * @return The name of the image.
      */
-    std::string getName() const;
+    std::string obtenirNomImage() const;
 
     /**
      * This method sets the name of the image.
      *
      * @param name The new name of the image.
      */
-    void setName(const std::string& name);
+    void modifierNomImage(const std::string& nomImage);
 
     /**
      * This method prints the image.
      */
-    void printImage() const;
+    void afficherImage() const;
 
     /**
      * This method adds a Pixel to the specified location.
@@ -99,7 +92,7 @@ public:
      * @return True if the pixel was succesfully added, else False if the
      *         specified location is out of the image.
      */
-    bool addPixel(Pixel& pixel, uint_t x, uint_t y);
+    bool ajouterPixel(Pixel& pixel, uint_t positionLargeur, uint_t positionHauteur);
 
     /**
      * This method returns the specified pixel.
@@ -110,7 +103,7 @@ public:
      * @return A pointer to the specified pixel, else a NULL pointer if the
      *         specified location is out of the image.
      */
-    Pixel getPixel(uint_t x, uint_t y) const;
+    Pixel getPixel(uint_t positionLargeur, uint_t positionHauteur) const;
 
     /**
      * This method increments the color value of the pixel at the specified
@@ -121,7 +114,7 @@ public:
      * @param value The value to add to the color.
      * @param color The color to modify, either 'r', 'g' or 'b'.
      */
-    void incrementValue(uint_t x, uint_t y, int value, char color);
+    void augmenterTeintePixel(uint_t positionLargeur, uint_t positionHauteur, int value, char couleur);
 
     //***********************
     // overloaded operators *
@@ -141,17 +134,17 @@ private :
     /**
      * The name of the image.
      */
-    std::string name_;
+    std::string nomImage_;
 
     /**
      * The height of the image.
      */
-    uint_t height_;
+    uint_t nombrePixelHauteur_;
 
     /**
      * The width of the image.
      */
-    uint_t width_;
+    uint_t nombrePixelLargeur_;
 
     /**
      * The pixels data of the image.
@@ -171,7 +164,7 @@ private :
      * @param height The new height of the image.
      * @param width  The new width of the image.
      */
-    void reallocatePixels(uint_t height, uint_t width);
+    void reallocatePixels(uint_t nombrePixelHauteur, uint_t nombrePixelLargeur);
 
     /**
      * This method frees the memory of the pixels.

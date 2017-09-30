@@ -7,96 +7,96 @@
 using namespace std;
 
 Pixel::Pixel() {
-    valueRed_    = 0;
-    valueGreen_  = 0;
-    valueBlue_   = 0;
+    tauxRouge_    = 0;
+    tauxVert_  = 0;
+    tauxBleu_   = 0;
 }
 
 Pixel::~Pixel() {
 
 }
 
-Pixel::Pixel(uint8_t r, uint8_t g, uint8_t b) {
-    valueRed_   = r;
-    valueGreen_ = g;
-    valueBlue_  = b;
+Pixel::Pixel(uint8_t tauxRouge, uint8_t tauxVert, uint8_t b) {
+    tauxRouge_   = tauxRouge;
+    tauxVert_ = tauxVert;
+    tauxBleu_  = tauxBleu;
 }
 
 Pixel::Pixel(const Pixel& pixel) {
-    valueRed_   = pixel.getRed();
-    valueGreen_ = pixel.getGreen();
-    valueBlue_  = pixel.getBlue();
+    tauxRouge_   = pixel.obtenirTauxRouge();
+    tauxVert_ = pixel.obtenirTauxVert();
+    tauxBleu_  = pixel.obtenirTauxBleu();
 }
 
-uint8_t Pixel::getRed() const {
-    return valueRed_;
+uint8_t Pixel::obtenirTauxRouge() const {
+    return tauxRouge_;
 }
 
-uint8_t Pixel::getGreen() const {
-    return valueGreen_;
+uint8_t Pixel::obtenirTauxVert() const {
+    return tauxVert_;
 }
 
-uint8_t Pixel::getBlue() const {
-    return valueBlue_;
+uint8_t Pixel::obtenirTauxBleu() const {
+    return tauxBleu_;
 }
 
-void Pixel::incrementRed(int r) {
-    int next = valueRed_ + r;
+void Pixel::modifierTeinteRouge(int incrementRouge) {
+    int next = tauxRouge_ + incrementRouge;
 
     if(next < MIN_CONCENTRATION_COULEUR)
-        valueRed_ = MIN_CONCENTRATION_COULEUR;
+        tauxRouge_ = MIN_CONCENTRATION_COULEUR;
     else if(next > MAX_CONCENTRATION_COULEUR)
-        valueRed_ = MAX_CONCENTRATION_COULEUR;
+        tauxRouge_ = MAX_CONCENTRATION_COULEUR;
     else
-        valueRed_ = next;
+        tauxRouge_ = next;
 }
 
-void Pixel::incrementGreen(int g) {
-    int next = valueGreen_ + g;
+void Pixel::modifierTeinteVert(int incrementVert) {
+    int next = tauxVert_ + incrementVert;
 
     if(next < MIN_CONCENTRATION_COULEUR)
-        valueGreen_ = MIN_CONCENTRATION_COULEUR;
+        tauxVert_ = MIN_CONCENTRATION_COULEUR;
     else if(next > MAX_CONCENTRATION_COULEUR)
-        valueGreen_ = MAX_CONCENTRATION_COULEUR;
+        tauxVert_ = MAX_CONCENTRATION_COULEUR;
     else
-        valueGreen_ = next;
+        tauxVert_ = next;
 }
 
-void Pixel::incrementBlue(int b) {
-    int next = valueBlue_ + b;
+void Pixel::modifierTeinteBleu(int incrementBleu) {
+    int next = tauxBleu_ + incrementBleu;
 
     if(next < MIN_CONCENTRATION_COULEUR)
-        valueBlue_ = MIN_CONCENTRATION_COULEUR;
+        tauxBleu_ = MIN_CONCENTRATION_COULEUR;
     else if(next > MAX_CONCENTRATION_COULEUR)
-        valueBlue_ = MAX_CONCENTRATION_COULEUR;
+        tauxBleu_ = MAX_CONCENTRATION_COULEUR;
     else
-        valueBlue_ = next;
+        tauxBleu_ = next;
 }
 
-void Pixel::printPixel() const {
+void Pixel::afficherPixel() const {
     cout << setfill('0')
-         << "(" << setw(3) << (int) valueRed_
-         << "," << setw(3) << (int) valueGreen_
-         << "," << setw(3) << (int) valueBlue_
+         << "(" << setw(3) << (int) tauxRouge_
+         << "," << setw(3) << (int) tauxVert_
+         << "," << setw(3) << (int) tauxBleu_
          << ")";
 }
 
 char Pixel::asChar() const {
-    if(valueRed_   >  MIN_CONCENTRATION_COULEUR
-    && valueGreen_ == MIN_CONCENTRATION_COULEUR
-    && valueBlue_  == MIN_CONCENTRATION_COULEUR) {
+    if(tauxRouge_   >  MIN_CONCENTRATION_COULEUR
+    && tauxVert_ == MIN_CONCENTRATION_COULEUR
+    && tauxBleu_  == MIN_CONCENTRATION_COULEUR) {
         return 'R';
     }
 
-    if(valueRed_   == MIN_CONCENTRATION_COULEUR
-    && valueGreen_ >  MIN_CONCENTRATION_COULEUR
-    && valueBlue_  == MIN_CONCENTRATION_COULEUR) {
+    if(tauxRouge_   == MIN_CONCENTRATION_COULEUR
+    && tauxVert_ >  MIN_CONCENTRATION_COULEUR
+    && tauxBleu_  == MIN_CONCENTRATION_COULEUR) {
         return 'G';
     }
 
-    if(valueRed_   == MIN_CONCENTRATION_COULEUR
-    && valueGreen_ == MIN_CONCENTRATION_COULEUR
-    && valueBlue_  >  MIN_CONCENTRATION_COULEUR) {
+    if(tauxRouge_   == MIN_CONCENTRATION_COULEUR
+    && tauxVert_ == MIN_CONCENTRATION_COULEUR
+    && tauxBleu_  >  MIN_CONCENTRATION_COULEUR) {
         return 'B';
     }
 
@@ -104,9 +104,9 @@ char Pixel::asChar() const {
 }
 
 bool Pixel::operator==(const Pixel& p) const {
-    if(valueRed_   == p.getRed()
-    && valueGreen_ == p.getGreen()
-    && valueBlue_  == p.getBlue())
+    if(tauxRouge_   == p.obtenirTauxRouge()
+    && tauxVert_ == p.obtenirTauxVert()
+    && tauxBleu_  == p.obtenirTauxBleu())
         return true;
 
     return false;

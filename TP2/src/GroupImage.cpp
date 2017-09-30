@@ -6,59 +6,59 @@ using namespace std;
 
 GroupImage::GroupImage() {
     type_     = "";
-    capacity_ = 0;
+    capaciteImages_ = 0;
 }
 
 GroupImage::~GroupImage() {
 }
 
-GroupImage::GroupImage(const string& type, uint_t capacity) {
+GroupImage::GroupImage(const string& type, uint_t capaciteImages) {
     type_     = type;
-    capacity_ = capacity;
+    capaciteImages_ = capaciteImages;
 }
 
 GroupImage::GroupImage(const GroupImage& group) {
-    type_     = group.getType();
-    capacity_ = group.getCapacity();
+    type_     = group.obtenirType();
+    capaciteImages_ = group.obtenirCapaciteGroup();
 
     /* copy the image pointers*/
-    for(uint_t i = 0; i < getSize(); i++)
-        images_.push_back(group.getImage(i));
+    for(uint_t i = 0; i < obtenirTailleGroup(); i++)
+        images_.push_back(group.obtenirImage(i));
 }
 
-void GroupImage::setType(const string& type) {
+void GroupImage::modifierType(const string& type) {
     type_ = type;
 }
 
-string GroupImage::getType() const {
+string GroupImage::obtenirType() const {
     return type_;
 }
 
-Image* GroupImage::getImage(uint_t index) const {
+Image* GroupImage::obtenirImage(uint_t indiceImage) const {
     /* make sure the index is valid */
-    if(index >= getSize())
+    if(indiceImage >= obtenirTailleGroup())
         return NULL;
 
-    return images_[index];
+    return images_[indiceImage];
 }
 
-uint_t GroupImage::getSize() const {
+uint_t GroupImage::obtenirTailleGroup() const {
     return images_.size();
 }
 
-uint_t GroupImage::getCapacity() const {
-    return capacity_;
+uint_t GroupImage::obtenirCapaciteGroup() const {
+    return capaciteImages_;
 }
 
-void GroupImage::addImage(Image& image) {
+void GroupImage::ajouterImage(Image& image) {
     /* make sure there's space available */
-    if(getSize() >= getCapacity()) {
+    if(obtenirTailleGroup() >= obtenirCapaciteGroup()) {
         cout << "The group is at its maximum capacity." << endl;
         return;
     }
 
     /* make sure the name isn't duplicated */
-    for(uint_t i = 0; i < getSize(); i++) {
+    for(uint_t i = 0; i < obtenirTailleGroup(); i++) {
         if(images_[i]->getName() == image) {
             cout << "Error: image name already present in the group." << endl;
             return;
@@ -73,7 +73,7 @@ void GroupImage::addImage(Image& image) {
 
 void GroupImage::removeImage(const string& name) {
     /* search for the name */
-    for(uint i = 0; i < getSize(); i++) {
+    for(uint i = 0; i < obtenirTailleGroup(); i++) {
         if(images_[i]->getName() == name) {
             images_.erase(images_.begin() + i);
 
@@ -86,38 +86,38 @@ void GroupImage::removeImage(const string& name) {
     cout << "Error: the image couldn't be found." << endl;
 }
 
-void GroupImage::printImages() const {
+void GroupImage::afficherImages() const {
     /* print all the image names */
-    for(uint_t i = 0; i < getSize(); i++)
+    for(uint_t i = 0; i < obtenirTailleGroup(); i++)
         images_[i]->printImage();
 }
 
-void GroupImage::doubleWidth(uint_t index) {
+void GroupImage::doublerTailleImageEnLargeur(uint_t indiceImage) {
     /* make sure the index is valid */
-    if(index >= getSize()) {
+    if(indiceImage >= obtenirTailleGroup()) {
         cout << "Error: the index is invalid." << endl;
         return;
     }
 
     /* double the width of the image */
-    images_[index]->doubleWidth();
+    images_[indiceImage]->doublerTailleImageEnLargeur();
     cout << "The image width has been doubled." << endl;
 }
 
-void GroupImage::doubleHeight(uint_t index) {
+void GroupImage::doublerTailleImageEnHauteur(uint_t indiceImage) {
     /* make sure the index is valid */
-    if(index >= getSize()) {
+    if(indiceImage >= obtenirTailleGroup()) {
         cout << "Error: the index is invalid." << endl;
         return;
     }
 
     /* double the height of the image */
-    images_[index]->doubleHeight();
+    images_[indiceImage]->doublerTailleImageEnHauteur();
     cout << "The image height has been doubled." << endl;
 }
 
 GroupImage& GroupImage::operator+=(Image& i) {
-    addImage(i);
+    ajouterImage(i);
 
     return (*this);
 }
@@ -130,8 +130,8 @@ GroupImage& GroupImage::operator-=(const Image& i) {
 
 ostream& operator<<(ostream& o, const GroupImage& g) {
     /* generate the output */
-    for(uint_t i = 0; i < g.getSize(); i++)
-        o << *g.getImage(i) << endl;
+    for(uint_t i = 0; i < g.obtenirTailleGroup(); i++)
+        o << *g.obtenirImage(i) << endl;
 
     return o;
 }

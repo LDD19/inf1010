@@ -27,7 +27,7 @@ public:
      * @param g The green value of the pixel.
      * @param b The blue value of the pixel.
      */
-    Pixel(uint8_t r, uint8_t g, uint8_t b);
+    Pixel(uint8_t tauxRouge, uint8_t tauxVert, uint8_t tauxBleu);
 
     /**
      * Copy constructor.
@@ -41,47 +41,47 @@ public:
      *
      * @return The red value of the pixel.
      */
-    uint8_t getRed() const;
+    uint8_t obtenirTauxRouge() const;
 
     /**
      * This method returns the green value of the pixel.
      *
      * @return The green value of the pixel.
      */
-    uint8_t getGreen() const;
+    uint8_t obtenirTauxVert() const;
 
     /**
      * This method returns the blue value of the pixel.
      *
      * @return The blue value of the pixel.
      */
-    uint8_t getBlue() const;
+    uint8_t obtenirTauxBleu() const;
 
     /**
      * This method increments the red value of the pixel.
      *
      * @param r The red value to add.
      */
-    void incrementRed(int r);
+    void modifierTeinteRouge(int incrementRouge);
 
     /**
      * This method increments the green value of the pixel.
      *
      * @param g The green value to add.
      */
-    void incrementGreen(int g);
+    void modifierTeinteVert(int incrementVert);
 
     /**
      * This method increments the blue value of the pixel.
      *
      * @param b The blue value to add.
      */
-    void incrementBlue(int b);
+    void modifierTeinteBleu(int incrementBleu);
 
     /**
      * This method prints the red, green and blue values of the pixel.
      */
-    void printPixel() const;
+    void afficherPixel() const;
 
     /**
      * This method returns the pixel as a single character, either 'R', 'G',
@@ -107,17 +107,17 @@ private:
     /**
      * The red value of the pixel.
      */
-    uint8_t valueRed_;
+    uint8_t tauxRouge_;
 
     /**
      * The green value of the pixel.
      */
-    uint8_t valueGreen_;
+    uint8_t tauxVert_;
 
     /**
      * The blue value of the pixel.
      */
-    uint8_t valueBlue_;
+    uint8_t tauxBleu_;
 };
 
 #endif
