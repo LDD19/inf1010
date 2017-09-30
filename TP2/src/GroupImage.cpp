@@ -71,7 +71,7 @@ void GroupImage::ajouterImage(Image& image) {
          << "\" has been successfully added." << endl;
 }
 
-void GroupImage::removeImage(const string& name) {
+void GroupImage::retirerImage(const string& name) {
     /* search for the name */
     for(uint i = 0; i < obtenirTailleGroup(); i++) {
         if(images_[i]->getName() == name) {
@@ -123,7 +123,7 @@ GroupImage& GroupImage::operator+=(Image& i) {
 }
 
 GroupImage& GroupImage::operator-=(const Image& i) {
-    removeImage(i.getName());
+    retirerImage(i.getName());
 
     return (*this);
 }

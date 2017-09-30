@@ -95,7 +95,7 @@ public:
      *
      * @param name The name of the image to remove.
      */
-    void removeImage(const std::string& name);
+    void retirerImage(const std::string& name);
 
     /**
      * This method lists the image in the group.
