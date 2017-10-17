@@ -17,13 +17,6 @@ public:
     Image();
 
     /**
-     * Constructeur de copie.
-     *
-     * @param image L'image a copier.
-     */
-    Image(const Image& image);
-
-    /**
      * Constructeur par paramètres.
      *
      * @param chemin Le chemin du fichier de l'image.
@@ -151,8 +144,6 @@ private:
 
     /** Le tableau des pixels. */
     Pixel** pixels_;
-
-    void copieProfonde(const Image& image);
 };
 
 std::string obtenirDossier(TypeImage type);

@@ -17,11 +17,6 @@ Image::Image() {
 
 }
 
-Image::Image(const Image& image) {
-    cout << image.obtenirHauteur() << endl;
-
-}
-
 Image::Image(const string& chemin, const TypeImage& type) {
     type_   = type;
     chemin_ = chemin;
