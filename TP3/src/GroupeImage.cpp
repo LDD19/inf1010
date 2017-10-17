@@ -23,6 +23,14 @@ void GroupeImage::toutMettreEnCouleur() {
     for(Image* image : images_) image->convertirCouleur();
 }
 
+void GroupeImage::toutEnregistrer(const string base) const {
+    for(Image* image : images_) {
+        string dossier = obtenirDossier(image->obtenirType());
+        string chemin = base + dossier + image->obtenirNomImage();
+        image->sauvegarderImage(chemin);
+    }
+}
+
 bool GroupeImage::ajouterImage(Image* image) {
     /* on s'assure qu'une image avec le même nom de fichier n'existe pas */
     for(uint_t i = 0; i <  images_.size(); i++) {

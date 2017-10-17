@@ -33,6 +33,13 @@ public:
      */
     void toutMettreEnCouleur();
 
+    /**
+     * Cette méthode enregistre toutes les images.
+     *
+     * @param base Le dossier de base.
+     */
+    void toutEnregistrer(const std::string base) const;
+
     /*************
      * Mutateurs *
      *************/
