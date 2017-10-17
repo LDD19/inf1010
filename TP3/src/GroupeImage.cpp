@@ -96,7 +96,6 @@ ostream& operator<<(ostream& os, const GroupeImage& groupeImage) {
     for  (unsigned int j= 0; j < groupeImage.images_.size(); j++)
         os << *groupeImage.images_[j] << endl
            << "------------------------------------------------------" << endl;
-    os << endl;
 
     return os;
 }

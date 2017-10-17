@@ -53,21 +53,27 @@ int main() {
 
 	/* convertir toutes les images en couleurs */
     groupe.toutMettreEnCouleur();
+    cout << endl;
 
 	/* enregistrer toutes les images convertie */
     groupe.toutEnregistrer(base);
+    cout << endl;
 
 	/* convertir toutes les images en nuance de gris */
     groupe.toutMettreEnGris();
+    cout << endl;
 
 	/* enregistrer toutes les images grises */
     groupe.toutEnregistrer(base);
+    cout << endl;
 
 	/* convertir toutes les images en noir et blanc */
     groupe.toutMettreEnNB();
+    cout << endl;
 
 	/* enregistrer toutes les images */
     groupe.toutEnregistrer(base);
+    cout << endl;
 
     /* on libère la mémoire */
     for(int i = groupe.obtenirTaille()-1; i >= 0; i--) {

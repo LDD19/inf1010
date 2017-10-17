@@ -123,6 +123,8 @@ void Image::sauvegarderImage(const string &nom) {
              << endl;
         exit(12);
     }
+
+    cout << "Sauvegarde de l'image " << nom << "." << endl;
     
     /* on écrit les pixels */
     uint8_t *rgb = new uint8_t[obtenirTaille() * 3];
@@ -147,8 +149,10 @@ void Image::sauvegarderImage(const string &nom) {
 
 void Image::convertirNB() {
     /* inutile de convertir si l'image est déjà en noir et blanc */
-    if(type_ == TypeImage::NoirBlanc)
+    if(type_ == TypeImage::NoirBlanc) {
+        cout << "L'image " << nom_ << " est déjà en noir et blanc." << endl;
         return;
+    }
 
     if(type_ == TypeImage::Gris) {
         /* si l'image existante est grise*/
@@ -175,13 +179,16 @@ void Image::convertirNB() {
     }
 
     /* on change le type de l'image */
+    cout << "Conversion de l'image " << nom_ << " en image noir et blanc."<< endl;
     type_ = TypeImage::NoirBlanc;
 }
 
 void Image::convertirGris() {
     /* inutile de convertir si l'image est déjà grise */
-    if(type_ == TypeImage::Gris)
+    if(type_ == TypeImage::Gris) {
+        cout << "L'image " << nom_ << " est déjà grise." << endl;
         return;
+    }
 
     if(type_ == TypeImage::NoirBlanc) {
         /* si l'image existante est en noir et blanc */
@@ -208,6 +215,7 @@ void Image::convertirGris() {
     }
 
     /* on change le type de l'image */
+    cout << "Conversion de l'image " << nom_ << " en image grise."<< endl;
     type_ = TypeImage::Gris;
 }
 
@@ -245,6 +253,7 @@ void Image::convertirCouleur() {
     }
 
     /* on change le type de l'image */
+    cout << "Conversion de l'image " << nom_ << " en image de couleurs."<< endl;
     type_ = TypeImage::Couleurs;
 }
 
