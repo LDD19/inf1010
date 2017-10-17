@@ -79,13 +79,13 @@ GroupeImage& GroupeImage::operator-=(Image* image) {
 
 ostream& operator<<(ostream& os, const GroupeImage& groupeImage) {
     os << endl;
-    os << "**************************************************" << endl;
+    os << "********************************" << endl;
     os << "Affichage des images du groupe :  " << endl;
-    os << "**************************************************" << endl << endl;
+    os << "********************************" << endl << endl;
     
     for  (unsigned int j= 0; j < groupeImage.images_.size(); j++)
-        os << *groupeImage.images_[j]
-           << "--------------------------------------------------" << endl;
+        os << *groupeImage.images_[j] << endl
+           << "------------------------------------------------------" << endl;
     os << endl;
 
     return os;
