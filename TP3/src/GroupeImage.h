@@ -65,6 +65,13 @@ public:
      **************/
 
     /**
+     * Cette méthode retourne la taille du groupe.
+     *
+     * @return La taille du groupe.
+     */
+    uint_t obtenirTaille() const;
+
+    /**
      * Cette méthode retourne une image dans le groupe.
      *
      * @param indice L'indice de l'image dans le groupe.

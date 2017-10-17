@@ -65,6 +65,10 @@ bool GroupeImage::retirerImage(const std::string& nom) {
     return false;
 }
 
+uint_t GroupeImage::obtenirTaille() const {
+    return images_.size();
+}
+
 Image* GroupeImage::obtenirImage(uint_t indice) const {
     /* on s'assure que l'indice est valide */
     if(indice >= images_.size())
