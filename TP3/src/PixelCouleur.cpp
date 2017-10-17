@@ -12,6 +12,12 @@ PixelCouleur::PixelCouleur(uint8_t r, uint8_t g, uint8_t b) : Pixel(TypePixel::C
     donnee_[Couleur::B] = b;
 }
 
+PixelCouleur::PixelCouleur(uint8_t* valeurs) : Pixel(TypePixel::Couleur) {
+    donnee_[Couleur::R] = valeurs[Couleur::R];
+    donnee_[Couleur::G] = valeurs[Couleur::G];
+    donnee_[Couleur::B] = valeurs[Couleur::B];
+}
+
 PixelCouleur::~PixelCouleur() {
 
 }

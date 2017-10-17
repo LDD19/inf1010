@@ -41,6 +41,13 @@ public:
     PixelCouleur(uint8_t r, uint8_t g, uint8_t b);
 
     /**
+     * Constructeur par paramètres.
+     *
+     * @param valeurs Les valeurs des pixels.
+     */
+    PixelCouleur(uint8_t* valeurs);
+
+    /**
      * Destructeur.
      */
     ~PixelCouleur();
