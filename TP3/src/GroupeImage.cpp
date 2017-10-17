@@ -54,9 +54,7 @@ bool GroupeImage::retirerImage(const std::string& nom) {
             continue;
 
         /* on enlève l'image de la liste */
-        /* TODO: wtf are they doing? */
-        images_[i] = images_.back();
-        images_.pop_back();
+        images_.erase(images_.begin()+i);
         cout << nom << " a bien été retirée." << endl;
 
         return true;
