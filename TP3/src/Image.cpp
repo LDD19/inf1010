@@ -189,7 +189,7 @@ void Image::convertirGris() {
             Pixel* pixel = pixels_[i];
 
             PixelBN* pbn = static_cast<PixelBN*>(pixel);
-            Pixel* np = new PixelBN(pbn->convertirPixelGris());
+            Pixel* np = new PixelGris(pbn->convertirPixelGris());
 
             delete pixel;
             pixels_[i] = np;
@@ -200,7 +200,7 @@ void Image::convertirGris() {
             Pixel* pixel = pixels_[i];
 
             PixelCouleur* pc = static_cast<PixelCouleur*>(pixel);
-            Pixel* np = new PixelBN(pc->convertirPixelGris());
+            Pixel* np = new PixelGris(pc->convertirPixelGris());
 
             delete pixel;
             pixels_[i] = np;
@@ -208,7 +208,7 @@ void Image::convertirGris() {
     }
 
     /* on change le type de l'image */
-    type_ = TypeImage::NoirBlanc;
+    type_ = TypeImage::Gris;
 }
 
 void Image::convertirCouleur() {
@@ -222,7 +222,7 @@ void Image::convertirCouleur() {
             Pixel* pixel = pixels_[i];
 
             PixelBN* pbn = static_cast<PixelBN*>(pixel);
-            Pixel* np = new PixelBN(pbn->convertirPixelCouleur());
+            Pixel* np = new PixelCouleur(pbn->convertirPixelCouleur());
 
             delete pixel;
             pixels_[i] = np;
@@ -233,7 +233,7 @@ void Image::convertirCouleur() {
             Pixel* pixel = pixels_[i];
 
             PixelGris* pg = static_cast<PixelGris*>(pixel);
-            Pixel* np = new PixelBN(pg->convertirPixelCouleur());
+            Pixel* np = new PixelCouleur(pg->convertirPixelCouleur());
 
             delete pixel;
             pixels_[i] = np;
@@ -398,5 +398,18 @@ void ecrirePixel(uint8_t* valeurs, const Pixel* pixel) {
 
             return;
         }
+    }
+}
+
+string obtenirDossier(TypeImage type) {
+    switch(type) {
+        case TypeImage::NoirBlanc:
+            return "Noir et Blanc/";
+        case TypeImage::Gris:
+            return "Nuances de Gris/";
+        case TypeImage::Couleurs:
+            return "Couleurs/";
+        default:
+            return "";
     }
 }

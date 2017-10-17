@@ -155,6 +155,7 @@ private:
     void copieProfonde(const Image& image);
 };
 
+std::string obtenirDossier(TypeImage type);
 size_t bitmap_encode_rgb(const uint8_t* rgb, uint_t width, uint_t height, uint8_t** output);
 
 #endif
