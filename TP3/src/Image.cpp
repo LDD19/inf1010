@@ -145,6 +145,105 @@ void Image::sauvegarderImage(const string &nom) {
     delete[] output;
 }
 
+void Image::convertirNB() {
+    /* inutile de convertir si l'image est déjà en noir et blanc */
+    if(type_ == TypeImage::NoirBlanc)
+        return;
+
+    if(type_ == TypeImage::Gris) {
+        /* si l'image existante est grise*/
+        for(uint_t i = 0; i < obtenirTaille(); i++) {
+            Pixel* pixel = pixels_[i];
+
+            PixelGris* pg = static_cast<PixelGris*>(pixel);
+            Pixel* np = new PixelBN(pg->convertirPixelBN());
+
+            delete pixel;
+            pixels_[i] = np;
+        }
+    } else if(type_ == TypeImage::Couleurs) {
+        /* si l'image existante est en couleurs */
+        for(uint_t i = 0; i < obtenirTaille(); i++) {
+            Pixel* pixel = pixels_[i];
+
+            PixelCouleur* pc = static_cast<PixelCouleur*>(pixel);
+            Pixel* np = new PixelBN(pc->convertirPixelBN());
+
+            delete pixel;
+            pixels_[i] = np;
+        }
+    }
+
+    /* on change le type de l'image */
+    type_ = TypeImage::NoirBlanc;
+}
+
+void Image::convertirGris() {
+    /* inutile de convertir si l'image est déjà grise */
+    if(type_ == TypeImage::Gris)
+        return;
+
+    if(type_ == TypeImage::NoirBlanc) {
+        /* si l'image existante est en noir et blanc */
+        for(uint_t i = 0; i < obtenirTaille(); i++) {
+            Pixel* pixel = pixels_[i];
+
+            PixelBN* pbn = static_cast<PixelBN*>(pixel);
+            Pixel* np = new PixelBN(pbn->convertirPixelGris());
+
+            delete pixel;
+            pixels_[i] = np;
+        }
+    } else if(type_ == TypeImage::Couleurs) {
+        /* si l'image existante est en couleurs */
+        for(uint_t i = 0; i < obtenirTaille(); i++) {
+            Pixel* pixel = pixels_[i];
+
+            PixelCouleur* pc = static_cast<PixelCouleur*>(pixel);
+            Pixel* np = new PixelBN(pc->convertirPixelGris());
+
+            delete pixel;
+            pixels_[i] = np;
+        }
+    }
+
+    /* on change le type de l'image */
+    type_ = TypeImage::NoirBlanc;
+}
+
+void Image::convertirCouleur() {
+    /* inutile de convertir si l'image est déjà en couleur */
+    if(type_ == TypeImage::Couleurs)
+        return;
+
+    if(type_ == TypeImage::NoirBlanc) {
+        /* si l'image existante est en noir et blanc */
+        for(uint_t i = 0; i < obtenirTaille(); i++) {
+            Pixel* pixel = pixels_[i];
+
+            PixelBN* pbn = static_cast<PixelBN*>(pixel);
+            Pixel* np = new PixelBN(pbn->convertirPixelCouleur());
+
+            delete pixel;
+            pixels_[i] = np;
+        }
+    } else if(type_ == TypeImage::Gris) {
+        /* si l'image existante est en couleurs */
+        for(uint_t i = 0; i < obtenirTaille(); i++) {
+            Pixel* pixel = pixels_[i];
+
+            PixelGris* pg = static_cast<PixelGris*>(pixel);
+            Pixel* np = new PixelBN(pg->convertirPixelCouleur());
+
+            delete pixel;
+            pixels_[i] = np;
+        }
+    }
+
+    /* on change le type de l'image */
+    type_ = TypeImage::Couleurs;
+}
+
 void Image::changerNomImage(const string& nom) {
     nom_ = nom;
 }

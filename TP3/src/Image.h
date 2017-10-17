@@ -51,6 +51,21 @@ public:
      */
     void lireImage(const std::string &nom, const TypeImage& type);
 
+    /**
+     * Cette méthode convertit l'image en image noir et blanc.
+     */
+    void convertirNB();
+
+    /**
+     * Cette méthode convertit l'image en image grise.
+     */
+    void convertirGris();
+
+    /**
+     * Cette méthode convertit l'image en image de couleurs.
+     */
+    void convertirCouleur();
+
     /*************
      * Mutateurs *
      *************/
