@@ -18,6 +18,21 @@ public:
      */
     ~GroupeImage();
 
+    /**
+     * Cette méthode convertit toutes les images en noir et blanc.
+     */
+    void toutMettreEnNB();
+
+    /**
+     * Cette méthode convertit toutes les images en gris.
+     */
+    void toutMettreEnGris();
+
+    /**
+     * Cette méthode convertit toutes les images en couleurs.
+     */
+    void toutMettreEnCouleur();
+
     /*************
      * Mutateurs *
      *************/

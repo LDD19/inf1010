@@ -11,6 +11,18 @@ GroupeImage::~GroupeImage() {
 
 }
 
+void GroupeImage::toutMettreEnNB() {
+    for(Image* image : images_) image->convertirNB();
+}
+
+void GroupeImage::toutMettreEnGris() {
+    for(Image* image : images_) image->convertirGris();
+}
+
+void GroupeImage::toutMettreEnCouleur() {
+    for(Image* image : images_) image->convertirCouleur();
+}
+
 bool GroupeImage::ajouterImage(Image* image) {
     /* on s'assure qu'une image avec le même nom de fichier n'existe pas */
     for(uint_t i = 0; i <  images_.size(); i++) {
