@@ -12,7 +12,10 @@ OBJECTS := $(BUILD)/Main.o \
            $(BUILD)/Pixel.o \
            $(BUILD)/PixelCouleur.o \
            $(BUILD)/PixelGris.o \
-           $(BUILD)/PixelBN.o
+           $(BUILD)/PixelBN.o \
+           $(BUILD)/Image.o \
+           $(BUILD)/Bitmap.o \
+		   $(BUILD)/GroupeImage.o
 
 all: dirs $(OBJECTS)
 	$(CC) -o $(BUILD)/$(EXEC) $(OBJECTS) $(LDFLAGS)
@@ -42,6 +45,23 @@ $(BUILD)/PixelBN.o: $(SRCDIR)/PixelBN.cpp \
                     $(SRCDIR)/Pixel.h \
                     $(SRCDIR)/TypePixel.h
 	$(CC) -o $(BUILD)/PixelBN.o -c $(SRCDIR)/PixelBN.cpp $(CCFLAGS)
+
+$(BUILD)/Image.o: $(SRCDIR)/Image.cpp \
+                  $(SRCDIR)/Image.h \
+                  $(SRCDIR)/PixelCouleur.h \
+                  $(SRCDIR)/PixelGris.h \
+                  $(SRCDIR)/PixelBN.h \
+                  $(SRCDIR)/Pixel.h \
+                  $(SRCDIR)/TypePixel.h
+	$(CC) -o $(BUILD)/Image.o -c $(SRCDIR)/Image.cpp $(CCFLAGS)
+
+$(BUILD)/Bitmap.o: $(SRCDIR)/Bitmap.cpp
+	$(CC) -o $(BUILD)/Bitmap.o -c $(SRCDIR)/Bitmap.cpp $(CCFLAGS)
+
+$(BUILD)/GroupeImage.o: $(SRCDIR)/GroupeImage.cpp \
+                        $(SRCDIR)/GroupeImage.h \
+                        $(SRCDIR)/Image.h
+	$(CC) -o $(BUILD)/GroupeImage.o -c $(SRCDIR)/GroupeImage.cpp $(CCFLAGS)
 
 dirs:
 	mkdir -p $(BUILD)

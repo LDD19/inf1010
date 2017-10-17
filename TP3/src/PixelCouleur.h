@@ -14,13 +14,13 @@ const int TAILLE_PIXEL_COULEUR = 3;
  */
 enum Couleur {
     /* L'index de la couleur rouge. */
-    R = 0,
+    R = 2,
 
     /* L'index de la couleur vert. */
     G = 1,
 
     /* L'index de la couleur bleu. */
-    B = 2
+    B = 0,
 };
 
 class PixelCouleur : public Pixel

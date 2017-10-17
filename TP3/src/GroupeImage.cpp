@@ -1,0 +1,80 @@
+#include <iostream>
+#include "GroupeImage.h"
+
+using namespace std;
+
+GroupeImage::GroupeImage() {
+
+}
+
+GroupeImage::~GroupeImage() {
+
+}
+
+bool GroupeImage::ajouterImage(Image* image) {
+    /* on s'assure qu'une image avec le même nom de fichier n'existe pas */
+    for(uint_t i = 0; i <  images_.size(); i++) {
+        if(image->obtenirNomImage() == *(images_[i])) {
+            cout << image->obtenirNomImage() << " n'a pas été ajoutée." << endl;
+            return false;
+        }
+    }
+
+    /* on ajoute l'image */
+    images_.push_back(image);
+    cout << image->obtenirNomImage() << " a bien été ajoutée." << endl;
+
+    return true;
+}
+
+bool GroupeImage::retirerImage(const std::string& nom) {
+    /* on cherche l'image */
+    for(uint_t i = 0; i < images_.size(); i++) {
+        if(!(nom == *(images_[i])))
+            continue;
+
+        /* on enlève l'image de la liste */
+        /* TODO: wtf are they doing? */
+        images_[i] = images_.back();
+        images_.pop_back();
+        cout << nom << " a bien été retirée." << endl;
+
+        return true;
+    }
+
+    return false;
+}
+
+Image* GroupeImage::obtenirImage(uint_t indice) const {
+    /* on s'assure que l'indice est valide */
+    if(indice >= images_.size())
+        return nullptr;
+
+    return images_[indice];
+}
+
+GroupeImage& GroupeImage::operator+=(Image* image) {
+    ajouterImage(image);
+
+    return *this;
+}
+
+GroupeImage& GroupeImage::operator-=(Image* image) {
+    retirerImage(image->obtenirNomImage());
+
+    return *this;
+}
+
+ostream& operator<<(ostream& os, const GroupeImage& groupeImage) {
+    os << endl;
+    os << "**************************************************" << endl;
+    os << "Affichage des images du groupe :  " << endl;
+    os << "**************************************************" << endl << endl;
+    
+    for  (unsigned int j= 0; j < groupeImage.images_.size(); j++)
+        os << *groupeImage.images_[j]
+           << "--------------------------------------------------" << endl;
+    os << endl;
+
+    return os;
+}

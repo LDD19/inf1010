@@ -10,19 +10,19 @@ public:
     /**
      * Constructeur par défaut.
      */
-	PixelBN();
+    PixelBN();
 
     /**
      * Constructeur par paramètres.
      *
      * @param p La valeur du pixel.
      */
-	PixelBN(bool p);
+    PixelBN(bool p);
 
     /**
      * Destructeur.
      */
-	~PixelBN();
+    ~PixelBN();
 
     /**
      * Cette méthode convertit le pixel blanc et noir en pixel de couleur.
@@ -31,14 +31,14 @@ public:
      *
      * @param Un pointeur vers les composantes du pixel de couleur.
      */
-	uint8_t* convertirPixelCouleur() const;
+    uint8_t* convertirPixelCouleur() const;
 
     /**
      * Cette méthode convertit le pixel blanc et noir en pixel gris.
      *
      * @return La valeur du pixel gris.
      */
-	uint8_t convertirPixelGris() const;
+    uint8_t convertirPixelGris() const;
 
     /*************
      * Mutateurs *
@@ -50,17 +50,17 @@ public:
      * Accesseurs *
      **************/
 
-	bool obtenirDonnee() const;
+    bool obtenirDonnee() const;
 
     /************************
      * Opérateurs Surchagés *
      ************************/
 
-	bool operator==(const PixelBN& pixel) const;
+    bool operator==(const PixelBN& pixel) const;
 
 private:
     /** La valeur du pixel. */
-	bool donnee_;
+    bool donnee_;
 };
 
 #endif
