@@ -36,7 +36,12 @@ Image::Image(const string& chemin, const TypeImage& type) {
 }
 
 Image::~Image() {
-
+    /* on libère la mémoire */
+    for(uint_t i = 0; i < obtenirTaille(); i++) {
+        delete pixels_[i];
+        pixels_[i] = nullptr;
+    }
+    delete [] pixels_;
 }
 
 void Image::lireImage(const string& nom, const TypeImage& type) {
@@ -222,8 +227,10 @@ void Image::convertirCouleur() {
             Pixel* pixel = pixels_[i];
 
             PixelBN* pbn = static_cast<PixelBN*>(pixel);
-            Pixel* np = new PixelCouleur(pbn->convertirPixelCouleur());
+            uint8_t* valeurs = pbn->convertirPixelCouleur();
+            Pixel* np = new PixelCouleur(valeurs);
 
+            delete valeurs;
             delete pixel;
             pixels_[i] = np;
         }
@@ -233,8 +240,10 @@ void Image::convertirCouleur() {
             Pixel* pixel = pixels_[i];
 
             PixelGris* pg = static_cast<PixelGris*>(pixel);
-            Pixel* np = new PixelCouleur(pg->convertirPixelCouleur());
+            uint8_t* valeurs = pg->convertirPixelCouleur();
+            Pixel* np = new PixelCouleur(valeurs);
 
+            delete valeurs;
             delete pixel;
             pixels_[i] = np;
         }
