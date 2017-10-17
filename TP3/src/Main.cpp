@@ -15,40 +15,74 @@
 #include <iostream>
 #include <string>
 
+#include "GroupeImage.h"
+
 using namespace std;
 
 int main() {
-	// Chemin vers les images
-    string cheminLoad = "./Ensemble d'images/Originale/";
-	// Nom des 6 images dans un tableau de string
-    string image[6] = {"Breaking-Bad.bmp", "Couleur.bmp", "Fall.bmp", "RM.bmp", "SolarEclipse.bmp", "WiC.bmp"};
+	/* chemin vers les images */
+    string base = "./res/";
+    string originale = base + "Originale/";
 
-	// Creer un groupe d'image
-	cout << "**************************************************" << endl;
-	cout << "Creation du groupe d'image" << endl;
-	cout << "**************************************************" << endl << endl;
+	/* nom des 6 images dans un tableau de string */
+    string images[6] = {
+        "Breaking-Bad.bmp",
+        "Couleur.bmp",
+        "Fall.bmp",
+        "RM.bmp",
+        "SolarEclipse.bmp",
+        "WiC.bmp"
+    };
 
+	/* créer un groupe d'image */
+	cout << "***************************" << endl;
+	cout << "Création du groupe d'images" << endl;
+	cout << "***************************" << endl << endl;
 
-	// Ajouter toutes les images au groupe en tant qu'image couleurs
+    GroupeImage groupe = GroupeImage();
 
-	// Afficher le contenu du groupe d'image
+	/* ajouter toutes les images au groupe en tant qu'image en couleurs */
+    for(string img : images) {
+        string chemin = originale + img;
+        Image* image = new Image(chemin, TypeImage::Couleurs);
+        groupe += image;
+    }
 
-	// Convertir toutes les images en couleurs
+	/* afficher le contenu du groupe d'image */
+    cout << groupe;
 
-	// Enregistrer toutes les images convertie
+	/* convertir toutes les images en couleurs */
+    groupe.toutMettreEnCouleur();
 
-	// Convertir toutes les images en Nuance de Gris
+	/* enregistrer toutes les images convertie */
+    groupe.toutEnregistrer(base);
 
-	// Enregistrer toutes les images grises
+	/* convertir toutes les images en nuance de gris */
+    groupe.toutMettreEnGris();
 
-	// Convertir toutes les images en Noir et Blanc
+	/* enregistrer toutes les images grises */
+    groupe.toutEnregistrer(base);
 
-	// Enretisgrer toutes les images
+	/* convertir toutes les images en noir et blanc */
+    groupe.toutMettreEnNB();
 
+	/* enregistrer toutes les images */
+    groupe.toutEnregistrer(base);
 
-	// Permet d'afficher le contenu de la console
+    /* on libère la mémoire */
+    for(int i = groupe.obtenirTaille()-1; i >= 0; i--) {
+        /* on s'assure que l'image est valide */
+        Image* image = groupe.obtenirImage(i);
+        if(image == nullptr)
+            continue;
+
+        /* tant qu'à y être, on retire l'image */
+        groupe.retirerImage(image->obtenirNomImage());
+
+        /* on libère la mémoire */
+        delete image;
+    }
+
     PAUSE;
-
-	// Fin du programme
     return 0;
 }
