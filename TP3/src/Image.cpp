@@ -272,7 +272,6 @@ uint_t Image::obtenirTaille() const {
     return hauteur_*largeur_;
 }
 
-
 std::ostream& operator<<(std::ostream& os, const Image& image) {
     os << "Nom de l'image : " << image.obtenirNomImage() << endl;
     os << "Chemin de l'original : " << image.obtenirChemin() << endl;
@@ -319,14 +318,14 @@ string couperNom(const string chemin) {
 
     /* on trouve la position de la dernière barre oblique */
     int i = chemin.length();
-    while(i >= 0 && (cc[i] != '/' || cc[i] != '\\')) i--;
+    while(i >= 0 && cc[i] != '/' && cc[i] != '\\') i--;
 
     /* on s'assure qu'il y en avait une */
     if(i < 0)
         return "";
 
     /* on coupe le chemin pour obtenir le nom du fichier */
-    return chemin.substr(i, chemin.length()-1);
+    return chemin.substr(i+1, chemin.length()-1);
 }
 
 string obtenirTypeEnString(const TypeImage type) {
