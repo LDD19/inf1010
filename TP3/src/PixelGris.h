@@ -1,3 +1,8 @@
+/**************************************************
+ * Titre: Travail pratique #3 - PixelGris.h
+ * Date:22 Octobre 2017
+ * Auteurs: Gabriel-Andrew Pollo-Guilbert, Si Da Li
+**************************************************/
 #ifndef PIXEL_GRIS_H
 #define PIXEL_GRIS_H
 

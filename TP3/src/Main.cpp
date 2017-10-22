@@ -1,8 +1,8 @@
-//
-// Nom du fichier: main.cpp
-// Contenu : execution du programme principal
-// Date de modification : 27 septembre 2017
-//
+/**************************************************
+ * Titre: Travail pratique #3 - Main.cpp
+ * Date:22 Octobre 2017
+ * Auteurs: Gabriel-Andrew Pollo-Guilbert, Si Da Li
+**************************************************/
 
 #ifdef _WIN32 
     #include <Windows.h>

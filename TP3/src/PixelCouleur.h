@@ -1,3 +1,8 @@
+/**************************************************
+ * Titre: Travail pratique #3 - PixelCouleur.h
+ * Date:22 Octobre 2017
+ * Auteurs: Gabriel-Andrew Pollo-Guilbert, Si Da Li
+**************************************************/
 #ifndef PIXEL_COULEUR_H
 #define PIXEL_COULEUR_H
 

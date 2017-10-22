@@ -1,3 +1,8 @@
+/**************************************************
+ * Titre: Travail pratique #3 - GroupeImage.cpp
+ * Date:22 Octobre 2017
+ * Auteurs: Gabriel-Andrew Pollo-Guilbert, Si Da Li
+**************************************************/
 #include <iostream>
 #include "GroupeImage.h"
 

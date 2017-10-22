@@ -1,3 +1,8 @@
+/**************************************************
+ * Titre: Travail pratique #3 - GroupeImage.h
+ * Date:22 Octobre 2017
+ * Auteurs: Gabriel-Andrew Pollo-Guilbert, Si Da Li
+**************************************************/
 #ifndef GROUPE_IMAGE_H
 #define GROUPE_IMAGE_H
 

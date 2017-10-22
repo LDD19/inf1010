@@ -1,3 +1,8 @@
+/**************************************************
+ * Titre: Travail pratique #3 - PixelBN.cpp
+ * Date:22 Octobre 2017
+ * Auteurs: Gabriel-Andrew Pollo-Guilbert, Si Da Li
+**************************************************/
 #include "PixelBN.h"
 
 PixelBN::PixelBN() : Pixel(TypePixel::NoireBlanc) {

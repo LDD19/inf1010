@@ -1,3 +1,8 @@
+/**************************************************
+ * Titre: Travail pratique #3 - Bitmap.cpp
+ * Date:22 Octobre 2017
+ * Auteurs: Gabriel-Andrew Pollo-Guilbert, Si Da Li
+**************************************************/
 /*
  * Copyright (c) 2012 Tom Alexander
  * 
