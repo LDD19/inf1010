@@ -18,13 +18,13 @@ const int TAILLE_PIXEL_COULEUR = 3;
  * Cette ennumération définie l'index des pixels.
  */
 enum Couleur {
-    /* L'index de la couleur rouge. */
+    /** L'index de la couleur rouge. */
     R = 2,
 
-    /* L'index de la couleur vert. */
+    /** L'index de la couleur vert. */
     G = 1,
 
-    /* L'index de la couleur bleu. */
+    /** L'index de la couleur bleu. */
     B = 0,
 };
 
@@ -46,29 +46,20 @@ public:
     PixelCouleur(uint8_t r, uint8_t g, uint8_t b);
 
     /**
-     * Constructeur par paramètres.
-     *
-     * @param valeurs Les valeurs des pixels.
-     */
-    PixelCouleur(uint8_t* valeurs);
-
-    /**
      * Destructeur.
      */
     ~PixelCouleur();
 
-    /**
-     * Cette méthode convertit le pixel de couleur en un pixel noir et blanc.
-     *
-     * @return La valeur du pixel noir et blanc.
-     */
+    /***********************
+     * Méthode surchargées *
+     ***********************/
+
+    void mettreEnNegatif();
+
+    Pixel* retournerCopieProfonde() const;
+
     bool convertirPixelBN() const;
 
-    /**
-     * Cette méthode convertit le pixel de couleur en un pixel gris.
-     *
-     * @return La valeur du pixel gris.
-     */
     uint8_t convertirPixelGris() const;
 
     /*************
@@ -96,36 +87,15 @@ public:
      */
     void modifierTeinteB(uint8_t b);
 
-    /**************
-     * Accesseurs *
-     **************/
-
-    /**
-     * Cette méthode retourne la valeur du pixel rouge.
-     *
-     * @return La valeur du pixel rouge.
-     */
-    uint8_t retournerR() const;
-
-    /**
-     * Cette méthode retourne la valeur du pixel vert.
-     *
-     * @return La valeur du pixel vert.
-     */
-    uint8_t retournerG() const;
-
-    /**
-     * Cette méthode retourne la valeur du pixel bleu.
-     *
-     * @return La valeur du pixel bleu.
-     */
-    uint8_t retournerB() const;
-
     /*************************
-     * Opérateurs surchargés *
+     * Accesseurs surchargés *
      *************************/
 
-    bool operator==(const PixelCouleur& pixel) const;
+    uint8_t retournerR() const;
+
+    uint8_t retournerG() const;
+
+    uint8_t retournerB() const;
 
 private:
     /** Les composantes du pixel. */

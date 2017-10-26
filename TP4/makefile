@@ -9,7 +9,8 @@ SRCDIR := src
 BUILD  := build
 
 OBJECTS := $(BUILD)/Main.o \
-           $(BUILD)/Pixel.o
+           $(BUILD)/Pixel.o \
+           $(BUILD)/PixelCouleur.o
 
 all: dirs $(OBJECTS)
 	$(CC) -o $(BUILD)/$(EXEC) $(OBJECTS) $(LDFLAGS)
