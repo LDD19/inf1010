@@ -19,6 +19,11 @@ public:
     GroupeImage();
 
     /**
+     * Constructeur par copie.
+     */
+    GroupeImage(const GroupeImage& groupe);
+
+    /**
      * Destructeur.
      */
     ~GroupeImage();

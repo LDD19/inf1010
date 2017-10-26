@@ -12,6 +12,14 @@ GroupeImage::GroupeImage() {
 
 }
 
+GroupeImage::GroupeImage(const GroupeImage& groupe) {
+    for(uint_t i = 0; i < groupe.obtenirTaille(); i++) {
+        Image* image = new Image();
+        (*image) = (*groupe.obtenirImage(i));
+        ajouterImage(image);
+    }
+}
+
 GroupeImage::~GroupeImage() {
 
 }
