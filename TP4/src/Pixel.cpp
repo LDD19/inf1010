@@ -9,18 +9,22 @@ Pixel::Pixel() {
 
 }
 
-Pixel::Pixel(TypePixel type) {
-    type_ = type;
-}
-
 Pixel::~Pixel() {
 
 }
 
-TypePixel Pixel::getType() const {
-    return type_;
-}
-
 bool Pixel::operator==(const Pixel& pixel) const {
-    return (pixel.getType() == getType());
+    /* on compare la teinte rouge */
+    if(retournerR() != pixel.retournerR())
+        return false;
+
+    /* on compare la teinte verte */
+    if(retournerG() != pixel.retournerG())
+        return false;
+
+    /* on compare la teinte bleu */
+    if(retournerB() != pixel.retournerB())
+        return false;
+
+    return true;
 }

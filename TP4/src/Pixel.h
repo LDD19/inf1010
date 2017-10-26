@@ -13,8 +13,6 @@
 
 /**
  * Cette classe définie un pixel de base.
- *
- * TODO: Implémenter des fonctions statiques pour tester la valeur du pixel.
  */
 class Pixel
 {
@@ -25,37 +23,66 @@ public:
     Pixel();
 
     /**
-     * Constructeur par paramètres.
-     *
-     * @param type Le type du pixel.
-     */
-    Pixel(TypePixel type);
-
-    /**
      * Destructeur.
      */
-    ~Pixel();
+    virtual ~Pixel();
+
+    /**
+     * Cette méthode met le pixel en négatif.
+     */
+    virtual void mettreEnNegatif() = 0;
+
+    /**
+     * Cette méthode retourne une copie profonde du pixel.
+     *
+     * @return Un pointeur vers la copie du pixel.
+     */
+    virtual Pixel* retournerCopieProfonde() const = 0;
+
+    /**
+     * Cette méthode retourne la valeur blanc et noir du pixel.
+     *
+     * @return La valeur blanc et noir du pixel.
+     */
+    virtual bool convertirPixelBN() const = 0;
+
+    /**
+     * Cette méthode retourne la valeur grise du pixel.
+     *
+     * @return La valeur du pixel grise.
+     */
+    virtual uint8_t convertirPixelGris() const = 0;
 
     /**************
      * Accesseurs *
      **************/
 
     /**
-     * Cette méthode retourne le type de pixel.
+     * Cette méthode retourne la teinte rouge du pixel.
      *
-     * @return Le type de pixel.
+     * @return La teinte rouge du pixel.
      */
-    TypePixel getType() const;
+    virtual uint8_t retournerR() const = 0;
+
+    /**
+     * Cette méthode retourne la teinte verte du pixel.
+     *
+     * @return La teinte verte du pixel.
+     */
+    virtual uint8_t retournerG() const = 0;
+
+    /**
+     * Cette méthode retourne la teinte bleu du pixel.
+     *
+     * @return La teinte bleu du pixel.
+     */
+    virtual uint8_t retournerB() const = 0;
 
     /************************
      * Opérateurs surchagés *
      ************************/
 
-    bool operator==(const Pixel& pixel) const;
-
-protected:
-    /** Le type du pixel. */
-    TypePixel type_;
+    virtual bool operator==(const Pixel& pixel) const;
 };
 
 #endif
