@@ -1,3 +1,8 @@
+/**************************************************
+ * Titre: Travail pratique #3 - Bitmap.cpp
+ * Date:22 Octobre 2017
+ * Auteurs: Gabriel-Andrew Pollo-Guilbert, Si Da Li
+**************************************************/
 /*
  * Copyright (c) 2012 Tom Alexander
  * 
@@ -99,7 +104,6 @@ size_t bitmap_encode_rgb(const unsigned char* rgb, unsigned int width, unsigned 
         memcpy(&data[pixel_info_offset_offset], &data_size, 4);
     }
     uint32_t size_of_header = data.size();
-	unsigned int size_of_image = width * height * 3;
     for (unsigned int y = 0; y < height; y++)
     {
         for (unsigned int x = 0; x < width; x++)
