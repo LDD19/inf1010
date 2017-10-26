@@ -8,14 +8,7 @@ EXEC := image
 SRCDIR := src
 BUILD  := build
 
-OBJECTS := $(BUILD)/Main.o \
-           $(BUILD)/Pixel.o \
-           $(BUILD)/PixelCouleur.o \
-           $(BUILD)/PixelGris.o \
-           $(BUILD)/PixelBN.o \
-           $(BUILD)/Image.o \
-           $(BUILD)/Bitmap.o \
-		   $(BUILD)/GroupeImage.o
+OBJECTS := $(BUILD)/Main.o
 
 all: dirs $(OBJECTS)
 	$(CC) -o $(BUILD)/$(EXEC) $(OBJECTS) $(LDFLAGS)
