@@ -26,17 +26,22 @@ public:
     /**
      * Cette méthode convertit toutes les images en noir et blanc.
      */
-    void toutMettreEnNB();
+    void toutMettreEnNB() const;
 
     /**
      * Cette méthode convertit toutes les images en gris.
      */
-    void toutMettreEnGris();
+    void toutMettreEnGris() const;
 
     /**
      * Cette méthode convertit toutes les images en couleurs.
      */
-    void toutMettreEnCouleur();
+    void toutMettreEnCouleur() const;
+
+    /**
+     * Cette méthode convertit toutes les images en négatif.
+     */
+    void toutMettreEnNegatif() const;
 
     /**
      * Cette méthode enregistre toutes les images.

@@ -14,7 +14,8 @@ OBJECTS := $(BUILD)/Main.o \
            $(BUILD)/PixelGris.o \
            $(BUILD)/PixelBN.o \
            $(BUILD)/Image.o \
-           $(BUILD)/Bitmap.o 
+           $(BUILD)/Bitmap.o \
+           $(BUILD)/GroupeImage.o
 
 all: dirs $(OBJECTS)
 	$(CC) -o $(BUILD)/$(EXEC) $(OBJECTS) $(LDFLAGS)

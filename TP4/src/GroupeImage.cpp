@@ -16,16 +16,20 @@ GroupeImage::~GroupeImage() {
 
 }
 
-void GroupeImage::toutMettreEnNB() {
+void GroupeImage::toutMettreEnNB() const {
     for(Image* image : images_) image->convertirNB();
 }
 
-void GroupeImage::toutMettreEnGris() {
+void GroupeImage::toutMettreEnGris() const {
     for(Image* image : images_) image->convertirGris();
 }
 
-void GroupeImage::toutMettreEnCouleur() {
+void GroupeImage::toutMettreEnCouleur() const {
     for(Image* image : images_) image->convertirCouleur();
+}
+
+void GroupeImage::toutMettreEnNegatif() const {
+    for(Image* image : images_) image->toutMettreEnNegatif();
 }
 
 void GroupeImage::toutEnregistrer(const string base) const {
