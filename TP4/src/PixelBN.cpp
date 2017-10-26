@@ -4,12 +4,13 @@
  * Auteurs: Gabriel-Andrew Pollo-Guilbert, Si Da Li
 **************************************************/
 #include "PixelBN.h"
+#include "PixelCouleur.h"
 
-PixelBN::PixelBN() : Pixel(TypePixel::NoireBlanc) {
+PixelBN::PixelBN() : Pixel() {
 
 }
 
-PixelBN::PixelBN(bool p) : Pixel(TypePixel::NoireBlanc) {
+PixelBN::PixelBN(bool p) : Pixel() {
     donnee_ = p;
 }
 
@@ -17,16 +18,23 @@ PixelBN::~PixelBN() {
 
 }
 
-uint8_t* PixelBN::convertirPixelCouleur() const {
-    /* on alloue la mémoire */
-    uint8_t* pixels = new uint8_t[3];
+void PixelBN::convertirPixelCouleur(uint8_t* v) const {
+    v[Couleur::R] = (donnee_?UINT8_MAX:0);
+    v[Couleur::G] = (donnee_?UINT8_MAX:0);
+    v[Couleur::B] = (donnee_?UINT8_MAX:0);
+}
 
-    /* on iniitalise les pixels */
-    pixels[0] = (donnee_?UINT8_MAX:0);
-    pixels[1] = pixels[0];
-    pixels[2] = pixels[0];
+void PixelBN::mettreEnNegatif() {
+    donnee_ = !donnee_;
+}
 
-    return pixels;
+Pixel* PixelBN::retournerCopieProfonde() const {
+    return new PixelBN(donnee_);
+}
+
+
+bool PixelBN::convertirPixelBN() const {
+    return donnee_;
 }
 
 uint8_t PixelBN::convertirPixelGris() const {
@@ -37,18 +45,15 @@ void PixelBN::modifierDonnee(bool donnee) {
     donnee_ = donnee;
 }
 
-bool PixelBN::obtenirDonnee() const {
-    return donnee_;
+uint8_t PixelBN::retournerR() const {
+    return (donnee_?UINT8_MAX:0);
 }
 
-bool PixelBN::operator==(const PixelBN& pixel) const {
-    /* le pixel de base doit être le même */
-    if(!Pixel::operator==(pixel))
-        return false;
-
-    /* la valeur du pixel doit être la même */
-    if(pixel.obtenirDonnee() != obtenirDonnee())
-        return false;
-
-    return true;
+uint8_t PixelBN::retournerG() const {
+    return (donnee_?UINT8_MAX:0);
 }
+
+uint8_t PixelBN::retournerB() const {
+    return (donnee_?UINT8_MAX:0);
+}
+

@@ -30,19 +30,22 @@ public:
     ~PixelBN();
 
     /**
-     * Cette méthode convertit le pixel blanc et noir en pixel de couleur.
-     * L'appeleur de cette méthode doit prendre la responsabilité de libérer la
-     * mémoire allouée.
+     * Cette méthode retourne les valeurs couleurs du pixel.
      *
-     * @param Un pointeur vers les composantes du pixel de couleur.
+     * @param Un pointeur vers les couleurs a modifier.
      */
-    uint8_t* convertirPixelCouleur() const;
+	void convertirPixelCouleur(uint8_t* v) const;
 
-    /**
-     * Cette méthode convertit le pixel blanc et noir en pixel gris.
-     *
-     * @return La valeur du pixel gris.
-     */
+    /************************
+     * Méthodes surchargées *
+     ************************/
+    
+    void mettreEnNegatif();
+
+    Pixel* retournerCopieProfonde() const;
+
+    bool convertirPixelBN() const;
+
     uint8_t convertirPixelGris() const;
 
     /*************
@@ -51,17 +54,15 @@ public:
 
     void modifierDonnee(bool donnee);
 
-    /**************
-     * Accesseurs *
-     **************/
+    /*************************
+     * Accesseurs surchargés *
+     *************************/
 
-    bool obtenirDonnee() const;
+    uint8_t retournerR() const;
 
-    /************************
-     * Opérateurs Surchagés *
-     ************************/
+    uint8_t retournerG() const;
 
-    bool operator==(const PixelBN& pixel) const;
+    uint8_t retournerB() const;
 
 private:
     /** La valeur du pixel. */
