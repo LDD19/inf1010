@@ -15,6 +15,8 @@
 #include <iostream>
 #include <string>
 
+#include "GroupeImage.h"
+
 using namespace std;
 
 int main() {
@@ -37,54 +39,70 @@ int main() {
     cout << "Création du groupe d'images" << endl;
     cout << "***************************" << endl << endl;
 
-    //GroupeImage groupe = GroupeImage();
+    GroupeImage groupeImage1 = GroupeImage();
 
-    // Ajouter les 3 premieres images contenue dans le tableau de string
-    // image au groupeImage1, en couleur
+    /* on ajoute les 3 premières images contenue dans le tableau */
+    Image* image0 = new Image(originale+images[0], TypeImage::Couleurs);
+    Image* image1 = new Image(originale+images[1], TypeImage::Couleurs);
+    Image* image2 = new Image(originale+images[2], TypeImage::Couleurs);
 
+    groupeImage1 += image0;
+    groupeImage1 += image1;
+    groupeImage1 += image2;
 
-    // Creer un deuxieme groupe image identique au groupeImage precedent
-    // en utilisant le constructeur par copie ou l'operateur egal (votre choix).
-    // Nomme ce groupe groupeImage2
+    /* on crée une copie du premier groupe */
+    GroupeImage groupeImage2(groupeImage1);
 
+    /* on affiche le premier groupe */
+    cout << groupeImage1;
 
-    // Afficher le contenu de groupeImage1
+    /* on affiche le deuxième groupe */
+    cout << groupeImage2;
 
+    /* on ajoute toutes les images dans le deuxième groupe */
+    for(string nom : images) {
+        Image* image = new Image(originale+nom, TypeImage::Couleurs);
 
-    // Afficher le contenu de groupeImage2
+        /* si l'ajout ne succède pas, on libère l'image immédiatement */
+        if(!groupeImage2.ajouterImage(image))
+            delete image;
+    }
 
+    /* on convertit le premier groupe en gris */
+    groupeImage1.toutMettreEnGris();
 
-    // Ajouter toutes les images du tableau de string image au groupeImage2, en couleur
+    /* on met les images du premier groupe en négatif */
+    groupeImage1.toutMettreEnNegatif();
 
+    /* on sauvegarde le deuxième groupe */
+    groupeImage2.toutEnregistrer(base);
 
-    // Tentez de convertir toutes les images d'un des groupes en Couleur
+    /* on convertit le deuxième groupe en gris */
+    groupeImage2.toutMettreEnGris();
 
+    /* on sauvegarde le deuxième groupe */
+    groupeImage2.toutEnregistrer(base);
 
-    // Mettre toutes les images du groupeImage1 en negatif
+    /* on convertit le deuxième groupe en noir et blanc */
+    groupeImage2.toutMettreEnNB();
 
+    /* on enregistrer juste tout */
+    groupeImage1.toutEnregistrer(base);
+    groupeImage2.toutEnregistrer(base);
 
-    // Enregistrer toutes les images du groupeImage2
+    /* on libère la mémoire */
+    for(uint_t i = 0; i < groupeImage1.obtenirTaille(); i++) {
+        Image* image = groupeImage1.obtenirImage(i);
+        if(image != nullptr) 
+            delete image;
+    }
 
+    for(uint_t i = 0; i < groupeImage2.obtenirTaille(); i++) {
+        Image* image = groupeImage2.obtenirImage(i);
+        if(image != nullptr) 
+            delete image;
+    }
 
-    // Convertir toutes les images du groupeImage2 en gris
-
-
-    // Enregistrer toutes les images du groupeImage2
-
-
-    // Convertir toutes les images du groupeImage2 en Noir et Blanc
-
-
-    // Enretisgrer toutes les images
-
-
-
-    // N'oubliez pas de desallouer la memoire si necessaire
-
-
-    // Permet d'afficher le contenu de la console
     PAUSE;
-
-    // Fin du programme
     return 0;
 }
