@@ -29,13 +29,6 @@ public:
      */
     ~PixelBN();
 
-    /**
-     * Cette méthode retourne les valeurs couleurs du pixel.
-     *
-     * @param v Un pointeur vers les couleurs a modifier.
-     */
-    void convertirPixelCouleur(uint8_t* v) const;
-
     /************************
      * Méthodes surchargées *
      ************************/
@@ -47,6 +40,8 @@ public:
     bool convertirPixelBN() const;
 
     uint8_t convertirPixelGris() const;
+
+    void convertirPixelCouleur(uint8_t* v) const;
 
     /*************
      * Mutateurs *

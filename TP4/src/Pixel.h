@@ -53,6 +53,13 @@ public:
      */
     virtual uint8_t convertirPixelGris() const = 0;
 
+    /**
+     * Cette méthode retourne les teintes du pixel.
+     *
+     * @param v La buffer dans lequel on met les teintes.
+     */
+    virtual void convertirPixelCouleur(uint8_t* v) const = 0;
+
     /**************
      * Accesseurs *
      **************/

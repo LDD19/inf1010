@@ -19,12 +19,6 @@ PixelGris::~PixelGris() {
 
 }
 
-void PixelGris::convertirPixelCouleur(uint8_t* v) const {
-    v[Couleur::R] = donnee_;
-    v[Couleur::G] = donnee_;
-    v[Couleur::B] = donnee_;
-}
-
 void PixelGris::mettreEnNegatif() {
     donnee_ = UINT8_MAX-donnee_;
 }
@@ -42,6 +36,12 @@ bool PixelGris::convertirPixelBN() const {
 
 uint8_t PixelGris::convertirPixelGris() const {
     return donnee_;
+}
+
+void PixelGris::convertirPixelCouleur(uint8_t* v) const {
+    v[Couleur::R] = donnee_;
+    v[Couleur::G] = donnee_;
+    v[Couleur::B] = donnee_;
 }
 
 void PixelGris::modifierDonnee(uint8_t donnee) {

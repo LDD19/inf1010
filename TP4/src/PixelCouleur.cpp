@@ -55,6 +55,12 @@ uint8_t PixelCouleur::convertirPixelGris() const {
     return somme;
 }
 
+void PixelCouleur::convertirPixelCouleur(uint8_t* v) const {
+    v[Couleur::R] = retournerR();
+    v[Couleur::G] = retournerG();
+    v[Couleur::B] = retournerB();
+}
+
 void PixelCouleur::modifierTeinteR(uint8_t r) {
     donnee_[Couleur::R] = r;
 }

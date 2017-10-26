@@ -18,12 +18,6 @@ PixelBN::~PixelBN() {
 
 }
 
-void PixelBN::convertirPixelCouleur(uint8_t* v) const {
-    v[Couleur::R] = (donnee_?UINT8_MAX:0);
-    v[Couleur::G] = (donnee_?UINT8_MAX:0);
-    v[Couleur::B] = (donnee_?UINT8_MAX:0);
-}
-
 void PixelBN::mettreEnNegatif() {
     donnee_ = !donnee_;
 }
@@ -39,6 +33,12 @@ bool PixelBN::convertirPixelBN() const {
 
 uint8_t PixelBN::convertirPixelGris() const {
     return (donnee_?UINT8_MAX:0);
+}
+
+void PixelBN::convertirPixelCouleur(uint8_t* v) const {
+    v[Couleur::R] = (donnee_?UINT8_MAX:0);
+    v[Couleur::G] = (donnee_?UINT8_MAX:0);
+    v[Couleur::B] = (donnee_?UINT8_MAX:0);
 }
 
 void PixelBN::modifierDonnee(bool donnee) {

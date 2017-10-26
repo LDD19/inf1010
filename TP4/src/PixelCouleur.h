@@ -62,6 +62,8 @@ public:
 
     uint8_t convertirPixelGris() const;
 
+    void convertirPixelCouleur(uint8_t* v) const;
+
     /*************
      * Mutateurs *
      *************/
