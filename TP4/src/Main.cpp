@@ -60,6 +60,7 @@ int main() {
     cout << groupeImage2;
 
     /* on ajoute toutes les images dans le deuxième groupe */
+    cout << endl;
     for(string nom : images) {
         Image* image = new Image(originale+nom, TypeImage::Couleurs);
 
@@ -68,27 +69,33 @@ int main() {
             delete image;
     }
 
-    /* on convertit le premier groupe en gris */
-    groupeImage1.toutMettreEnGris();
+    /* on convertit le deuxième groupe en couleur */
+    cout << endl;
+    groupeImage2.toutMettreEnCouleur();
 
     /* on met les images du premier groupe en négatif */
+    cout << endl;
     groupeImage1.toutMettreEnNegatif();
 
     /* on sauvegarde le deuxième groupe */
     groupeImage2.toutEnregistrer(base);
+    cout << endl;
 
     /* on convertit le deuxième groupe en gris */
     groupeImage2.toutMettreEnGris();
+    cout << endl;
 
     /* on sauvegarde le deuxième groupe */
     groupeImage2.toutEnregistrer(base);
+    cout << endl;
 
     /* on convertit le deuxième groupe en noir et blanc */
     groupeImage2.toutMettreEnNB();
+    cout << endl;
 
     /* on enregistrer juste tout */
-    groupeImage1.toutEnregistrer(base);
     groupeImage2.toutEnregistrer(base);
+    groupeImage1.toutEnregistrer(base);
 
     /* on libère la mémoire */
     for(uint_t i = 0; i < groupeImage1.obtenirTaille(); i++) {

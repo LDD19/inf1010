@@ -147,7 +147,10 @@ void Image::sauvegarderImage(const string &nom) {
 void Image::convertirNB() {
     /* inutile de convertir si l'image est déjà en noir et blanc */
     if(type_ == TypeImage::NoirBlanc) {
-        cout << "L'image " << nom_ << " est déjà en noir et blanc." << endl;
+        cout << "L'image "
+             << nom_
+             << "est déjà en noir et blanc, conversion inutile."
+             << endl;
         return;
     }
 
@@ -168,7 +171,10 @@ void Image::convertirNB() {
 void Image::convertirGris() {
     /* inutile de convertir si l'image est déjà grise */
     if(type_ == TypeImage::Gris) {
-        cout << "L'image " << nom_ << " est déjà grise." << endl;
+        cout << "L'image "
+             << nom_
+             << "est déjà grise, conversion inutile."
+             << endl;
         return;
     }
 
@@ -188,8 +194,13 @@ void Image::convertirGris() {
 
 void Image::convertirCouleur() {
     /* inutile de convertir si l'image est déjà en couleur */
-    if(type_ == TypeImage::Couleurs)
+    if(type_ == TypeImage::Couleurs) {
+        cout << "L'image "
+             << nom_
+             << "est déjà en couleur, conversion inutile."
+             << endl;
         return;
+    }
 
     for(uint_t i = 0; i < obtenirTaille(); i++) {
         Pixel* pixel = pixels_[i];
