@@ -4,17 +4,33 @@
  * Auteurs: Gabriel-Andrew Pollo-Guilbert, Si Da Li
 **************************************************/
 #include "PixelGris.h"
+#include "PixelCouleur.h"
 
-PixelGris::PixelGris() : Pixel(TypePixel::NuanceDeGris) {
+PixelGris::PixelGris() : Pixel() {
     donnee_ = 0;
 }
 
-PixelGris::PixelGris(uint8_t v) : Pixel(TypePixel::NuanceDeGris) {
+PixelGris::PixelGris(uint8_t v) : Pixel() {
     donnee_ = v;
 }
 
+
 PixelGris::~PixelGris() {
 
+}
+
+void PixelGris::convertirPixelCouleur(uint8_t* v) const {
+    v[Couleur::R] = donnee_;
+    v[Couleur::G] = donnee_;
+    v[Couleur::B] = donnee_;
+}
+
+void PixelGris::mettreEnNegatif() {
+    donnee_ = UINT8_MAX-donnee_;
+}
+
+Pixel* PixelGris::retournerCopieProfonde() const {
+    return new PixelGris(donnee_);
 }
 
 bool PixelGris::convertirPixelBN() const {
@@ -24,34 +40,22 @@ bool PixelGris::convertirPixelBN() const {
         return false;
 }
 
-uint8_t* PixelGris::convertirPixelCouleur() const {
-    /* on alloue la mémoire */
-    uint8_t* pixels = new uint8_t[3];
-
-    /* on initialise les pixels */
-    pixels[0] = donnee_;
-    pixels[1] = pixels[0];
-    pixels[2] = pixels[0];
-
-    return pixels;
+uint8_t PixelGris::convertirPixelGris() const {
+    return donnee_;
 }
 
 void PixelGris::modifierDonnee(uint8_t donnee) {
     donnee_ = donnee;
 }
 
-uint8_t PixelGris::obtenirDonnee() const {
+uint8_t PixelGris::retournerR() const {
     return donnee_;
 }
 
-bool PixelGris::operator==(const PixelGris& pixel) const {
-    /* le pixel de base doit être le même */
-    if(!Pixel::operator==(pixel))
-        return false;
+uint8_t PixelGris::retournerG() const {
+    return donnee_;
+}
 
-    /* la valeur du pixel doit être la même */
-    if(pixel.obtenirDonnee() != obtenirDonnee())
-        return false;
-
-    return true;
+uint8_t PixelGris::retournerB() const {
+    return donnee_;
 }

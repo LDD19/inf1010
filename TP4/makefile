@@ -10,7 +10,8 @@ BUILD  := build
 
 OBJECTS := $(BUILD)/Main.o \
            $(BUILD)/Pixel.o \
-           $(BUILD)/PixelCouleur.o
+           $(BUILD)/PixelCouleur.o \
+           $(BUILD)/PixelGris.o
 
 all: dirs $(OBJECTS)
 	$(CC) -o $(BUILD)/$(EXEC) $(OBJECTS) $(LDFLAGS)
