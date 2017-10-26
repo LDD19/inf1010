@@ -140,7 +140,7 @@ private:
     std::string nom_;
 
     /** Le type de l'image. */
-	TypeImage type_;
+    TypeImage type_;
 
     /** La hauteur de l'image. */
     uint_t hauteur_;

@@ -34,7 +34,7 @@ public:
      *
      * @param v Un pointeur vers les couleurs a modifier.
      */
-	void convertirPixelCouleur(uint8_t* v) const;
+    void convertirPixelCouleur(uint8_t* v) const;
 
     /************************
      * Méthodes surchargées *

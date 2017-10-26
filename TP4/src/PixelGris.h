@@ -15,28 +15,28 @@ class PixelGris : public Pixel
 {
 public:
     /**
-	 * Constructeur par défaut.
-	 */
-	PixelGris();
+     * Constructeur par défaut.
+     */
+    PixelGris();
 
     /**
-	 * Constructeur par paramètres.
-	 *
-	 * @param v La valeur du pixel gris.
-	 */
-	PixelGris(uint8_t v);
+     * Constructeur par paramètres.
+     *
+     * @param v La valeur du pixel gris.
+     */
+    PixelGris(uint8_t v);
 
     /**
-	 * Destructeur.
-	 */
-	~PixelGris();
+     * Destructeur.
+     */
+    ~PixelGris();
 
     /**
      * Cette méthode retourne les valeurs couleurs du pixel.
      *
      * @param v Un pointeur vers les couleurs a modifier.
      */
-	void convertirPixelCouleur(uint8_t* v) const;
+    void convertirPixelCouleur(uint8_t* v) const;
 
     /************************
      * Méthodes surchargées *
@@ -46,13 +46,13 @@ public:
 
     Pixel* retournerCopieProfonde() const;
 
-	bool convertirPixelBN() const;
+    bool convertirPixelBN() const;
 
     uint8_t convertirPixelGris() const;
 
-	/*************
-	 * Mutateurs *
-	 *************/
+    /*************
+     * Mutateurs *
+     *************/
 
     /**
      * Cette méthode modifie la valeur du pixel.
@@ -73,7 +73,7 @@ public:
 
 private:
     /** La valeur du pixel gris. */
-	uint8_t donnee_;
+    uint8_t donnee_;
 };
 
 #endif

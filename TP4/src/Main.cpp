@@ -18,11 +18,11 @@
 using namespace std;
 
 int main() {
-	/* chemin vers les images */
+    /* chemin vers les images */
     string base = "./res/";
     string originale = base + "Originale/";
 
-	/* nom des 6 images dans un tableau de string */
+    /* nom des 6 images dans un tableau de string */
     string images[6] = {
         "Breaking-Bad.bmp",
         "Couleur.bmp",
@@ -32,10 +32,10 @@ int main() {
         "WiC.bmp"
     };
 
-	/* créer un groupe d'image */
-	cout << "***************************" << endl;
-	cout << "Création du groupe d'images" << endl;
-	cout << "***************************" << endl << endl;
+    /* créer un groupe d'image */
+    cout << "***************************" << endl;
+    cout << "Création du groupe d'images" << endl;
+    cout << "***************************" << endl << endl;
 
     //GroupeImage groupe = GroupeImage();
 

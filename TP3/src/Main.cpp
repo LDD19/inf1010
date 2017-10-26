@@ -20,11 +20,11 @@
 using namespace std;
 
 int main() {
-	/* chemin vers les images */
+    /* chemin vers les images */
     string base = "./res/";
     string originale = base + "Originale/";
 
-	/* nom des 6 images dans un tableau de string */
+    /* nom des 6 images dans un tableau de string */
     string images[6] = {
         "Breaking-Bad.bmp",
         "Couleur.bmp",
@@ -34,44 +34,44 @@ int main() {
         "WiC.bmp"
     };
 
-	/* créer un groupe d'image */
-	cout << "***************************" << endl;
-	cout << "Création du groupe d'images" << endl;
-	cout << "***************************" << endl << endl;
+    /* créer un groupe d'image */
+    cout << "***************************" << endl;
+    cout << "Création du groupe d'images" << endl;
+    cout << "***************************" << endl << endl;
 
     GroupeImage groupe = GroupeImage();
 
-	/* ajouter toutes les images au groupe en tant qu'image en couleurs */
+    /* ajouter toutes les images au groupe en tant qu'image en couleurs */
     for(string img : images) {
         string chemin = originale + img;
         Image* image = new Image(chemin, TypeImage::Couleurs);
         groupe += image;
     }
 
-	/* afficher le contenu du groupe d'image */
+    /* afficher le contenu du groupe d'image */
     cout << groupe;
 
-	/* convertir toutes les images en couleurs */
+    /* convertir toutes les images en couleurs */
     groupe.toutMettreEnCouleur();
     cout << endl;
 
-	/* enregistrer toutes les images convertie */
+    /* enregistrer toutes les images convertie */
     groupe.toutEnregistrer(base);
     cout << endl;
 
-	/* convertir toutes les images en nuance de gris */
+    /* convertir toutes les images en nuance de gris */
     groupe.toutMettreEnGris();
     cout << endl;
 
-	/* enregistrer toutes les images grises */
+    /* enregistrer toutes les images grises */
     groupe.toutEnregistrer(base);
     cout << endl;
 
-	/* convertir toutes les images en noir et blanc */
+    /* convertir toutes les images en noir et blanc */
     groupe.toutMettreEnNB();
     cout << endl;
 
-	/* enregistrer toutes les images */
+    /* enregistrer toutes les images */
     groupe.toutEnregistrer(base);
     cout << endl;
 

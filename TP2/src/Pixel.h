@@ -95,7 +95,7 @@ public:
      *
      * @return The character representing the pixel.
      */
-	char asChar() const;
+    char asChar() const;
 
     //***********************
     // overloaded operators *

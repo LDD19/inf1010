@@ -11,7 +11,7 @@
  */
 enum TypeImage {
     /** Une image en noir et blanc. */
-	NoirBlanc,
+    NoirBlanc,
 
     /** Une image en teintes de gris. */
     Gris,

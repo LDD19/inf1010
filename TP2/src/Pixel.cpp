@@ -106,7 +106,7 @@ char Pixel::asChar() const {
         return 'B';
     }
 
-	return 'Q';
+    return 'Q';
 }
 
 bool Pixel::operator==(const Pixel& p) const {

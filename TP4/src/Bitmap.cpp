@@ -110,7 +110,7 @@ size_t bitmap_encode_rgb(const unsigned char* rgb, unsigned int width, unsigned 
         {
             //Write bottom pixels first since image is flipped
             //Also sauvegarderImage pixels in BGR
-			int indice = (height - 1 - y) * width * 3 + x * 3;
+            int indice = (height - 1 - y) * width * 3 + x * 3;
             data.push_back(rgb[indice + 2]);
             data.push_back(rgb[indice + 1]);
             data.push_back(rgb[indice]);
