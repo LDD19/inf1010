@@ -19,7 +19,10 @@ Pixel* nouveauPixel(char* valeurs, const TypeImage& type);
 void ecrirePixel(uint8_t* valeurs, const Pixel* pixel);
 
 Image::Image() {
-
+    type_   = TypeImage::Couleurs;
+    chemin_ = "";
+    pixels_ = nullptr;
+    nom_    = "";
 }
 
 Image::Image(const string& chemin, const TypeImage& type) {
@@ -36,24 +39,13 @@ Image::Image(const string& chemin, const TypeImage& type) {
 }
 
 Image::~Image() {
-    /* on libère la mémoire */
-    for(uint_t i = 0; i < obtenirTaille(); i++) {
-        delete pixels_[i];
-        pixels_[i] = nullptr;
-    }
-    delete [] pixels_;
+    /* on détruit les pixels */
+    detruirePixels();
 }
 
 void Image::lireImage(const string& nom, const TypeImage& type) {
     /* on détruit les pixels actuels */
-    if(pixels_ != nullptr) {
-        unsigned int i;
-        for(i = 0; i < obtenirTaille(); i++) {
-            delete pixels_[i];
-            pixels_ = nullptr;
-        }
-        delete[] pixels_;
-    }
+    detruirePixels();
 
     /* on ouvre un stream pour lire l'image */
     ifstream bmpIn(chemin_.c_str(), ios::in | ios::binary);
@@ -159,28 +151,13 @@ void Image::convertirNB() {
         return;
     }
 
-    if(type_ == TypeImage::Gris) {
-        /* si l'image existante est grise*/
-        for(uint_t i = 0; i < obtenirTaille(); i++) {
-            Pixel* pixel = pixels_[i];
+    /* on convertit chaque pixels */
+    for(uint_t i = 0; i < obtenirTaille(); i++) {
+        Pixel* pixel = pixels_[i];
+        Pixel* np = new PixelBN(pixel->convertirPixelBN());
 
-            PixelGris* pg = static_cast<PixelGris*>(pixel);
-            Pixel* np = new PixelBN(pg->convertirPixelBN());
-
-            delete pixel;
-            pixels_[i] = np;
-        }
-    } else if(type_ == TypeImage::Couleurs) {
-        /* si l'image existante est en couleurs */
-        for(uint_t i = 0; i < obtenirTaille(); i++) {
-            Pixel* pixel = pixels_[i];
-
-            PixelCouleur* pc = static_cast<PixelCouleur*>(pixel);
-            Pixel* np = new PixelBN(pc->convertirPixelBN());
-
-            delete pixel;
-            pixels_[i] = np;
-        }
+        delete pixel;
+        pixels_[i] = np;
     }
 
     /* on change le type de l'image */
@@ -195,28 +172,13 @@ void Image::convertirGris() {
         return;
     }
 
-    if(type_ == TypeImage::NoirBlanc) {
-        /* si l'image existante est en noir et blanc */
-        for(uint_t i = 0; i < obtenirTaille(); i++) {
-            Pixel* pixel = pixels_[i];
+    /* on convertit chaque pixels */
+    for(uint_t i = 0; i < obtenirTaille(); i++) {
+        Pixel* pixel = pixels_[i];
+        Pixel* np = new PixelGris(pixel->convertirPixelGris());
 
-            PixelBN* pbn = static_cast<PixelBN*>(pixel);
-            Pixel* np = new PixelGris(pbn->convertirPixelGris());
-
-            delete pixel;
-            pixels_[i] = np;
-        }
-    } else if(type_ == TypeImage::Couleurs) {
-        /* si l'image existante est en couleurs */
-        for(uint_t i = 0; i < obtenirTaille(); i++) {
-            Pixel* pixel = pixels_[i];
-
-            PixelCouleur* pc = static_cast<PixelCouleur*>(pixel);
-            Pixel* np = new PixelGris(pc->convertirPixelGris());
-
-            delete pixel;
-            pixels_[i] = np;
-        }
+        delete pixel;
+        pixels_[i] = np;
     }
 
     /* on change le type de l'image */
@@ -229,37 +191,30 @@ void Image::convertirCouleur() {
     if(type_ == TypeImage::Couleurs)
         return;
 
-    if(type_ == TypeImage::NoirBlanc) {
-        /* si l'image existante est en noir et blanc */
-        for(uint_t i = 0; i < obtenirTaille(); i++) {
-            Pixel* pixel = pixels_[i];
+    for(uint_t i = 0; i < obtenirTaille(); i++) {
+        Pixel* pixel = pixels_[i];
 
-            PixelBN* pbn = static_cast<PixelBN*>(pixel);
-            uint8_t* valeurs = pbn->convertirPixelCouleur();
-            Pixel* np = new PixelCouleur(valeurs);
+        uint8_t valeurs[3];
+        pixel->convertirPixelCouleur(valeurs);
 
-            delete valeurs;
-            delete pixel;
-            pixels_[i] = np;
-        }
-    } else if(type_ == TypeImage::Gris) {
-        /* si l'image existante est en couleurs */
-        for(uint_t i = 0; i < obtenirTaille(); i++) {
-            Pixel* pixel = pixels_[i];
+        uint8_t r = valeurs[Couleur::R];
+        uint8_t g = valeurs[Couleur::G];
+        uint8_t b = valeurs[Couleur::B];
+        Pixel* np = new PixelCouleur(r, g, b);
 
-            PixelGris* pg = static_cast<PixelGris*>(pixel);
-            uint8_t* valeurs = pg->convertirPixelCouleur();
-            Pixel* np = new PixelCouleur(valeurs);
-
-            delete valeurs;
-            delete pixel;
-            pixels_[i] = np;
-        }
+        delete pixel;
+        pixels_[i] = np;
     }
 
     /* on change le type de l'image */
     cout << "Conversion de l'image " << nom_ << " en image de couleurs."<< endl;
     type_ = TypeImage::Couleurs;
+}
+
+void Image::toutMettreEnNegatif() const {
+    /* on met chaque pixels en négatif */
+    for(uint_t i = 0; i < obtenirTaille(); i++)
+        pixels_[i]->mettreEnNegatif();
 }
 
 void Image::changerNomImage(const string& nom) {
@@ -290,6 +245,14 @@ uint_t Image::obtenirTaille() const {
     return hauteur_*largeur_;
 }
 
+Pixel* Image::obtenirPixel(uint_t index) const {
+    /* on s'assure que l'index est valide */
+    if(index >= obtenirTaille())
+        return nullptr;
+
+    return pixels_[index];
+}
+
 std::ostream& operator<<(std::ostream& os, const Image& image) {
     os << "Nom de l'image : " << image.obtenirNomImage() << endl;
     os << "Chemin de l'original : " << image.obtenirChemin() << endl;
@@ -300,6 +263,36 @@ std::ostream& operator<<(std::ostream& os, const Image& image) {
     os << "Type de l'image : " << obtenirTypeEnString(image.obtenirType());
 
     return os;
+}
+
+Image& Image::operator=(const Image& image) {
+    /* on s'assure de ne pas s'assigner soi-même */
+    if(this == &image)
+        return *this;
+
+    /* on détruit les anciens pixels */
+    detruirePixels();
+
+    /* on copie l'image */
+    type_    = image.obtenirType();
+    chemin_  = image.obtenirChemin();
+    nom_     = image.obtenirNomImage();
+    hauteur_ = image.obtenirHauteur();
+    largeur_ = image.obtenirLargeur();
+    pixels_  = new Pixel*[image.obtenirTaille()];
+    
+    /* on copie chaque pixels */
+    for(uint_t i = 0; i < obtenirTaille(); i++) {
+        Pixel* pixel = image.obtenirPixel(i);
+
+        /* on copie le pixel si possible */
+        if(pixel == nullptr)
+            pixels_[i] = nullptr;
+        else
+            pixels_[i] = pixel->retournerCopieProfonde();
+    }
+
+    return *this;
 }
 
 bool Image::operator==(const Image& image) {
@@ -329,6 +322,24 @@ bool Image::operator==(const string& nom) {
 
 bool operator==(const string& nom, Image& image) {
     return (image == nom);
+}
+
+void Image::detruirePixels() {
+    /* on s'assure qu'il y a des pixels */
+    if(pixels_ == nullptr) 
+        return;
+
+    /* on détruit les pixels actuels */
+    for(uint_t i = 0; i < obtenirTaille(); i++) {
+        /* on s'assure qu'il y a un pixel */
+        if(pixels_[i] == nullptr)
+            continue;
+
+        /* on libère la mémoire */
+        delete pixels_[i];
+        pixels_ = nullptr;
+    }
+    delete[] pixels_;
 }
 
 string couperNom(const string chemin) {
@@ -384,39 +395,13 @@ Pixel* nouveauPixel(char* valeurs, const TypeImage& type) {
             return new PixelCouleur(r, g, b);
     }
 
-    return new Pixel();
+    return nullptr;
 }
 
 void ecrirePixel(uint8_t* valeurs, const Pixel* pixel) {
-    switch (pixel->getType()) {
-        case TypePixel::Couleur: {
-            const PixelCouleur* pc = static_cast<const PixelCouleur*>(pixel);
-
-            valeurs[0] = pc->retournerR();
-            valeurs[1] = pc->retournerG();
-            valeurs[2] = pc->retournerB();
-
-            return;
-        }
-        case TypePixel::NoireBlanc: {
-            const PixelBN* pbn = static_cast<const PixelBN*>(pixel);
-
-            valeurs[0] = pbn->obtenirDonnee()?UINT8_MAX:0;
-            valeurs[1] = valeurs[0];
-            valeurs[2] = valeurs[0];
-
-            return;
-        }
-        case TypePixel::NuanceDeGris: {
-            const PixelGris* pg = static_cast<const PixelGris*>(pixel);
-
-            valeurs[0] = pg->obtenirDonnee();
-            valeurs[1] = valeurs[0];
-            valeurs[2] = valeurs[0];
-
-            return;
-        }
-    }
+    valeurs[0] = pixel->retournerR();
+    valeurs[1] = pixel->retournerG();
+    valeurs[2] = pixel->retournerB();
 }
 
 string obtenirDossier(TypeImage type) {

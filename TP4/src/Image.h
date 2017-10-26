@@ -31,6 +31,13 @@ public:
     Image(const std::string& chemin, const TypeImage& type);
 
     /**
+     * Constructeur par copie.
+     *
+     * @param image La référence à l'image à copier.
+     */
+    Image(const Image& image);
+
+    /**
      * Destructeur.
      */
     ~Image();
@@ -64,6 +71,11 @@ public:
      * Cette méthode convertit l'image en image de couleurs.
      */
     void convertirCouleur();
+
+    /**
+     * Cette méthode met tout les pixels de l'image en négatif.
+     */
+    void toutMettreEnNegatif() const;
 
     /*************
      * Mutateurs *
@@ -122,6 +134,15 @@ public:
      */
     uint_t obtenirTaille() const;
 
+    /**
+     * Cette méthode retourne un pointeur vers un pixel précis.
+     *
+     * @param index L'index du pixel à retourner.
+     * @return Un pointeur vers le pixel demandé ou `nullptr` si l'index est
+     *         invalide.
+     */
+    Pixel* obtenirPixel(uint_t index) const;
+
     /*************************
      * Opérateurs Surchargés *
      *************************/
@@ -150,6 +171,8 @@ private:
 
     /** Le tableau des pixels. */
     Pixel** pixels_;
+
+    void detruirePixels();
 };
 
 std::string obtenirDossier(TypeImage type);
