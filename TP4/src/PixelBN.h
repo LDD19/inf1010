@@ -32,7 +32,7 @@ public:
     /**
      * Cette méthode retourne les valeurs couleurs du pixel.
      *
-     * @param Un pointeur vers les couleurs a modifier.
+     * @param v Un pointeur vers les couleurs a modifier.
      */
 	void convertirPixelCouleur(uint8_t* v) const;
 
@@ -52,6 +52,11 @@ public:
      * Mutateurs *
      *************/
 
+    /**
+     * Cette méthode modifie la valeur du pixel.
+     *
+     * @param donnee La nouvelle valeur du pixel.
+     */
     void modifierDonnee(bool donnee);
 
     /*************************
