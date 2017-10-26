@@ -337,7 +337,7 @@ void Image::detruirePixels() {
 
         /* on libère la mémoire */
         delete pixels_[i];
-        pixels_ = nullptr;
+        pixels_[i] = nullptr;
     }
     delete[] pixels_;
 }
