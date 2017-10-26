@@ -1,29 +1,13 @@
-1. Pourquoi est-il logique de dériver une classe PixelCouleur dans une classe Pixel?
-   Parce que PixelCouleur fait partie de Pixel. Pixel a trois classes dérivées: PixelCouleur,
-   PixelGris et PixelBN. Ces trois classes contiennent des membres héritées de Pixel, mais 
-   ne les utilisent pas de la même manière. Dans le cas de PixelCouleur, cette classe est
-   Pixel, mais Pixel n'est pas nécessairement PixelCouleur. 
+1. Peut-on instancier un object de type Pixel?
 
-2. Considérez la situation suivante:
+2. Soit le code suivant :
 
-Pixel p1 = PixelCouleur(20, 30, 50);
-Pixel p2 = PixelCouleur(12, 140, 86);
-bool b = (p1 == p2);
-cout << b << end;
+        Pixel* p1 = new PixelCouleur(20, 30, 50);
+        Pixel* p2 = new PixelBN(true);
 
-Est-il possible d’assigner à p1 et p2 des PixelCouleur? Pourquoi?
+        bool b = (*p1 == *p2);
+        cout << b << endl;
 
-   Oui, parce que c'est une classe dérivée de Pixel, PixelCouleur est
-   un Pixel. 
+   Quelle sera la valeur de  b et pourquoi?
 
-Quelle sera la valeur de b et pourquoi?
-
-   true, parce que même si p1 et p2 sont des PixelCouleur, on utilise l'opérateur surchargé de 
-   Pixel, qui ne fait que comparer les types, et pas les attributs aussi. 
-
-3. À quoi sert le static_cast?
-   C'est une conversion de types implicitement ou défini par l'utilisateur. Dans le cas pour 
-   ce projet, static_cast convertira Pixel en PixelCouleur, PixelGris ou PixelBN, par exemple. 
-   En faisant cette conversion, le pixel évitera des ambiguités dans les méthodes car Pixel
-   hérite 3 autres classes qui ont des méthodes de même nom mais qui ne font pas nécessairement
-   la même chose. 
+3. Est-il possible de faire (*p1).obtenirR() et pourquoi?
