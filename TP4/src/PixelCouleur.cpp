@@ -1,6 +1,6 @@
 /**************************************************
- * Titre: Travail pratique #3 - PixelCouleur.cpp
- * Date:22 Octobre 2017
+ * Titre: Travail pratique #4 - PixelCouleur.cpp
+ * Date:28 Octobre 2017
  * Auteurs: Gabriel-Andrew Pollo-Guilbert, Si Da Li
 **************************************************/
 #include "PixelCouleur.h"
