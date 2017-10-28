@@ -1,5 +1,8 @@
 1. Peut-on instancier un object de type Pixel?
-
+      Non, Pixel est une classe abstraite pure qui contient des méthodes 
+   avec des méthodes nulles qui seront à être implémentés par les classes
+   enfants. 
+   
 2. Soit le code suivant :
 
         Pixel* p1 = new PixelCouleur(20, 30, 50);
@@ -9,5 +12,14 @@
         cout << b << endl;
 
    Quelle sera la valeur de  b et pourquoi?
+      False, parce que l'opérateur surchargé == dans Pixel compare
+   les valeurs R G et B d'un pixel. p1 est valide parce que c'est un
+   PixelCouleur mais pas pour p2 parce que c'est une PixelBN, qui n'a pas
+   les paramètres RGB. L'opérateur n'est pas surchargée par ceux des 
+   classes enfants. 
 
 3. Est-il possible de faire (*p1).obtenirR() et pourquoi?
+      Non, parce que cette méthode n'existe pas dans PixelCouleur, puisque la
+   méthode virtuelle retournerR() dans Pixel fait essentiellement la même 
+   chose. Par contre, (p1*).retournerR() est valide parce que p1 est un
+   PixelCouleur.
