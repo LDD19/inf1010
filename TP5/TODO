@@ -1,0 +1,15 @@
+Les classes suivantes doivent être modifiées selon le document :
+[ ] Pixel
+[ ] PixelCouleur
+[ ] PixelGris
+[ ] PixelBN
+[ ] Image
+[ ] GroupeImage
+
+Les classes suivantes sont nouvelles et doivent être implémentées :
+[ ] BaseDeDonnesGenerique
+[ ] BaseDeDonnesSpecifique
+[ ] Foncteur
+
+Finalement, il faut implémenter le main() :
+[ ] Main
