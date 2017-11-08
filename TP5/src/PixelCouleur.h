@@ -64,6 +64,14 @@ public:
 
     void convertirPixelCouleur(uint8_t* v) const;
 
+    virtual bool estMajoriteRouge() const;
+
+    virtual bool estMajoriteVert() const;
+
+    virtual bool estMajoriteBleu() const;
+
+    virtual double retournerIntensiteMoyenne() const;
+
     /*************
      * Mutateurs *
      *************/
@@ -93,11 +101,11 @@ public:
      * Accesseurs surchargés *
      *************************/
 
-    uint8_t retournerR() const;
+    virtual uint8_t retournerR() const;
 
-    uint8_t retournerG() const;
+    virtual uint8_t retournerG() const;
 
-    uint8_t retournerB() const;
+    virtual uint8_t retournerB() const;
 
 private:
     /** Les composantes du pixel. */

@@ -61,6 +61,30 @@ void PixelCouleur::convertirPixelCouleur(uint8_t* v) const {
     v[Couleur::B] = retournerB();
 }
 
+bool PixelCouleur::estMajoriteRouge() const {
+    return (donnee_[Couleur::R] > donnee_[Couleur::G])
+        && (donnee_[Couleur::R] > donnee_[Couleur::B]);
+}
+
+bool PixelCouleur::estMajoriteVert() const {
+    return (donnee_[Couleur::G] > donnee_[Couleur::R])
+        && (donnee_[Couleur::G] > donnee_[Couleur::B]);
+}
+
+bool PixelCouleur::estMajoriteBleu() const {
+    return (donnee_[Couleur::B] > donnee_[Couleur::R])
+        && (donnee_[Couleur::B] > donnee_[Couleur::G]);
+}
+
+double PixelCouleur::retournerIntensiteMoyenne() const {
+    double somme = 0;
+    somme += donnee_[Couleur::R];
+    somme += donnee_[Couleur::G];
+    somme += donnee_[Couleur::B];
+
+    return somme/((double) UINT8_MAX);
+}
+
 void PixelCouleur::modifierTeinteR(uint8_t r) {
     donnee_[Couleur::R] = r;
 }
