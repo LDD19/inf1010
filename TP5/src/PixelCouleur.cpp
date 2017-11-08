@@ -81,8 +81,10 @@ double PixelCouleur::retournerIntensiteMoyenne() const {
     somme += donnee_[Couleur::R];
     somme += donnee_[Couleur::G];
     somme += donnee_[Couleur::B];
+    somme /= 3;
+    somme /= (double) UINT8_MAX;
 
-    return somme/((double) UINT8_MAX);
+    return somme;
 }
 
 void PixelCouleur::modifierTeinteR(uint8_t r) {
