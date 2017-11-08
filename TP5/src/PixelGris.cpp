@@ -44,6 +44,22 @@ void PixelGris::convertirPixelCouleur(uint8_t* v) const {
     v[Couleur::B] = donnee_;
 }
 
+bool PixelCouleur::estMajoriteRouge() const {
+    return false;
+}
+
+bool PixelCouleur::estMajoriteVert() const {
+    return false;
+}
+
+bool PixelCouleur::estMajoriteBleu() const {
+    return false;
+}
+
+double PixelCouleur::retournerIntensiteMoyenne() const {
+    return donnee_/((double) UINT8_MAX);
+}
+
 void PixelGris::modifierDonnee(uint8_t donnee) {
     donnee_ = donnee;
 }
