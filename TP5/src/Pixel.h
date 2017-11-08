@@ -60,6 +60,27 @@ public:
      */
     virtual void convertirPixelCouleur(uint8_t* v) const = 0;
 
+    /**
+     * Cette méthode détermine si le pixel est majoritairement rouge.
+     *
+     * @return Si le pixel est majoritairement rouge, `true`, sinon `false`.
+     */
+    virtual bool estMajoriteRouge() const = 0;
+
+    /**
+     * Cette méthode détermine si le pixel est majoritairement vert.
+     *
+     * @return Si le pixel est majoritairement vert, `true`, sinon `false`.
+     */
+    virtual bool estMajoriteVert() const = 0;
+
+    /**
+     * Cette méthode détermine si le pixel est majoritairement bleu.
+     *
+     * @return Si le pixel est majoritairement bleu, `true`, sinon `false`.
+     */
+    virtual bool estMajoriteBleu() const = 0;
+
     /**************
      * Accesseurs *
      **************/
@@ -84,6 +105,14 @@ public:
      * @return La teinte bleu du pixel.
      */
     virtual uint8_t retournerB() const = 0;
+
+    /**
+     * Cette méthode retourne l'intensité moyenne des trois couleurs
+     * normalisées entre 0 et 1.
+     *
+     * @return L'intensité moyenne des trois couleurs.
+     */
+    virtual double retournerIntensiteMoyenne() const = 0;
 
     /************************
      * Opérateurs surchagés *
