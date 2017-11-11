@@ -6,7 +6,7 @@
 #ifndef GROUPE_IMAGE_H
 #define GROUPE_IMAGE_H
 
-#include <vector>
+#include <list>
 #include <string>
 
 #include "Image.h"
@@ -95,11 +95,26 @@ public:
     Image* obtenirImage(uint_t indice) const;
 
     /**
-     * Cette méthode retourne le nombre d'images dans le groupe.
+     * Cette méthode retourne une image dans le groupe.
      *
-     * @return Le nombre d'images dans le groupe.
+     * @param indice Le nom de l'image.
+     * @return Un pointeur vers l'image si le nom est valide, sinon `nullptr`.
      */
-    uint_t obtenirNombreImages() const;
+    Image* obtenirImage(const std::string& nom) const;
+
+    /**
+     * Cette méthode retourne l'intensité moyenne des images.
+     *
+     * @return L'intensité moyenne des images.
+     */
+    double obtenirIntensiteMoyenne() const;
+
+    /**
+     * Cette méthode retourne la taille moyenne des images.
+     *
+     * @return La taille moyenne des images.
+     */
+    double obtenirTailleMoyenne() const;
 
     /*************************
      * Opérateurs surchargés *
@@ -107,12 +122,13 @@ public:
 
     GroupeImage& operator+=(Image* image);
     GroupeImage& operator-=(Image* image);
+    GroupeImage& operator=(const GroupeImage& groupe);
     friend std::ostream& operator<<(std::ostream& os, const GroupeImage& image);
     Image* operator[](const unsigned int& indice) const;
 
 private:
     /* Les images dans le groupe. */
-    std::vector<Image*> images_;
+    std::list<Image*> images_;
 };
 
 #endif

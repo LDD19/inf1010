@@ -4,6 +4,7 @@
  * Auteurs: Gabriel-Andrew Pollo-Guilbert, Si Da Li
 **************************************************/
 #include <iostream>
+#include <algorithm>
 #include "GroupeImage.h"
 
 using namespace std;
@@ -49,33 +50,43 @@ void GroupeImage::toutEnregistrer(const string base) const {
 }
 
 bool GroupeImage::ajouterImage(Image* image) {
-    /* on s'assure qu'une image avec le même nom de fichier n'existe pas */
-    for(uint_t i = 0; i <  images_.size(); i++) {
-        if(image->obtenirNomImage() == *(images_[i])) {
-            cout << image->obtenirNomImage() << " n'a pas été ajoutée." << endl;
-            return false;
+    /* on cherche si une image a déjà ce nom */
+    auto img = find_if(images_.begin(), images_.end(),
+        [image](Image* img) {
+            return (image->obtenirNomImage() == *img);
         }
+    );
+
+    /* si une image est trouvée, on n'ajoute rien */
+    if(*img != nullptr) {
+        cout << image->obtenirNomImage() << " n'a pas été ajoutée." << endl;
+        return false;
     }
 
     /* on ajoute l'image */
-    images_.push_back(image);
+    images_.insert(images_.end(), image);
     cout << image->obtenirNomImage() << " a bien été ajoutée." << endl;
 
     return true;
 }
 
 bool GroupeImage::retirerImage(const std::string& nom) {
-    /* on cherche l'image */
-    for(uint_t i = 0; i < images_.size(); i++) {
-        if(!(nom == *(images_[i])))
-            continue;
+    /* on cherche si une image a ce nom */
+    auto img = find_if(images_.begin(), images_.end(),
+        [nom](Image* img) {
+            return (nom == *img);
+        }
+    );
 
-        /* on enlève l'image de la liste */
-        images_.erase(images_.begin()+i);
-        cout << nom << " a bien été retirée." << endl;
-
-        return true;
+    /* si aucune image n'a été trouvée, on n'enlève rien */
+    if(*img == nullptr) {
+        cout << nom << " n'a pas été retirée." << endl;
+        return false;
     }
+
+    /* on enlève l'image */
+    images_.erase(img);
+    cout << nom << " a été retirée." << endl;
 
     return false;
 }
@@ -85,11 +96,53 @@ uint_t GroupeImage::obtenirTaille() const {
 }
 
 Image* GroupeImage::obtenirImage(uint_t indice) const {
-    /* on s'assure que l'indice est valide */
-    if(indice >= images_.size())
+    auto it = images_.begin();
+    advance(it, indice);
+    return *it;
+}
+
+Image* GroupeImage::obtenirImage(const string& nom) const {
+    /* on cherche l'image par nom */
+    auto image = find_if(images_.begin(), images_.end(),
+        [nom](Image* image) {
+            return (nom == *image);
+        }
+    );
+
+    /* l'image n'a pas été trouvée */
+    if(*image == nullptr)
         return nullptr;
 
-    return images_[indice];
+    /* l'image a été trouvée */
+    return *image;
+}
+
+double GroupeImage::obtenirIntensiteMoyenne() const {
+    float somme = 0;
+
+    /* on somme l'intensité de chaque image */
+    for_each(images_.begin(), images_.end(),
+        [somme](Image* image) mutable {
+            somme += image->retournerIntensiteMoyenne();
+        }
+    );
+
+    /* on retourne l'intensité moyenne du groupe */
+    return somme/images_.size();
+}
+
+double GroupeImage::obtenirTailleMoyenne() const {
+    float somme = 0;
+
+    /* on somme la taille de chaque image */
+    for_each(images_.begin(), images_.end(),
+        [somme](Image* image) mutable {
+            somme += image->obtenirTaille();
+        }
+    );
+
+    /* on retourne la taille moyenne du groupe */
+    return somme/images_.size();
 }
 
 GroupeImage& GroupeImage::operator+=(Image* image) {
@@ -104,14 +157,28 @@ GroupeImage& GroupeImage::operator-=(Image* image) {
     return *this;
 }
 
+GroupeImage& GroupeImage::operator=(const GroupeImage& groupe) {
+    /* on enlève toutes les images */
+    images_.clear();
+
+    /* on ajoute chaque image */
+    for_each(groupe.images_.begin(), groupe.images_.end(),
+        [this](Image* image) {
+            this->images_.insert(images_.end(), image);
+        }
+    );
+
+    return *this;
+}
+
 ostream& operator<<(ostream& os, const GroupeImage& groupeImage) {
     os << endl;
     os << "********************************" << endl;
     os << "Affichage des images du groupe :  " << endl;
     os << "********************************" << endl << endl;
     
-    for  (unsigned int j= 0; j < groupeImage.images_.size(); j++)
-        os << *groupeImage.images_[j] << endl
+    for  (Image* image : groupeImage.images_)
+        os << *image << endl
            << "------------------------------------------------------" << endl;
 
     return os;
