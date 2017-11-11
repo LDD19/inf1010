@@ -307,18 +307,6 @@ double Image::retournerIntensiteMoyenne() const {
     return somme/obtenirTaille();
 }
 
-std::ostream& operator<<(std::ostream& os, const Image& image) {
-    os << "Nom de l'image : " << image.obtenirNomImage() << endl;
-    os << "Chemin de l'original : " << image.obtenirChemin() << endl;
-    os << "Taille de l'image : " << image.obtenirTaille() << " pixels" << endl;
-    os << "Résolution en pixels : " 
-       << image.obtenirLargeur() << "x" 
-       << image.obtenirHauteur() << endl;
-    os << "Type de l'image : " << obtenirTypeEnString(image.obtenirType());
-
-    return os;
-}
-
 Image& Image::operator=(const Image& image) {
     /* on s'assure de ne pas s'assigner soi-même */
     if(this == &image)
@@ -374,8 +362,20 @@ bool Image::operator==(const string& nom) {
     return (nom_ == nom);
 }
 
-bool operator==(const string& nom, Image& image) {
-    return (image == nom);
+bool operator==(const string& nom, const Image& image) {
+    return (image.obtenirNomImage() == nom);
+}
+
+std::ostream& operator<<(std::ostream& os, const Image& image) {
+    os << "Nom de l'image : " << image.obtenirNomImage() << endl;
+    os << "Chemin de l'original : " << image.obtenirChemin() << endl;
+    os << "Taille de l'image : " << image.obtenirTaille() << " pixels" << endl;
+    os << "Résolution en pixels : " 
+       << image.obtenirLargeur() << "x" 
+       << image.obtenirHauteur() << endl;
+    os << "Type de l'image : " << obtenirTypeEnString(image.obtenirType());
+
+    return os;
 }
 
 void Image::detruirePixels() {

@@ -179,7 +179,7 @@ public:
     Image& operator=(const Image& image);
     bool operator==(const Image& image);
     bool operator==(const std::string& nom);
-    friend bool operator==(const std::string& nom,  Image& image);
+    friend bool operator==(const std::string& nom, const Image& image);
     friend std::ostream& operator<<(std::ostream& os, const Image& image);
 
 private:
