@@ -228,6 +228,39 @@ void Image::toutMettreEnNegatif() const {
         pixels_[i]->mettreEnNegatif();
 }
 
+bool Image::estMajoriteRouge() const {
+    float compte = 0;
+
+    /* on compte le nombre de pixel majoritairement rouge */
+    for(uint_t i = 0; i < obtenirTaille(); i++)
+        if(pixels_[i]->estMajoriteRouge())
+            compte += 1;
+
+    return (compte/obtenirTaille() > 0.50?true:false);
+}
+
+bool Image::estMajoriteVert() const {
+    float compte = 0;
+
+    /* on compte le nombre de pixel majoritairement vert */
+    for(uint_t i = 0; i < obtenirTaille(); i++)
+        if(pixels_[i]->estMajoriteVert())
+            compte += 1;
+
+    return (compte/obtenirTaille() > 0.50?true:false);
+}
+
+bool Image::estMajoriteBleu() const {
+    float compte = 0;
+
+    /* on compte le nombre de pixel majoritairement bleu */
+    for(uint_t i = 0; i < obtenirTaille(); i++)
+        if(pixels_[i]->estMajoriteBleu())
+            compte += 1;
+
+    return (compte/obtenirTaille() > 0.50?true:false);
+}
+
 void Image::changerNomImage(const string& nom) {
     nom_ = nom;
 }
@@ -262,6 +295,16 @@ Pixel* Image::obtenirPixel(uint_t index) const {
         return nullptr;
 
     return pixels_[index];
+}
+
+double Image::retournerIntensiteMoyenne() const {
+    float somme = 0;
+
+    /* on somme l'intensité de chaque pixel */
+    for(uint_t i = 0; i < obtenirTaille(); i++)
+        somme += pixels_[i]->retournerIntensiteMoyenne();
+
+    return somme/obtenirTaille();
 }
 
 std::ostream& operator<<(std::ostream& os, const Image& image) {

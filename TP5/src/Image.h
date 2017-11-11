@@ -77,6 +77,27 @@ public:
      */
     void toutMettreEnNegatif() const;
 
+    /**
+     * Cette méthode détermine si l'image est majoritairement rouge.
+     *
+     * @return Si l'image est majoritairement rouge, `true`, sinon `false`.
+     */
+    bool estMajoriteRouge() const;
+
+    /**
+     * Cette méthode détermine si l'image est majoritairement verte.
+     *
+     * @return Si l'image est majoritairement vert, `true`, sinon `false`.
+     */
+    bool estMajoriteVert() const;
+
+    /**
+     * Cette méthode détermine si l'image est majoritairement bleu.
+     *
+     * @return Si l'image est majoritairement bleu, `true`, sinon `false`.
+     */
+    bool estMajoriteBleu() const;
+
     /*************
      * Mutateurs *
      *************/
@@ -142,6 +163,14 @@ public:
      *         invalide.
      */
     Pixel* obtenirPixel(uint_t index) const;
+
+    /**
+     * Cette méthode retourne l'intensité moyenne de l'image normalisées entre
+     * 0 et 1.
+     *
+     * @return L'intensité moyenne de l'image.
+     */
+    double retournerIntensiteMoyenne() const;
 
     /*************************
      * Opérateurs Surchargés *

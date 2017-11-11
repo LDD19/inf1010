@@ -3,7 +3,7 @@ Les classes suivantes doivent être modifiées selon le document :
 [X] PixelCouleur
 [X] PixelGris
 [X] PixelBN
-[ ] Image
+[X] Image
 [ ] GroupeImage
 
 Les classes suivantes sont nouvelles et doivent être implémentées :
