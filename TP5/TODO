@@ -1,8 +1,8 @@
 Les classes suivantes doivent être modifiées selon le document :
 [X] Pixel
 [X] PixelCouleur
-[ ] PixelGris
-[ ] PixelBN
+[X] PixelGris
+[X] PixelBN
 [ ] Image
 [ ] GroupeImage
 

@@ -43,6 +43,14 @@ public:
 
     void convertirPixelCouleur(uint8_t* v) const;
 
+    virtual bool estMajoriteRouge() const;
+
+    virtual bool estMajoriteVert() const;
+
+    virtual bool estMajoriteBleu() const;
+
+    virtual double retournerIntensiteMoyenne() const;
+
     /*************
      * Mutateurs *
      *************/

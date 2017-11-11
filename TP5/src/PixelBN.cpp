@@ -41,6 +41,22 @@ void PixelBN::convertirPixelCouleur(uint8_t* v) const {
     v[Couleur::B] = (donnee_?UINT8_MAX:0);
 }
 
+bool PixelCouleur::estMajoriteRouge() const {
+    return false;
+}
+
+bool PixelCouleur::estMajoriteVert() const {
+    return false;
+}
+
+bool PixelCouleur::estMajoriteBleu() const {
+    return false;
+}
+
+double PixelCouleur::retournerIntensiteMoyenne() const {
+    return (donnee_?1:0);
+}
+
 void PixelBN::modifierDonnee(bool donnee) {
     donnee_ = donnee;
 }
