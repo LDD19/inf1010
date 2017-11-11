@@ -36,8 +36,11 @@ public:
      *
      * @return Si les images sont identique, `true`, sinon `false`.
      */
-    bool operator() (const Image& comp) const {
-        return (*image_ == comp);
+    bool operator() (Image* comp) const {
+        if(comp != nullptr)
+            return (*image_ == *comp);
+
+        return false;
     }
 
 private:
@@ -74,8 +77,11 @@ public:
      *
      * @return Si les noms sont identique, `true`, sinon `false`.
      */
-    bool operator() (const Image& comp) const {
-        return (nom_ == comp);
+    bool operator() (const Image* comp) const {
+        if(comp != nullptr)
+            return (nom_ == *comp);
+
+        return false;
     }
 
 private:
@@ -109,8 +115,8 @@ public:
      *
      * @return La taille de l'image.
      */
-    uint_t operator() (const Image& image) const {
-        return image.obtenirTaille();
+    uint_t operator() (const Image* image) const {
+        return image->obtenirTaille();
     }
 };
 
@@ -138,8 +144,9 @@ public:
      *
      * @param image L'image à mettre en gris.
      */
-    void operator() (Image& image) {
-        image.convertirGris();
+    void operator() (Image* image) const {
+        if(image != nullptr)
+            image->convertirGris();
     }
 };
 
@@ -167,8 +174,9 @@ public:
      *
      * @param image L'image à mettre en couleur.
      */
-    void operator() (Image& image) {
-        image.convertirCouleur();
+    void operator() (Image* image) const {
+        if(image != nullptr)
+            image->convertirCouleur();
     }
 };
 
@@ -194,8 +202,9 @@ public:
      *
      * @param image L'image à mettre en noir et blanc.
      */
-    void operator() (Image& image) {
-        image.convertirNB();
+    void operator() (Image* image) const {
+        if(image != nullptr)
+            image->convertirNB();
     }
 };
 
@@ -223,8 +232,9 @@ public:
      *
      * @param image L'image à mettre en négatif.
      */
-    void operator() (const Image& image) {
-        image.toutMettreEnNegatif();
+    void operator() (Image* image) const {
+        if(image != nullptr)
+            image->toutMettreEnNegatif();
     }
 };
 
