@@ -8,6 +8,7 @@
 
 #include <list>
 #include <string>
+#include <algorithm>
 
 #include "Image.h"
 
@@ -54,6 +55,30 @@ public:
      * @param base Le dossier de base.
      */
     void toutEnregistrer(const std::string base) const;
+
+    /**
+     * Cette méthode applique un foncteur unaire sur toutes les images.
+     *
+     * @tparam F Un type de foncteur unaire à appliquer.
+     *
+     * @param foncteur Le foncteur unaire à appliquer.
+     */
+    template <class F>
+    void appliquerFoncteurUnaire(const F& foncteur) {
+        std::for_each(images_.begin(), images_.end(), foncteur);
+    }
+
+    /**
+     * Cette méthode enlève les images selon un prédicat unaire.
+     *
+     * @tparam P Un type de prédicat unaire à utiliser.
+     *
+     * @param predicat Le prédicat unaire à utiliser.
+     */
+    template <class P>
+    void supprimerElements(const P& predicat) {
+        std::remove_if(images_.begin(), images_.end(), predicat);
+    }
 
     /*************
      * Mutateurs *
@@ -127,7 +152,7 @@ public:
     Image* operator[](const unsigned int& indice) const;
 
 private:
-    /* Les images dans le groupe. */
+    /** Les images dans le groupe. */
     std::list<Image*> images_;
 };
 

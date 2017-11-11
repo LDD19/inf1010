@@ -4,7 +4,7 @@ Les classes suivantes doivent être modifiées selon le document :
 [X] PixelGris
 [X] PixelBN
 [X] Image
-[I] GroupeImage
+[X] GroupeImage
 
 Les classes suivantes sont nouvelles et doivent être implémentées :
 [ ] BaseDeDonnesGenerique
