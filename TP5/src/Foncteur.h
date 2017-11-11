@@ -226,7 +226,6 @@ public:
     void operator() (const Image& image) {
         image.toutMettreEnNegatif();
     }
-
 };
 
 /**
@@ -277,11 +276,8 @@ public:
      *
      * @return Un nombre aléatoire entre les bornes du foncteur.
      */
-    uint_t operator() () const {
- std::default_random_engine g;
-  std::uniform_int_distribution<int> d(0,9);
-        return 1;
-//        return distribution_(generateur_);
+    uint_t operator() () {
+        return distribution_(generateur_);
     }
 
 private:
