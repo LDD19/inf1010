@@ -14,8 +14,8 @@
 
 #include "GroupeImage.h"
 #include <queue>
-#include "BaseDeDonnesSpecifique.h"
-#include "Foncteur.h"
+//#include "BaseDeDonnesSpecifique.h"
+//#include "Foncteur.h"
 #include <functional>
 
 using namespace  std;
@@ -108,7 +108,7 @@ int main() {
 
 
 	// Afficher le nombre d'images dans la base de donnes
-	cout << "Nombre d'images totales dans la base de donnes " << dataBase.obtenirListImages().size() << endl;
+//	cout << "Nombre d'images totales dans la base de donnes " << dataBase.obtenirListImages().size() << endl;
 
 	// Trouver at afficher le nombre d'images qui ont une taille plus grande que la moyenne calculee
 	// Utiliser les fonctions std::bind et std::placeholders pour effectuer le travail
