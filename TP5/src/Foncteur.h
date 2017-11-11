@@ -3,110 +3,299 @@
 
 #include "GroupeImage.h"
 #include <stdlib.h>
+#include <random>
 
 #define RAND_MIN_DEFAUT 0
 #define RAND_MAX_DEFAUT 3
 
-class FoncteurEgalImages
-{
+/**
+ * Ce foncteur compare deux images.
+ */
+class FoncteurEgalImages {
 public:
-	FoncteurEgalImages(Image* image) {
-	}
-	~FoncteurEgalImages() {}
+    /**
+     * Constructeur par valeurs.
+     *
+     * @param image Une image que l'on souhaite comparer avec d'autres.
+     */
+    FoncteurEgalImages(Image* image) {
+        image_ = image;
+    }
 
-	bool FoncteurEgalImages::operator() (Image* imageAComparer) const {
-	}
+    /**
+     * Destructeur.
+     */
+    ~FoncteurEgalImages() {
+
+    }
+
+    /**
+     * Cette méthode compare l'image du foncteur avec une autre.
+     *
+     * @param comp L'image a comparer avec celle du foncteur.
+     *
+     * @return Si les images sont identique, `true`, sinon `false`.
+     */
+    bool operator() (const Image& comp) const {
+        return (*image_ == comp);
+    }
 
 private:
-	Image* image_;
+    /** L'image a comparer avec d'autres. */
+    Image* image_;
 };
 
-class FoncteurImagesDeMemeNom
-{
+/**
+ * Ce foncteur compare le nom de deux images.
+ */
+class FoncteurImagesDeMemeNom {
 public:
-	FoncteurImagesDeMemeNom(const std::string& nom) {
-	}
-	~FoncteurImagesDeMemeNom() {};
+    /**
+     * Constructeur par valeurs.
+     *
+     * @param nom Un nom que l'on souhaite comparer avec d'autres.
+     */
+    FoncteurImagesDeMemeNom(const std::string& nom) :
+        nom_(nom) {
+        
+    }
 
-	bool operator() ( Image* image) const {
-	}
+    /**
+     * Destructeur.
+     */
+    ~FoncteurImagesDeMemeNom() {
+
+    }
+
+    /**
+     * Cette méthode compare le nom du foncteur avec un autre.
+     *
+     * @param comp Le nom a comparer avec celui du foncteur.
+     *
+     * @return Si les noms sont identique, `true`, sinon `false`.
+     */
+    bool operator() (const Image& comp) const {
+        return (nom_ == comp);
+    }
 
 private:
-	std::string nom_;
+    /** Le nom a comparer avec d'autres. */
+    std::string nom_;
 };
 
-class FoncteurObtenirTailleImage
-{
+/**
+ * Ce foncteur obtient la taille d'une image.
+ */
+class FoncteurObtenirTailleImage {
 public:
-	FoncteurObtenirTailleImage() {}
-	~FoncteurObtenirTailleImage() {}
+    /**
+     * Constructeur par défaut.
+     */
+    FoncteurObtenirTailleImage() {
 
-	unsigned int operator() (const Image* image) const {
-	}
+    }
+
+    /**
+     * Destructeur.
+     */
+    ~FoncteurObtenirTailleImage() {
+
+    }
+
+    /**
+     * Cette méthode retourne la taille de l'image.
+     *
+     * @param image L'image que l'on souhaite obtenir la taille.
+     *
+     * @return La taille de l'image.
+     */
+    uint_t operator() (const Image& image) const {
+        return image.obtenirTaille();
+    }
 };
 
-
-class FoncteurMettreEnGris
-{
+/**
+ * Ce foncteur met une image en gris.
+ */
+class FoncteurMettreEnGris {
 public:
-	FoncteurMettreEnGris() {}
-	~FoncteurMettreEnGris() {}
+    /**
+     * Constructeur par défaut.
+     */
+    FoncteurMettreEnGris() {
 
-	void operator() (Image* image) {
-	}
+    }
+
+    /**
+     * Destructeur.
+     */
+    ~FoncteurMettreEnGris() {
+
+    }
+
+    /**
+     * Cette méthode met une image en gris.
+     *
+     * @param image L'image à mettre en gris.
+     */
+    void operator() (Image& image) {
+        image.convertirGris();
+    }
+};
+
+/**
+ * Ce foncteur met une image en couleur.
+ */
+class FoncteurMettreEnCouleur {
+public:
+    /**
+     * Constructeur par défaut.
+     */
+    FoncteurMettreEnCouleur() {
+
+    }
+
+    /**
+     * Destructeur.
+     */
+    ~FoncteurMettreEnCouleur() {
+
+    }
+
+    /**
+     * Cette méthode met une image en couleur.
+     *
+     * @param image L'image à mettre en couleur.
+     */
+    void operator() (Image& image) {
+        image.convertirCouleur();
+    }
+};
+
+/**
+ * Ce foncteur met une image en noir et blanc.
+ */
+class FoncteurMettreEnBN {
+public:
+    /**
+     * Constructeur par défaut.
+     */
+    FoncteurMettreEnBN() {
+
+    }
+
+    /**
+     * Destructeur.
+     */
+    ~FoncteurMettreEnBN() {}
+
+    /**
+     * Cette méthode met une image en noir et blanc.
+     *
+     * @param image L'image à mettre en noir et blanc.
+     */
+    void operator() (Image& image) {
+        image.convertirNB();
+    }
+};
+
+/**
+ * Ce foncteur met une image en négatif.
+ */
+class FoncteurMettreEnNegatif {
+public:
+    /**
+     * Constructeur par défaut.
+     */
+    FoncteurMettreEnNegatif() {
+
+    }
+
+    /**
+     * Destructeur.
+     */
+    ~FoncteurMettreEnNegatif() {
+
+    }
+
+    /**
+     * Cette méthode met une image en négatif.
+     *
+     * @param image L'image à mettre en négatif.
+     */
+    void operator() (const Image& image) {
+        image.toutMettreEnNegatif();
+    }
 
 };
 
-class FoncteurMettreEnCouleur
-{
+/**
+ * Ce foncteur génère des nombres aléatoires.
+ */
+class FoncteurGenerateurNombresAlea {
 public:
-	FoncteurMettreEnCouleur() {}
-	~FoncteurMettreEnCouleur() {}
+    /**
+     * Constructeur par défaut.
+     */
+    FoncteurGenerateurNombresAlea() {
+        min_ = RAND_MIN_DEFAUT;
+        max_ = RAND_MAX_DEFAUT;
 
-	void operator() (Image* image) {
-	}
+        /* on initialise la distribution uniforme */
+        distribution_ = std::uniform_int_distribution<uint_t>(min_, max_);
+    }
 
-};
+    /**
+     * Constructeur par paramètres.
+     *
+     * @param min La valeur minimale du générateur de nombres aléatoires.
+     * @param max La valeur maximale du générateur de nombres aléatoires.
+     */
+    FoncteurGenerateurNombresAlea(uint_t min, uint_t max) {
+        /* on s'assure que les paramètre sont valides */
+        if(max <= min) {
+            min_ = RAND_MIN_DEFAUT;
+            max_ = RAND_MAX_DEFAUT;
+        } else {
+            min_ = min;
+            max_ = max;
+        }
 
-class FoncteurMettreEnBN
-{
-public:
-	FoncteurMettreEnBN() {}
-	~FoncteurMettreEnBN() {}
+        /* on initialise la distribution uniforme */
+        distribution_ = std::uniform_int_distribution<uint_t>(min_, max_);
+    }
 
-	void operator() (Image* image) {
-	}
+    /**
+     * Destructeur.
+     */
+    ~FoncteurGenerateurNombresAlea() {
 
-};
+    }
 
-class FoncteurMettreEnNegatif
-{
-public:
-	FoncteurMettreEnNegatif() {}
-	~FoncteurMettreEnNegatif() {}
-
-	void operator() (Image* image) {
-	}
-
-};
-
-class FoncteurGenerateurNombresAlea
-{
-public:
-	FoncteurGenerateurNombresAlea() {
-	}
-
-	FoncteurGenerateurNombresAlea(unsigned int min, unsigned int max) {
-	}
-
-	~FoncteurGenerateurNombresAlea() {}
-
-	unsigned int operator() () const {
-	}
+    /**
+     * Cette méthode retourne un nombre aléatoire.
+     *
+     * @return Un nombre aléatoire entre les bornes du foncteur.
+     */
+    uint_t operator() () const {
+ std::default_random_engine g;
+  std::uniform_int_distribution<int> d(0,9);
+        return 1;
+//        return distribution_(generateur_);
+    }
 
 private:
-	unsigned int min_;
-	unsigned int max_;
+    /** La valeur minimale du générateur de nombres aléatoires. */
+    uint_t min_;
+
+    /** La valeur maximale du générateur de nombres aléatoires. */
+    uint_t max_;
+
+    /** Le générateur de nombre aléatoire. */
+    std::default_random_engine generateur_;
+
+    /** La distribution utilisée pour générer des nombres. */
+    std::uniform_int_distribution<uint_t> distribution_;
 };
 
 #endif
