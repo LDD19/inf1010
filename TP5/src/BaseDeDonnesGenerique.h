@@ -34,7 +34,16 @@ public:
      * @param t Un pointeur vers l'objet à ajouter.
      */
     void ajouter(T* t) {
-        listT_.insert(listT_.begin(), t);
+        /* on regarde si le pointeur existe déjà dans la liste */
+        auto tt = std::find_if(listT_.begin(), listT_.end(),
+            [t](T* tt) {
+                return (t == tt);
+            }
+        );
+        
+        /* on ajoute l'objet seulement s'il n'est déjà pas dans la liste */
+        if(*tt != nullptr)
+            listT_.insert(listT_.begin(), t);
     }
 
     /**
@@ -43,7 +52,16 @@ public:
      * @param s Un pointeur vers l'objet à ajouter.
      */
     void ajouter(S* s) {
-        listS_.insert(listS_.begin(), s);
+        /* on regarde si le pointeur existe déjà dans la liste */
+        auto ss = std::find_if(listS_.begin(), listS_.end(),
+            [s](S* ss) {
+                return (s == ss);
+            }
+        );
+
+        /* on ajoute l'objet seulement s'il n'est déjà pas dans la liste */       
+        if(*ss != nullptr)
+            listS_.insert(listS_.begin(), s);
     }
 
     /**
