@@ -15,7 +15,8 @@ OBJECTS := $(BUILD)/Main.o \
            $(BUILD)/PixelBN.o \
            $(BUILD)/Image.o \
            $(BUILD)/Bitmap.o \
-           $(BUILD)/GroupeImage.o
+           $(BUILD)/GroupeImage.o \
+           $(BUILD)/BaseDeDonnesSpecifique.o
 
 all: dirs $(OBJECTS)
 	$(CC) -o $(BUILD)/$(EXEC) $(OBJECTS) $(LDFLAGS)
@@ -61,6 +62,13 @@ $(BUILD)/Bitmap.o: $(SRCDIR)/Bitmap.cpp
 $(BUILD)/GroupeImage.o: $(SRCDIR)/GroupeImage.cpp \
                         $(SRCDIR)/GroupeImage.h \
                         $(SRCDIR)/Image.h
+	$(CC) -o $@ -c $< $(CCFLAGS)
+
+$(BUILD)/BaseDeDonnesSpecifique.o: $(SRCDIR)/BaseDeDonnesSpecifique.cpp \
+                                   $(SRCDIR)/BaseDeDonnesSpecifique.h \
+                                   $(SRCDIR)/BaseDeDonnesGenerique.h \
+                                   $(SRCDIR)/GroupeImage.h \
+                                   $(SRCDIR)/Image.h
 	$(CC) -o $@ -c $< $(CCFLAGS)
 
 dirs:

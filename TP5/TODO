@@ -8,7 +8,7 @@ Les classes suivantes doivent être modifiées selon le document :
 
 Les classes suivantes sont nouvelles et doivent être implémentées :
 [X] BaseDeDonnesGenerique
-[ ] BaseDeDonnesSpecifique
+[X] BaseDeDonnesSpecifique
 [X] Foncteur
 
 Finalement, il faut implémenter le main() :
