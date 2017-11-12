@@ -49,6 +49,11 @@ void GroupeImage::toutEnregistrer(const string base) const {
     }
 }
 
+void GroupeImage::afficherImages(ostream& os) const {
+    for(Image* image : images_)
+        os << image->obtenirNomImage() << endl;
+}
+
 bool GroupeImage::ajouterImage(Image* image) {
     /* on cherche si une image a déjà ce nom */
     auto img = find_if(images_.begin(), images_.end(),

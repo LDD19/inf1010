@@ -80,6 +80,13 @@ public:
         std::remove_if(images_.begin(), images_.end(), predicat);
     }
 
+    /**
+     * Cette méthode affiche le nom des images dans le groupe.
+     *
+     * @param os La sortie de texte.
+     */
+    void afficherImages(std::ostream& os) const;
+
     /*************
      * Mutateurs *
      *************/
