@@ -7,7 +7,7 @@ void BaseDeDonnesSpecifique::associerImage(GroupeImage* g, Image* i) {
     /* on ajoute l'image dans le groupe */
     (*g) += i;
 
-    /* ajoute essaie d'ajoute l'image et le groupe à la base de de données */
+    /* on essaie d'ajouter l'image et le groupe à la base de de données */
     (*this) += i;
     (*this) += g;
 }
@@ -47,8 +47,7 @@ bool BaseDeDonnesSpecifique::enleverImage(GroupeImage* g, const string& nom) {
 
 ostream& operator<<(ostream& os, const BaseDeDonnesSpecifique& db) {
     /* on affiche toutes les images dans la base de données */
-    os << "Images dans la base de données" << endl;
-    os << "------------------------------" << endl;
+    os << "** Images **" << endl;
     for_each(db.listT_.begin(), db.listT_.end(),
         [&](Image* image) {
             os << image->obtenirNomImage() << endl;
@@ -60,8 +59,7 @@ ostream& operator<<(ostream& os, const BaseDeDonnesSpecifique& db) {
     for_each(db.listS_.begin(), db.listS_.end(),
         [&](GroupeImage* groupe) {
             static int counter = 1;
-            os << "Groupe "  << counter << endl;
-            os << "--------" << endl;
+            os << "** Groupe "  << counter++ << " **" << endl;
 
             /* on affiche aussi le nom des images de chaque groupe */
             groupe->afficherImages(os);
