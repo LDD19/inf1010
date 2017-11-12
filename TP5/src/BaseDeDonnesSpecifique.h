@@ -1,16 +1,15 @@
-#ifndef BASE_DE_DONNES_SPECIFIQUE
-#define BASE_DE_DONNES_SPECIFIQUE
+#ifndef BASE_DE_DONNES_SPECIFIQUE_H
+#define BASE_DE_DONNES_SPECIFIQUE_H
 
 #include "BaseDeDonnesGenerique.h"
 #include "GroupeImage.h"
 #include "Image.h"
 
-class BaseDeDonnesSpecifique: public BaseDeDonnesGenerique<Image,GroupeImage>
-{
+class BaseDeDonnesSpecifique : public BaseDeDonnesGenerique<Image,GroupeImage> {
 public:
-	bool AssocierImage(GroupeImage* groupe, Image* image);
-	bool EnleverImage(GroupeImage* groupe, const std::string& nomImage);
-	friend std::ostream& operator<<(std::ostream& os, const BaseDeDonnesSpecifique& dataBase);
+    void associerImage(GroupeImage* g, Image* i);
+    bool enleverImage(GroupeImage* g, const std::string& nom);
+    friend std::ostream& operator<<(std::ostream& os, const BaseDeDonnesSpecifique& dataBase);
 
 };
 #endif
