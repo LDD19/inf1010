@@ -154,6 +154,7 @@ public:
 
     GroupeImage& operator+=(Image* image);
     GroupeImage& operator-=(Image* image);
+    GroupeImage& operator-=(const std::string& nom);
     GroupeImage& operator=(const GroupeImage& groupe);
     friend std::ostream& operator<<(std::ostream& os, const GroupeImage& image);
     Image* operator[](const unsigned int& indice) const;

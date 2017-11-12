@@ -93,7 +93,7 @@ bool GroupeImage::retirerImage(const std::string& nom) {
     images_.erase(img);
     cout << nom << " a été retirée." << endl;
 
-    return false;
+    return true;
 }
 
 uint_t GroupeImage::obtenirTaille() const {
@@ -158,6 +158,12 @@ GroupeImage& GroupeImage::operator+=(Image* image) {
 
 GroupeImage& GroupeImage::operator-=(Image* image) {
     retirerImage(image->obtenirNomImage());
+
+    return *this;
+}
+
+GroupeImage& GroupeImage::operator-=(const std::string& nom) {
+    retirerImage(nom);
 
     return *this;
 }
