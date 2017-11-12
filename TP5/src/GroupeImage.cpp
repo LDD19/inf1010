@@ -63,7 +63,7 @@ bool GroupeImage::ajouterImage(Image* image) {
     );
 
     /* si une image est trouvée, on n'ajoute rien */
-    if(*img != nullptr) {
+    if(img != images_.end()) {
         cout << image->obtenirNomImage() << " n'a pas été ajoutée." << endl;
         return false;
     }
@@ -84,7 +84,7 @@ bool GroupeImage::retirerImage(const std::string& nom) {
     );
 
     /* si aucune image n'a été trouvée, on n'enlève rien */
-    if(*img == nullptr) {
+    if(img == images_.end()) {
         cout << nom << " n'a pas été retirée." << endl;
         return false;
     }
@@ -115,7 +115,7 @@ Image* GroupeImage::obtenirImage(const string& nom) const {
     );
 
     /* l'image n'a pas été trouvée */
-    if(*image == nullptr)
+    if(image == images_.end())
         return nullptr;
 
     /* l'image a été trouvée */

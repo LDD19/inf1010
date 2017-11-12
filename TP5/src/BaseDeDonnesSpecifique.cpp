@@ -24,7 +24,7 @@ bool BaseDeDonnesSpecifique::enleverImage(GroupeImage* g, const string& nom) {
     );
 
     /* on conserve l'image si un autre groupe la contient toujours */
-    if(*groupe != nullptr)
+    if(groupe != listS_.end())
         return false;
 
     /* on obtient l'image dans la base de données */
@@ -35,7 +35,7 @@ bool BaseDeDonnesSpecifique::enleverImage(GroupeImage* g, const string& nom) {
     );
 
     /* l'image doit être présente */
-    if(*image != nullptr) {
+    if(image != listT_.end()) {
         assert(false);
         return false;
     }

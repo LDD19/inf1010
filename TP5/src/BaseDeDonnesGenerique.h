@@ -42,7 +42,7 @@ public:
         );
         
         /* on ajoute l'objet seulement s'il n'est déjà pas dans la liste */
-        if(*tt != nullptr)
+        if(tt == listT_.end())
             listT_.insert(listT_.begin(), t);
     }
 
@@ -60,7 +60,7 @@ public:
         );
 
         /* on ajoute l'objet seulement s'il n'est déjà pas dans la liste */       
-        if(*ss != nullptr)
+        if(ss == listS_.end())
             listS_.insert(listS_.begin(), s);
     }
 
@@ -80,7 +80,7 @@ public:
         );
 
         /* le pointeur ne fut pas trouvé */
-        if(*tt == nullptr)
+        if(tt == listT_.end())
             return false;
 
         /* on enlève l'objet */
@@ -104,7 +104,7 @@ public:
         );
 
         /* le pointeur ne fut pas trouvé */
-        if(*ss == nullptr)
+        if(ss == listS_.end())
             return false;
 
         /* on enlève l'objet */
@@ -128,7 +128,7 @@ public:
         auto t = std::remove_if(listT_.begin(), listT_.end(), predicat);
 
         /* on regarde si au moins un object fut enlevé */
-        return (*t != nullptr);
+        return (t != listT_.end());
     }
 
     /**
@@ -147,7 +147,7 @@ public:
         auto s = std::remove_if(listS_.begin(), listS_.end(), predicat);
 
         /* on regarde si au moins un object fut enlevé */
-        return (*s != nullptr);
+        return (*s != listS_.end());
     }
 
     /**
