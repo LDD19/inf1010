@@ -7,7 +7,7 @@ Les classes suivantes doivent être modifiées selon le document :
 [X] GroupeImage
 
 Les classes suivantes sont nouvelles et doivent être implémentées :
-[ ] BaseDeDonnesGenerique
+[X] BaseDeDonnesGenerique
 [ ] BaseDeDonnesSpecifique
 [X] Foncteur
 
