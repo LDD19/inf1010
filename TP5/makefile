@@ -21,7 +21,10 @@ OBJECTS := $(BUILD)/Main.o \
 all: dirs $(OBJECTS)
 	$(CC) -o $(BUILD)/$(EXEC) $(OBJECTS) $(LDFLAGS)
 
-$(BUILD)/Main.o: $(SRCDIR)/Main.cpp
+$(BUILD)/Main.o: $(SRCDIR)/Main.cpp \
+                 $(SRCDIR)/BaseDeDonnesGenerique.h \
+                 $(SRCDIR)/BaseDeDonnesSpecifique.h \
+                 $(SRCDIR)/GroupeImage.h
 	$(CC) -o $@ -c $< $(CCFLAGS)
 
 $(BUILD)/Pixel.o: $(SRCDIR)/Pixel.cpp \
