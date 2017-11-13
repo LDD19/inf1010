@@ -24,7 +24,8 @@ all: dirs $(OBJECTS)
 $(BUILD)/Main.o: $(SRCDIR)/Main.cpp \
                  $(SRCDIR)/BaseDeDonnesGenerique.h \
                  $(SRCDIR)/BaseDeDonnesSpecifique.h \
-                 $(SRCDIR)/GroupeImage.h
+                 $(SRCDIR)/GroupeImage.h \
+                 $(SRCDIR)/Foncteur.h
 	$(CC) -o $@ -c $< $(CCFLAGS)
 
 $(BUILD)/Pixel.o: $(SRCDIR)/Pixel.cpp \
