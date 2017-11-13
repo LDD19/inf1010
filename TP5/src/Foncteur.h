@@ -195,7 +195,9 @@ public:
     /**
      * Destructeur.
      */
-    ~FoncteurMettreEnBN() {}
+    ~FoncteurMettreEnBN() {
+
+    }
 
     /**
      * Cette méthode met une image en noir et blanc.
@@ -241,12 +243,12 @@ public:
 /**
  * Ce foncteur génère des nombres aléatoires.
  */
-class FoncteurGenerateurNombresAlea {
+class FoncteurRandom {
 public:
     /**
      * Constructeur par défaut.
      */
-    FoncteurGenerateurNombresAlea() {
+    FoncteurRandom() {
         min_ = RAND_MIN_DEFAUT;
         max_ = RAND_MAX_DEFAUT;
 
@@ -260,7 +262,7 @@ public:
      * @param min La valeur minimale du générateur de nombres aléatoires.
      * @param max La valeur maximale du générateur de nombres aléatoires.
      */
-    FoncteurGenerateurNombresAlea(uint_t min, uint_t max) {
+    FoncteurRandom(uint_t min, uint_t max) {
         /* on s'assure que les paramètre sont valides */
         if(max <= min) {
             min_ = RAND_MIN_DEFAUT;
@@ -277,7 +279,7 @@ public:
     /**
      * Destructeur.
      */
-    ~FoncteurGenerateurNombresAlea() {
+    ~FoncteurRandom() {
 
     }
 
@@ -298,7 +300,7 @@ private:
     uint_t max_;
 
     /** Le générateur de nombre aléatoire. */
-    std::default_random_engine generateur_;
+    std::random_device generateur_;
 
     /** La distribution utilisée pour générer des nombres. */
     std::uniform_int_distribution<uint_t> distribution_;
