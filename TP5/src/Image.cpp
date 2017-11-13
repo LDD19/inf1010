@@ -149,7 +149,7 @@ void Image::convertirNB() {
     if(type_ == TypeImage::NoirBlanc) {
         cout << "L'image "
              << nom_
-             << "est déjà en noir et blanc, conversion inutile."
+             << " est déjà en noir et blanc, conversion inutile."
              << endl;
         return;
     }
@@ -226,6 +226,8 @@ void Image::toutMettreEnNegatif() const {
     /* on met chaque pixels en négatif */
     for(uint_t i = 0; i < obtenirTaille(); i++)
         pixels_[i]->mettreEnNegatif();
+
+    cout << "Conversion de l'image " << nom_ << " en négatif." << endl;
 }
 
 bool Image::estMajoriteRouge() const {
