@@ -25,7 +25,7 @@ int main() {
     string originale = base + "Originale/";
 
     /* nom des 6 images */
-	string noms[9] = {
+    string noms[9] = {
         "Breaking-Bad.bmp",
         "Couleur.bmp",
         "Fall.bmp",
@@ -37,19 +37,19 @@ int main() {
         "Green.bmp"
     };
 
-    /* on crée une file avec les images */
+    /* on crÃ©e une file avec les images */
     queue<Image*> images;
     for(string nom : noms) {
         Image* image = new Image(originale+nom, TypeImage::Couleurs);
         images.push(image);
     }
 
-    /* on crée 3 groupes d'images */
-	GroupeImage groupe1;
-	GroupeImage groupe2;
-	GroupeImage groupe3;
+    /* on crÃ©e 3 groupes d'images */
+    GroupeImage groupe1;
+    GroupeImage groupe2;
+    GroupeImage groupe3;
 
-    /* on crée une base de données */
+    /* on crÃ©e une base de donnÃ©es */
     BaseDeDonnesSpecifique db;
 
     /* on y ajoute les 3 groupes */
@@ -57,12 +57,12 @@ int main() {
     db += &groupe2;
     db += &groupe3;
 
-    /* on ajoute les éléments de manière uniforme aux groupes */
-	cout << "\tCHARGEMENT DES IMAGES\n" << endl;
+    /* on ajoute les Ã©lÃ©ments de maniÃ¨re uniforme aux groupes */
+    cout << "\tCHARGEMENT DES IMAGES\n" << endl;
     while(!images.empty()) {
         static int cntr = 1;
 
-        /* on choisit à quel groupe il faut l'ajouter */
+        /* on choisit Ã  quel groupe il faut l'ajouter */
         Image* i = images.front();
         switch(cntr++) {
             case 1: db.associerImage(&groupe1, i); break;
@@ -70,13 +70,13 @@ int main() {
             case 3: db.associerImage(&groupe3, i); cntr = 1; break;
         }
 
-        /* on enlève l'élèment de la file*/
+        /* on enlÃ¨ve l'Ã©lÃ¨ment de la file*/
         images.pop();
     }
-	cout << endl;
-	
-    /* on affiche la base de données au complet */
-	cout << "\tAFFICHAGE DE LA BASE DE DONNÉES\n" << endl;;
+    cout << endl;
+    
+    /* on affiche la base de donnÃ©es au complet */
+    cout << "\tAFFICHAGE DE LA BASE DE DONNÃ‰ES\n" << endl;;
     cout << db;
 
 
@@ -84,7 +84,7 @@ int main() {
     cout << "\tCONVERSION D'IMAGES\n" << endl;
     FoncteurRandom r(0, 2);
 
-    /* on convertit une image du groupe 1 en négatif */
+    /* on convertit une image du groupe 1 en nÃ©gatif */
     groupe1.obtenirImage(r())->toutMettreEnNegatif();
 
     /* on convertit une image du groupe 2 en gris */
@@ -92,38 +92,38 @@ int main() {
 
     /* on convertit une image du groupe 3 en noir et blanc */
     groupe3.obtenirImage(r())->convertirNB();
-	
-	/* TRAITEMENT DU GROUPE 1 */
-	cout << "\n\tCALCUL DES MOYENNES\n" << endl;
+    
+    /* TRAITEMENT DU GROUPE 1 */
+    cout << "\n\tCALCUL DES MOYENNES\n" << endl;
 
     /* on affiche celle du groupe 1 */
     double moy = groupe1.obtenirIntensiteMoyenne();
-    cout << "L'intensité moyenne du groupe 1 est de " << moy << "." << endl;
+    cout << "L'intensitÃ© moyenne du groupe 1 est de " << moy << "." << endl;
     cout << endl;
 
-    /* on affiche toutes les images avec une intensité inférieure  */
+    /* on affiche toutes les images avec une intensitÃ© infÃ©rieure  */
     for(Image* image : db.obtenirListeImages()) {
         double m = image->retournerIntensiteMoyenne();
         string nom = image->obtenirNomImage();
 
         if(image->retournerIntensiteMoyenne() < moy)
-            cout << "L'intensité moyenne de l'image " << nom << " est de " << m << "." << endl;
+            cout << "L'intensitÃ© moyenne de l'image " << nom << " est de " << m << "." << endl;
     }
 
-	/* TRAITEMENT DU GROUPE 2 */
-	cout << "\n\tCALCUL DE LA TAILLE\n" << endl;
+    /* TRAITEMENT DU GROUPE 2 */
+    cout << "\n\tCALCUL DE LA TAILLE\n" << endl;
 
     /* on affiche celle du groupe 2 */
     moy = groupe2.obtenirTailleMoyenne();
     cout << "La taille moyenne du groupe 2 est de " << moy << "." << endl;
 
-    /* on affiche le nombre d'images dans la base de données */
+    /* on affiche le nombre d'images dans la base de donnÃ©es */
     uint_t taille = db.obtenirListeImages().size();
-    cout << "Il y a " << taille << " images dans la base de données." << endl;
+    cout << "Il y a " << taille << " images dans la base de donnÃ©es." << endl;
 
     /*
      * Trouver et afficher le nombre d'images qui ont une tailles plus grande que
-     * la moyenne calculée. Utiliser les fonctions std::bind et std::placeholders
+     * la moyenne calculÃ©e. Utiliser les fonctions std::bind et std::placeholders
      * pour effectuer le travail.
      *
      * FIXME: why the fuck on utiliserait ces fonctions?
@@ -139,8 +139,8 @@ int main() {
     cout << "Il y a " << nb << " images plus grandes que la moyenne." << endl;
 
     /*
-     * FIXME: Je ne comprend pas pourquoi ils nous font faire ça, on veut le nombre
-     * d'images totales dont la est taille plus grande que la moyenne. Là, ils nous
+     * FIXME: Je ne comprend pas pourquoi ils nous font faire Ã§a, on veut le nombre
+     * d'images totales dont la est taille plus grande que la moyenne. LÃ , ils nous
      * font juste compter celles fesant partie du groupe 2...
      */
 
@@ -157,7 +157,7 @@ int main() {
         )
     );
 
-	/* TRAITEMENT DU GROUPE 3 */
+    /* TRAITEMENT DU GROUPE 3 */
     cout << "\n\tCONVERSION EN NOIR ET BLANC\n" << endl;
 
     /* on convertit les images */
@@ -171,7 +171,7 @@ int main() {
     /* permet d'afficher la console sous Windows */
     PAUSE;
 
-    /* on libère la mémoire */
+    /* on libÃ¨re la mÃ©moire */
     for_each(liste.begin(), liste.end(),
         [](Image* img) {
             delete img;
@@ -185,7 +185,7 @@ int main() {
      * $ valgrind ./build/image
      * 
      * on obtient "All heap blocks were freed -- no leaks are possible". Par
-     * conséquent, il n'y a aucune fuite de mémoire dans notre programme.
+     * consÃ©quent, il n'y a aucune fuite de mÃ©moire dans notre programme.
      */
 
     /* fin du programme */
