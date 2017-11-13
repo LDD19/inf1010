@@ -123,11 +123,11 @@ Image* GroupeImage::obtenirImage(const string& nom) const {
 }
 
 double GroupeImage::obtenirIntensiteMoyenne() const {
-    float somme = 0;
+    double somme = 0;
 
     /* on somme l'intensité de chaque image */
     for_each(images_.begin(), images_.end(),
-        [somme](Image* image) mutable {
+        [&somme](Image* image) {
             somme += image->retournerIntensiteMoyenne();
         }
     );
@@ -141,7 +141,7 @@ double GroupeImage::obtenirTailleMoyenne() const {
 
     /* on somme la taille de chaque image */
     for_each(images_.begin(), images_.end(),
-        [somme](Image* image) mutable {
+        [&somme](Image* image) {
             somme += image->obtenirTaille();
         }
     );

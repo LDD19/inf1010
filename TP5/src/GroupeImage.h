@@ -77,7 +77,15 @@ public:
      */
     template <class P>
     void supprimerElements(const P& predicat) {
-        std::remove_if(images_.begin(), images_.end(), predicat);
+        /* FIXME: c'est ignoble */
+        images_.erase(
+            std::remove_if(
+                images_.begin(),
+                images_.end(),
+                predicat
+            ),
+            images_.end()
+        );
     }
 
     /**
