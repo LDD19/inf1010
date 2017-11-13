@@ -9,7 +9,12 @@ class BaseDeDonnesSpecifique : public BaseDeDonnesGenerique<Image,GroupeImage> {
 public:
     void associerImage(GroupeImage* g, Image* i);
     bool enleverImage(GroupeImage* g, const std::string& nom);
+
+    std::list<Image*> obtenirListeImages() const;
+    
     friend std::ostream& operator<<(std::ostream& os, const BaseDeDonnesSpecifique& dataBase);
+
+    
 
 };
 #endif

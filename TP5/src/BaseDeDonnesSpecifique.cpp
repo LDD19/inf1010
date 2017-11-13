@@ -45,6 +45,10 @@ bool BaseDeDonnesSpecifique::enleverImage(GroupeImage* g, const string& nom) {
     return true;
 }
 
+list<Image*> BaseDeDonnesSpecifique::obtenirListeImages() const {
+    return listT_;
+}
+
 ostream& operator<<(ostream& os, const BaseDeDonnesSpecifique& db) {
     /* on affiche toutes les images dans la base de données */
     os << "** Images **" << endl;
