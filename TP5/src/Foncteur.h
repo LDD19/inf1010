@@ -4,6 +4,7 @@
 #include "GroupeImage.h"
 #include <stdlib.h>
 #include <random>
+#include <ostream>
 
 #define RAND_MIN_DEFAUT 0
 #define RAND_MAX_DEFAUT 3
@@ -238,6 +239,40 @@ public:
         if(image != nullptr)
             image->toutMettreEnNegatif();
     }
+};
+
+class FoncteurAfficherIntensite {
+public:
+    /**
+     * Constructeur par paramètres.
+     *
+     * @param os La sortie pour afficher l'intensité.
+     */
+    FoncteurAfficherIntensite(std::ostream* os) {
+        out = os;
+    }
+
+    /**
+     * Destructeur.
+     */
+    ~FoncteurAfficherIntensite() {
+
+    }
+
+    void operator() (const Image* image) const {
+        /* on s'assure d'avoir un pointeur valide */
+        if(image == nullptr)
+            return;
+
+        /* on écrit l'intensité */
+        std::string nom = image->obtenirNomImage();
+        double moy = image->retournerIntensiteMoyenne();
+        (*out) << "L'intensité de l'image " << nom << " est de " << moy << "." << std::endl; 
+    }
+
+private:
+    /** La sortie de l'affichage. */
+    std::ostream* out;
 };
 
 /**
