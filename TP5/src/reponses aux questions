@@ -1,0 +1,9 @@
+Questions 
+1. Quel est l’avantage d’utiliser une liste au lieu d’un vecteur si on veut supprimer ou rajouter un élément ? Quelle structure de données est plus avantageuse si on veut accéder à des éléments à des positions aléatoires ?
+
+    L'avantage d'utiliser une liste comparé à un vecteur est qu'on put ajouter our supprimer un élément n'importe où dans le tableau, alors qu'avec un vecteur, on ne peut que le faire à la fin. Pour pouvoir ajouter ou supprimer des éléments au milieu avec un vecteur, on doit nécessairement modifier la position des éléments qui suivent, ce qui prend plus de temps. 
+    Un accès dans une liste prend au maximum un temps O(n) tandis qu'un accès dans un vecteur prend toujours un temps O(1). Pour accéder à un élément à une position aléatoire dans une liste, on doit reparcourir la structure du début jusqu'à la position voulue, alors qu'on peut sauter à cette position directement avec un vecteur. 
+
+2. Pourquoi  est-ce que l’implémentation des classes génériques est dans .h et pas séparée en .h et .cpp comme les classes normales ?
+
+    Le compilateur doit avoir accès à la classe générique au complet pour pouvoir générer un code pour chaque instance. Contrairement aux classes normales, les classes génériques sont instanciés lors de la compilation du fichier, pas lors de la liaison des fichiers. C'est pour cela que l'implémentation des classes génériques doit être dans le fichier .h, à cause du #include qui existe dans le ficheir .cpp. 
