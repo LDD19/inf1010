@@ -1,5 +1,5 @@
 /**************************************************
- * Titre: Travail pratique #4 - TypeImage.h
+ * Titre: Travail pratique #5 - TypeImage.h
  * Date:28 Octobre 2017
  * Auteurs: Gabriel-Andrew Pollo-Guilbert, Si Da Li
 **************************************************/

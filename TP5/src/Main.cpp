@@ -1,3 +1,8 @@
+/**************************************************
+ * Titre: Travail pratique #5 - Main.cpp
+ * Date:28 Octobre 2017
+ * Auteurs: Gabriel-Andrew Pollo-Guilbert, Si Da Li
+**************************************************/
 #ifndef PAUSE
     #ifdef _WIN32
         #include <Windows.h>

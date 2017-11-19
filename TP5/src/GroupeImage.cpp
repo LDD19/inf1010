@@ -1,5 +1,5 @@
 /**************************************************
- * Titre: Travail pratique #4 - GroupeImage.cpp
+ * Titre: Travail pratique #5 - GroupeImage.cpp
  * Date:28 Octobre 2017
  * Auteurs: Gabriel-Andrew Pollo-Guilbert, Si Da Li
 **************************************************/

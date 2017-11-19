@@ -1,5 +1,5 @@
 /**************************************************
- * Titre: Travail pratique #4 - Pixel.h
+ * Titre: Travail pratique #5 - Pixel.h
  * Date:28 Octobre 2017
  * Auteurs: Gabriel-Andrew Pollo-Guilbert, Si Da Li
 **************************************************/

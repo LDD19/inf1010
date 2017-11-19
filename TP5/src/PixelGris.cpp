@@ -1,5 +1,5 @@
 /**************************************************
- * Titre: Travail pratique #4 - PixelGris.cpp
+ * Titre: Travail pratique #5 - PixelGris.cpp
  * Date:28 Octobre 2017
  * Auteurs: Gabriel-Andrew Pollo-Guilbert, Si Da Li
 **************************************************/

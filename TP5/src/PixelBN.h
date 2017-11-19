@@ -1,5 +1,5 @@
 /**************************************************
- * Titre: Travail pratique #4 - PixelBN.h
+ * Titre: Travail pratique #5 - PixelBN.h
  * Date:28 Octobre 2017
  * Auteurs: Gabriel-Andrew Pollo-Guilbert, Si Da Li
 **************************************************/
