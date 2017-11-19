@@ -1,3 +1,8 @@
+/**************************************************
+ * Titre: Travail pratique #5 - BaseDeDonnesSpecifique.cpp
+ * Date:28 Octobre 2017
+ * Auteurs: Gabriel-Andrew Pollo-Guilbert, Si Da Li
+**************************************************/
 #include "BaseDeDonnesSpecifique.h"
 #include <assert.h>
 

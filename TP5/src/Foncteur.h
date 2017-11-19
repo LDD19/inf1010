@@ -1,3 +1,8 @@
+/**************************************************
+ * Titre: Travail pratique #5 - Foncteur.h
+ * Date:28 Octobre 2017
+ * Auteurs: Gabriel-Andrew Pollo-Guilbert, Si Da Li
+**************************************************/
 #ifndef FONCTEUR_H
 #define FONCTEUR_H
 

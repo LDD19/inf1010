@@ -1,3 +1,8 @@
+/**************************************************
+ * Titre: Travail pratique #5 - BaseDeDonnesSpecifique.h
+ * Date:28 Octobre 2017
+ * Auteurs: Gabriel-Andrew Pollo-Guilbert, Si Da Li
+**************************************************/
 #ifndef BASE_DE_DONNES_SPECIFIQUE_H
 #define BASE_DE_DONNES_SPECIFIQUE_H
 
