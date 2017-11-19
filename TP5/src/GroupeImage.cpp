@@ -150,6 +150,10 @@ double GroupeImage::obtenirTailleMoyenne() const {
     return somme/images_.size();
 }
 
+list<Image*> GroupeImage::obtenirListeImages() const {
+    return images_;
+}
+
 GroupeImage& GroupeImage::operator+=(Image* image) {
     ajouterImage(image);
 

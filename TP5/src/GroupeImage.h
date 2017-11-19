@@ -156,6 +156,13 @@ public:
      */
     double obtenirTailleMoyenne() const;
 
+    /**
+     * Cette méthode retourne la liste d'images.
+     *
+     * @return La liste d'images.
+     */
+    std::list<Image*> obtenirListeImages() const;
+
     /*************************
      * Opérateurs surchargés *
      *************************/

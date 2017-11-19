@@ -125,25 +125,7 @@ int main() {
      * Trouver et afficher le nombre d'images qui ont une tailles plus grande que
      * la moyenne calculée. Utiliser les fonctions std::bind et std::placeholders
      * pour effectuer le travail.
-     *
-     * FIXME: why the fuck on utiliserait ces fonctions?
      */
-
-    /* on compte les images */
-    list<Image*> liste = db.obtenirListeImages();
-    uint_t nb = count_if(liste.begin(), liste.end(),
-        [&moy](Image* img) {
-            return (img->obtenirTaille() > moy);
-        }
-    );
-    cout << "Il y a " << nb << " images plus grandes que la moyenne." << endl;
-
-    /*
-     * FIXME: Je ne comprend pas pourquoi ils nous font faire ça, on veut le nombre
-     * d'images totales dont la est taille plus grande que la moyenne. Là, ils nous
-     * font juste compter celles fesant partie du groupe 2...
-     */
-
     groupe2.supprimerElements(
         bind(
             [](double t, double m) {
@@ -156,6 +138,14 @@ int main() {
             moy
         )
     );
+
+    list<Image*> lg2 = groupe2.obtenirListeImages();
+    uint_t nb = count_if(lg2.begin(), lg2.end(),
+        [&moy](Image* img) {
+            return (img->obtenirTaille() > moy);
+        }
+    );
+    cout << "Il y a " << nb << " images plus grandes que la moyenne." << endl;
 
     /* TRAITEMENT DU GROUPE 3 */
     cout << "\n\tCONVERSION EN NOIR ET BLANC\n" << endl;
@@ -172,6 +162,7 @@ int main() {
     PAUSE;
 
     /* on libère la mémoire */
+    list<Image*> liste = db.obtenirListeImages();
     for_each(liste.begin(), liste.end(),
         [](Image* img) {
             delete img;
