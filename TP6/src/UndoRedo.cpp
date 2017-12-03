@@ -1,3 +1,7 @@
+/**************************************************
+ * Titre: Travail pratique #6 - UndoRedo.cpp
+ * Date: 3 Décembre 2017
+**************************************************/
 #include "UndoRedo.h"
 
 using namespace std;

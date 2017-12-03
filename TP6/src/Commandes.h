@@ -1,3 +1,7 @@
+/**************************************************
+ * Titre: Travail pratique #6 - Commandes.h
+ * Date: 3 Décembre 2017
+**************************************************/
 #ifndef COMMANDES_H
 #define COMMANDES_H
 

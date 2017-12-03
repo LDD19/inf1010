@@ -1,3 +1,8 @@
+/**************************************************
+ * Titre: Travail pratique #6 - ExceptionsMauvaisFormatImage.h
+ * Date: 3 Décembre 2017
+ * Auteurs: Gabriel-Andrew Pollo-Guilbert, Si Da Li
+**************************************************/
 #ifndef EXCEPTIONMAUVAISFORMATIMAGE_H
 #define EXCEPTIONMAUVAISFORMATIMAGE_H
 

@@ -1,3 +1,7 @@
+/**************************************************
+ * Titre: Travail pratique #6 - Main.cpp
+ * Date: 3 Décembre 2017
+**************************************************/
 #include <QApplication>
 
 #include "MainWindow.h"

@@ -1,3 +1,8 @@
+/**************************************************
+ * Titre: Travail pratique #6 - Image.cpp
+ * Date: 3 Décembre 2017
+ * Auteurs: Gabriel-Andrew Pollo-Guilbert, Si Da Li
+**************************************************/
 #include <QImageReader>
 #include <QMessageBox>
 #include <QGuiApplication>

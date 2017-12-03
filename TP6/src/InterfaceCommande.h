@@ -1,3 +1,7 @@
+/**************************************************
+ * Titre: Travail pratique #6 - InterfaceCommande.h
+ * Date: 3 Décembre 2017
+**************************************************/
 #ifndef INTERFACECOMMANDE_H
 #define INTERFACECOMMANDE_H
 

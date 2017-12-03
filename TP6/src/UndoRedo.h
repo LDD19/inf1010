@@ -1,3 +1,7 @@
+/**************************************************
+ * Titre: Travail pratique #6 - UndoRedo.h
+ * Date: 3 Décembre 2017
+**************************************************/
 #ifndef UNDOREDO_H
 #define UNDOREDO_H
 
